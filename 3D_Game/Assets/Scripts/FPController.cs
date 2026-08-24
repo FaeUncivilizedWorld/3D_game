@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Animations;
@@ -19,6 +20,8 @@ public class FPController : MonoBehaviour
     private Vector3 velocity;
     private float XRotation = 0f;
 
+    public GameObject objectText;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -26,6 +29,9 @@ public class FPController : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        objectText.SetActive(false);
+
     }
 
     // Update is called once per frame
@@ -33,6 +39,22 @@ public class FPController : MonoBehaviour
     {
         Look();
         Move();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("PickupObject"))
+        {
+            objectText.SetActive(true);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("PickupObject"))
+        {
+            objectText.SetActive(false);
+        }
     }
 
     void Look()

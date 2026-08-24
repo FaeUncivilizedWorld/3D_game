@@ -6,7 +6,7 @@ public class PickupSystem : MonoBehaviour
     [Header("Settings")]
     public Transform cameraHolder;
     public Transform holdPoint;
-    public float pickupDistance = 3f;
+    public float pickupDistance = 7f;
     public float moveSpeed = 15f;
     public LayerMask pickupLayer;
 
