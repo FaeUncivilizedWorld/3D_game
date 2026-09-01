@@ -60457,6 +60457,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2271f1e0244b5e344af49b7a93e4a3b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInteract
+  interactablelayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!43 &1345057545
 Mesh:
   m_ObjectHideFlags: 0
@@ -144818,7 +144821,7 @@ GameObject:
   - component: {fileID: 1854124602}
   - component: {fileID: 1854124601}
   - component: {fileID: 1854124600}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Mabel Npc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
