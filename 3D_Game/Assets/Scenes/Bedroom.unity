@@ -60454,12 +60454,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1343730669}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2271f1e0244b5e344af49b7a93e4a3b7, type: 3}
+  m_Script: {fileID: 11500000, guid: e02f8a3ea2347014c9b0fee7db889ea9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInteract
-  interactablelayer:
-    serializedVersion: 2
-    m_Bits: 128
 --- !u!43 &1345057545
 Mesh:
   m_ObjectHideFlags: 0
@@ -97975,6 +97972,68 @@ Mesh:
       - serializedVersion: 1
         m_IndexStart: 0
         m_IndexCount: 0
+--- !u!1 &1485982266
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1485982269}
+  - component: {fileID: 1485982268}
+  - component: {fileID: 1485982267}
+  m_Layer: 0
+  m_Name: DialogueUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1485982267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1485982266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9675de6411c45c94ba2c02b2456ad676, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NPCDialogue
+  npcName: Mabel
+  dialogueLine: Ethy?
+--- !u!114 &1485982268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1485982266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afdcb61866d0e5945a32b55065fc8b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueUI
+  dialoguePanel: {fileID: 0}
+  nameText: {fileID: 0}
+  conversationText: {fileID: 0}
+--- !u!4 &1485982269
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1485982266}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -895, y: -134.00002, z: -259}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1486056144
 GameObject:
   m_ObjectHideFlags: 0
@@ -144789,6 +144848,7 @@ GameObject:
   - component: {fileID: 1854124602}
   - component: {fileID: 1854124601}
   - component: {fileID: 1854124600}
+  - component: {fileID: 1854124604}
   - component: {fileID: 1854124603}
   m_Layer: 7
   m_Name: Mabel Npc
@@ -144901,39 +144961,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 1854124598}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a920c0c160472fc4e8f66270fde86cb4, type: 3}
+  m_Script: {fileID: 11500000, guid: 9675de6411c45c94ba2c02b2456ad676, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NPCDialogue
+  npcName: Mabel
+  dialogueLine: "You haven\u2019t been back here in years, I thought you\u2019d never
+    come back\r\nGranny said we should be patient and wait for you to come back\r\nShe
+    told us that you could help us \r\nYou should follow me upstairs; I have so much
+    to show you \u2026\r\nI\u2019m happy your back\r\nYou\u2019ve already found the
+    key for the attic\u2026\r\nMaybe Granny was right, you really can help us \r\n"
+--- !u!114 &1854124604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1854124598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0572ed37558b0694090c701882efce51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractableObject
-  _stopInteract:
+  prompt: Press E to interact
+  onInteract:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1854124601}
-        m_TargetAssemblyTypeName: UnityEngine.MeshRenderer, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-  _onInteract:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1854124601}
-        m_TargetAssemblyTypeName: UnityEngine.MeshRenderer, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+  isSingleUse: 0
 --- !u!43 &1854856099
 Mesh:
   m_ObjectHideFlags: 0
@@ -155951,3 +156004,4 @@ SceneRoots:
   - {fileID: 380098618}
   - {fileID: 1969929513}
   - {fileID: 1854124599}
+  - {fileID: 1485982269}

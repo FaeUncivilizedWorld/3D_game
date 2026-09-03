@@ -1,0 +1,13 @@
+using UnityEngine;
+using static UnityEngine.Rendering.DynamicArray<T>;
+
+// Any script that implements this interface can be interacted with by the player.
+public interface IInteractable
+{
+    // The text that will show up on the UI 
+    string InteractionPrompt { get; }
+
+    // The method called when the player presses the interact button
+    // Returns true if the interaction was successful
+    bool Interact(Interactor interactor);
+}

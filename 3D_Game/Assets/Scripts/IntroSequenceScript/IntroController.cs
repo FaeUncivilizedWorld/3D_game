@@ -13,7 +13,7 @@ public class IntroController : MonoBehaviour
     public GameObject clickHint;
 
     public AudioSource audioSource;
-    public AudioClip closetSound;
+    public AudioClip DoorSound;
 
     private int currentPage = 0;
     private bool isTransitioning = false;
@@ -62,10 +62,10 @@ public class IntroController : MonoBehaviour
         // Small tension pause before sound
         yield return new WaitForSeconds(0.5f);
 
-        // Closet sound moment
-        if (audioSource != null && closetSound != null)
+        // Door sound moment
+        if (audioSource != null && DoorSound != null)
         {
-            audioSource.PlayOneShot(closetSound);
+            audioSource.PlayOneShot(DoorSound);
         }
 
         // Wait for sound impact moment
