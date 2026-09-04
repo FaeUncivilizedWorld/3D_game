@@ -147330,8 +147330,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -734, y: 15}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: -14.3981, y: -24.341}
+  m_SizeDelta: {x: 1711.3036, y: 216.68}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1927645714
 MonoBehaviour:
@@ -147353,7 +147353,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Dialogue
+  m_text: "You haven\u2019t been back here in years, I thought you\u2019d never come
+    back\r\nGranny said we should be patient and wait for you to come back\r\nShe
+    told us that you could help us \r\nYou should follow me upstairs; I have so much
+    to show you \u2026\r\nI\u2019m happy your back\r\nYou\u2019ve already found the
+    key for the attic\u2026\r\nMaybe Granny was right, you really can help us \r\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

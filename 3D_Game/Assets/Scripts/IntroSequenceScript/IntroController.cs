@@ -1,43 +1,71 @@
-
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using System.Collections;
 
 public class IntroController : MonoBehaviour
 {
+    public GameObject clickHint;
+    public Image fadeImage;
+
     public Image storyPage;
+    // Array of sprites for the story pages, set in the inspector
     public Sprite[] pages;
 
-    public CanvasGroup fadePanel;
-    public GameObject clickHint;
-
     public AudioSource audioSource;
-    public AudioClip DoorSound;
+    public AudioClip closetSound;
 
+    // Called when the mouse is clicked
     private int currentPage = 0;
     private bool isTransitioning = false;
 
+    public float swayAmount = 2.5f; // Amount of sway in degrees
+    public float swaySpeed = 0.4f; // Speed of the sway
+
+    // Reference to the RectTransform of the storyPage
+    private RectTransform pageRect;
+    private Vector2 startPos;
     void Start()
     {
+        // Get the RectTransform component of the storyPage
+        pageRect = storyPage.GetComponent<RectTransform>();
+        startPos = pageRect.anchoredPosition;
+
         currentPage = 0;
         ShowPage();
 
         clickHint.SetActive(true);
-        fadePanel.alpha = 0;
+        fadeImage.color = new Color(
+            fadeImage.color.r,
+            fadeImage.color.g,
+            fadeImage.color.b,
+            0
+            ); // Ensure the fade image is initially transparent
     }
 
     void Update()
     {
+        PageSway();
+
+        // Check for mouse click to advance the story
         if (Input.GetMouseButtonDown(0) && !isTransitioning)
         {
             HandleClick();
         }
     }
 
+    void PageSway()
+    {
+        float t = Time.time * swaySpeed;
+        float x = Mathf.Sin(t) * swayAmount;
+        float y = Mathf.Cos(t * 0.9f) * swayAmount;
+        // Apply the sway to the anchored position of the RectTransform
+        pageRect.anchoredPosition = startPos + new Vector2(x, y);
+    }
+
     void HandleClick()
     {
-        // If you're not on the last page go to next one
+
         if (currentPage < pages.Length - 1)
         {
             currentPage++;
@@ -45,49 +73,56 @@ public class IntroController : MonoBehaviour
             return;
         }
 
-        // If YOU'RE ON THE LAST PAGE start ending sequence
         StartCoroutine(EndSequence());
     }
-
     void ShowPage()
     {
         storyPage.sprite = pages[currentPage];
-    }
 
+    }
     IEnumerator EndSequence()
     {
         isTransitioning = true;
+        pageRect.anchoredPosition = startPos;
         clickHint.SetActive(false);
 
-        // Small tension pause before sound
         yield return new WaitForSeconds(0.5f);
 
-        // Door sound moment
-        if (audioSource != null && DoorSound != null)
+        if (audioSource != null && closetSound != null)
         {
-            audioSource.PlayOneShot(DoorSound);
+            audioSource.PlayOneShot(closetSound);
         }
 
-        // Wait for sound impact moment
         yield return new WaitForSeconds(1f);
 
-        // Slow fade
         yield return StartCoroutine(FadeOut());
 
-        //SceneManager.LoadScene("Bedroom");
+        // FORCE FRAME RENDER BEFORE SCENE CHANGE
+        yield return null;
+
+        //SceneManager.LoadScene("VNScene");
     }
     IEnumerator FadeOut()
     {
-        float duration = 3f; // SLOW fade 
+        Debug.Log("Fade starting (Image method)");
+
+        float duration = 3f;
         float t = 0f;
+
+        Color c = fadeImage.color;
 
         while (t < duration)
         {
             t += Time.deltaTime;
-            fadePanel.alpha = Mathf.Lerp(0, 1, t / duration);
+
+            float progress = t / duration;
+            float alpha = Mathf.SmoothStep(0f, 1f, progress);
+
+            fadeImage.color = new Color(c.r, c.g, c.b, alpha);
+
             yield return null;
         }
 
-        fadePanel.alpha = 1;
+        fadeImage.color = new Color(c.r, c.g, c.b, 1f);
     }
 }
