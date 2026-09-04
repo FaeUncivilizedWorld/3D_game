@@ -1,14 +1,11 @@
 using UnityEngine;
-using UnityEngine.UI;
-using static UnityEngine.Rendering.DynamicArray<T>;
-
-// Attach this to a UI Canvas. It listens to the Interactor and displays the prompts.
+using TMPro; 
 
 public class InteractionUI : MonoBehaviour
 {
     [Header("UI References")]
     [SerializeField] private GameObject promptPanel;
-    [SerializeField] private Text promptText; // Swap to TextMeshProUGUI if using TMP
+    [SerializeField] private TextMeshProUGUI promptText;
 
     [Header("Settings")]
     [SerializeField] private string defaultKeyText = "[E]";
@@ -25,11 +22,13 @@ public class InteractionUI : MonoBehaviour
 
     private void Start()
     {
-        promptPanel.SetActive(false);
+        if (promptPanel != null) promptPanel.SetActive(false);
     }
 
     private void UpdatePrompt(string newPrompt)
     {
+        if (promptPanel == null || promptText == null) return;
+
         if (string.IsNullOrEmpty(newPrompt))
         {
             promptPanel.SetActive(false);

@@ -1,5 +1,4 @@
 using UnityEngine;
-using static UnityEngine.Rendering.DynamicArray<T>;
 
 // Any script that implements this interface can be interacted with by the player.
 public interface IInteractable

@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-using UnityEngine.InputSystem; // REQUIRED FOR NEW INPUT SYSTEM
+using UnityEngine.InputSystem; 
 
 public class Interactor : MonoBehaviour
 {
@@ -55,7 +55,7 @@ public class Interactor : MonoBehaviour
 
         if (found)
         {
-            // Check the hit object or its parent for the interface
+            
             if (hit.collider.TryGetComponent(out IInteractable interactable))//||
                // hit.collider.GetComponentInParent<IInteractable>(out interactable)) 
             {

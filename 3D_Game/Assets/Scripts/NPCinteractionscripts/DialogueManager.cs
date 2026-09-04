@@ -1,5 +1,5 @@
 using UnityEngine;
-using TMPro; // Ensure TextMeshPro is installed in your project
+using TMPro;
 
 public class DialogueUI : MonoBehaviour
 {
