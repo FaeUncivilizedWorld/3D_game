@@ -12,7 +12,7 @@ public class SwapScenes : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
 
-        if (SceneManager.GetActiveScene().name == "Level 3")
+        if (SceneManager.GetActiveScene().name == "Bedroom")
             BGmusic.instance.GetComponent<AudioSource>().Pause();
         //BGmusic.instance.GetComponent<AudioSource>().Play();
 
