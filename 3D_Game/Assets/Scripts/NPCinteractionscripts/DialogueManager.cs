@@ -18,7 +18,6 @@ public class DialogueUI : MonoBehaviour
         // Hide dialogue display when the scene loads
         dialoguePanel.SetActive(false);
     }
-
     public void DisplaySentence(string speakerName, string text)
     {
         dialoguePanel.SetActive(true);
@@ -33,5 +32,10 @@ public class DialogueUI : MonoBehaviour
     public void CloseDialogue()
     {
         dialoguePanel.SetActive(false);
+    }
+    public bool IsDialogueActive()
+    {
+        // Returns true only if the visual panel text box is turned on
+        return dialoguePanel != null && dialoguePanel.activeSelf;
     }
 }
