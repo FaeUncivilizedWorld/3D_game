@@ -2,16 +2,24 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
+using TMPro; 
 
 public class IntroController : MonoBehaviour
 {
     public GameObject clickHint;
     public Image fadeImage;
 
+    [Header("Story Configurations")]
     public Image storyPage;
     // Array of sprites for the story pages, set in the inspector
     public Sprite[] pages;
 
+    [TextArea(3, 5)]
+    public string[] pageDialogues;
+    public TextMeshProUGUI dialogueText;
+
+    [Header("Audio Settings")]
     public AudioSource audioSource;
     public AudioClip closetSound;
 
@@ -19,12 +27,14 @@ public class IntroController : MonoBehaviour
     private int currentPage = 0;
     private bool isTransitioning = false;
 
+    [Header("Sway Settings")]
     public float swayAmount = 2.5f; // Amount of sway in degrees
     public float swaySpeed = 0.4f; // Speed of the sway
 
     // Reference to the RectTransform of the storyPage
     private RectTransform pageRect;
     private Vector2 startPos;
+
     void Start()
     {
         // Get the RectTransform component of the storyPage
@@ -40,7 +50,7 @@ public class IntroController : MonoBehaviour
             fadeImage.color.g,
             fadeImage.color.b,
             0
-            ); // Ensure the fade image is initially transparent
+        ); // Ensure the fade image is initially transparent
     }
 
     void Update()
@@ -48,7 +58,7 @@ public class IntroController : MonoBehaviour
         PageSway();
 
         // Check for mouse click to advance the story
-        if (Input.GetMouseButtonDown(0) && !isTransitioning)
+        if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame && !isTransitioning)
         {
             HandleClick();
         }
@@ -65,7 +75,6 @@ public class IntroController : MonoBehaviour
 
     void HandleClick()
     {
-
         if (currentPage < pages.Length - 1)
         {
             currentPage++;
@@ -75,16 +84,30 @@ public class IntroController : MonoBehaviour
 
         StartCoroutine(EndSequence());
     }
+
     void ShowPage()
     {
+        // Set the sprite image
         storyPage.sprite = pages[currentPage];
 
+        if (pageDialogues != null && currentPage < pageDialogues.Length)
+        {
+            dialogueText.text = pageDialogues[currentPage];
+        }
+        else
+        {
+            dialogueText.text = ""; // Keeps it blank if i don't have a dialogue for that page
+        }
     }
+
     IEnumerator EndSequence()
     {
         isTransitioning = true;
         pageRect.anchoredPosition = startPos;
         clickHint.SetActive(false);
+
+        // Hide the dialogue text during the final fade sequence
+        if (dialogueText != null) dialogueText.text = "";
 
         yield return new WaitForSeconds(0.5f);
 
@@ -102,6 +125,7 @@ public class IntroController : MonoBehaviour
 
         //SceneManager.LoadScene("VNScene");
     }
+
     IEnumerator FadeOut()
     {
         Debug.Log("Fade starting (Image method)");
@@ -126,3 +150,4 @@ public class IntroController : MonoBehaviour
         fadeImage.color = new Color(c.r, c.g, c.b, 1f);
     }
 }
+

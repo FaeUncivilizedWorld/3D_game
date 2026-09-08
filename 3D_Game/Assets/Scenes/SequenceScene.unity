@@ -119,6 +119,143 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &66449986
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 66449987}
+  - component: {fileID: 66449989}
+  - component: {fileID: 66449988}
+  m_Layer: 5
+  m_Name: Dialogue Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &66449987
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 66449986}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 144444302}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -9.0379, y: 166}
+  m_SizeDelta: {x: 1223.1172, y: 433.2169}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &66449988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 66449986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Dialogue
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 40
+  m_fontSizeBase: 40
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 1
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_characterHorizontalScale: 1
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &66449989
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 66449986}
+  m_CullTransparentMesh: 1
 --- !u!1 &144444298
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,6 +353,7 @@ RectTransform:
   - {fileID: 1325184327}
   - {fileID: 398909635}
   - {fileID: 712425591}
+  - {fileID: 66449987}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -355,7 +493,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Next Page >
+  m_text: next page >
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -521,6 +659,7 @@ GameObject:
   - component: {fileID: 1337331651}
   - component: {fileID: 1337331650}
   - component: {fileID: 1337331649}
+  - component: {fileID: 1337331652}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -602,6 +741,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1337331652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1337331648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalCameraData
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_TaaSettings:
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
+  m_Version: 2
 --- !u!1 &1507821435
 GameObject:
   m_ObjectHideFlags: 0
@@ -762,7 +945,82 @@ MonoBehaviour:
   clickHint: {fileID: 712425590}
   fadeImage: {fileID: 398909636}
   storyPage: {fileID: 1325184328}
-  pages: []
+  pages:
+  - {fileID: 21300000, guid: 9ddd77f0290dd1f47a44ba92a1cee131, type: 3}
+  - {fileID: 21300000, guid: 9ddd77f0290dd1f47a44ba92a1cee131, type: 3}
+  - {fileID: 21300000, guid: 9ddd77f0290dd1f47a44ba92a1cee131, type: 3}
+  - {fileID: 21300000, guid: 9ddd77f0290dd1f47a44ba92a1cee131, type: 3}
+  - {fileID: 21300000, guid: 9ddd77f0290dd1f47a44ba92a1cee131, type: 3}
+  - {fileID: 21300000, guid: 9ddd77f0290dd1f47a44ba92a1cee131, type: 3}
+  - {fileID: 21300000, guid: 9ddd77f0290dd1f47a44ba92a1cee131, type: 3}
+  - {fileID: 21300000, guid: 9ddd77f0290dd1f47a44ba92a1cee131, type: 3}
+  pageDialogues:
+  - 'The house was never peaceful. Every morning started with an argument, and every
+    night ended with another. Sometimes Mom and Gran fought about money, sometimes
+    family, neighbours, and sometimes about things I was too young to understand.
+
+    Their
+    voices filled every room of that old house until they became white noise.
+
+    Until
+    one day...They weren''t the only voices I could hear.
+
+'
+  - 'Gran knew before I ever told her, I don''t know how she knew, but she told me
+    our family carried gifts that weren''t always blessings. Around my wrist, she
+    tied a string of old beads and crystals, then started making these awful-smelling
+    remedies for me to drink. They were bitter as hell, but somehow, they helped.
+    For the first time, I didn''t feel afraid of what was happening to me, But Mom
+    didn''t see it as a gift, she saw the same superstition she''d spent her whole
+    life trying to escape. And she was terrified someone else would see it in me
+    too.
+
+    Mom didn''t want people talking about her daughter hearing voices,
+    she didn''t want them treating me the way they treated Gran, but I don''t think
+    she realised she started treating me the same way.
+
+'
+  - "The day she found my bracelet, she flipped, we packed our bags that afternoon
+    and left before dawn. She said Gran was poisoning my mind with old beliefs, Gran
+    said she was trying to protect me. I remember standing there between them, not
+    really understanding why something that had finally made me feel better had turned
+    into another reason for them to fight, neither of them ever spoke to each other
+    again.\r\nYears passed but the voices never went away, Mom started taking me
+    to doctors. At first, we went to their offices. Then the visits became private,
+    she said it was easier that way. But we both knew the actual reason behind her
+    choices. \r\n"
+  - "After school, Mom was always waiting for me, I wasn't allowed to stay behind
+    with my friends, no sleepovers, playdates, nobody was allowed to come over to
+    ours\u2026I wasn\u2019t even allowed to go to prom, and whenever someone asked
+    my mom why, she always had an answer ready...\r\n\"She's not feeling well.\"\r\n\"She
+    needs to go to her tutor sessions.\"\r\n\"Maybe another time.\"\r\nEventually,
+    my friends stopped asking, I watched them make plans without me and they always
+    had jokes about things I was never a part of, the more Mom tried to keep me away
+    from everyone else, the more alone I felt.\r\n"
+  - "Nobody seemed to agree on what was wrong with me, but they all agreed that something
+    was going on, every appointment was the same, they\u2019d stare at me with sorry
+    eyes and asked me what I saw, heard, when it started and if there were events
+    in my life that triggered these voices\u2026tablets made me feel numb, but nothing
+    ever made the whispers disappear expect for the remedies that gran used to make\u2026After
+    a while, I started wondering if maybe she was right, maybe I really was sick
+    and there was something wrong with me."
+  - "Eventually I gave in and I stopped asking if I could go places because I already
+    knew what she'd say, I stopped trying to explain the voices and I just started
+    to pretend that I was getting better. By the time I finished high school she
+    finally decided she had enough, she said she couldn\u2019t do it anymore.\r\n\"I
+    can't keep doing this,\" she said.\r\n\"You're on your own now.\"\r\nSo, I left.\r\n"
+  - "With nowhere else to go, I found work at a small grocery store in a town secluded
+    from the city, with not much experience I needed to make money somehow to pay
+    for college, funny enough... It was only a few blocks away from the house I\u2019d
+    spent my entire life resenting, I hadn't thought about that place that triggered
+    the start of everything in years."
+  - "The closer I got, the louder the whispers became, at first, I thought it was
+    just my imagination, then I heard something call my name from a distance, it
+    sounded like a child. I stopped right at the door holding my suitcase and for
+    the first time in years...\r\nI finally felt hope, maybe the answers I'd spent
+    my whole life searching for in hospitals had been waiting for me in this old
+    house all along. \r\n"
+  dialogueText: {fileID: 66449988}
   audioSource: {fileID: 1583020678}
   closetSound: {fileID: 0}
   swayAmount: 2.5
