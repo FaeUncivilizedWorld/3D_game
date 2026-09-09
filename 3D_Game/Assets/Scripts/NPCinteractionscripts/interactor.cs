@@ -36,11 +36,22 @@ public class Interactor : MonoBehaviour
             _playerInput.actions["Interact"].performed -= OnInteractPressed;
         }
     }
-
     private void Update()
     {
+        if (DialogueUI.Instance != null && DialogueUI.Instance.IsDialogueActive())
+        {
+            if (currentTarget != null)
+            {
+                currentTarget = null;
+                OnTargetChange?.Invoke(null);
+            }
+
+            return;
+        }
+
         FindInteractable();
     }
+
 
     private void FindInteractable()
     {

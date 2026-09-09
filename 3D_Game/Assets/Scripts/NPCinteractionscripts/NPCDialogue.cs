@@ -16,22 +16,56 @@ public class NPCDialogue : MonoBehaviour
     };
 
     private int _currentLineIndex = 0;
+    private bool _conversationRunning = false;
 
-    // This is the clean, original function your UnityEvent looks for
     public void Speak()
     {
-        if (dialogueLines == null || dialogueLines.Length == 0) return;
+        if (_conversationRunning)
+            return;
 
-        // Directly update the UI text using your manager
-        DialogueUI.Instance.DisplaySentence(npcName, dialogueLines[_currentLineIndex]);
+        if (dialogueLines == null || dialogueLines.Length == 0)
+            return;
 
-        // Advance to the next line
-        _currentLineIndex++;
+        _currentLineIndex = 0;
+        _conversationRunning = true;
 
-        // Loop back to the first line if we run out of sentences
+        ShowCurrentLine();
+    }
+
+    private void ShowCurrentLine()
+    {
         if (_currentLineIndex >= dialogueLines.Length)
         {
-            _currentLineIndex = 0;
+            EndConversation();
+            return;
         }
+
+        DialogueUI.Instance.DisplaySentence(
+            npcName,
+            dialogueLines[_currentLineIndex],
+            OnLineFinished
+        );
+    }
+
+    private void OnLineFinished()
+    {
+        _currentLineIndex++;
+
+        if (_currentLineIndex >= dialogueLines.Length)
+        {
+            EndConversation();
+        }
+        else
+        {
+            ShowCurrentLine();
+        }
+    }
+
+    private void EndConversation()
+    {
+        _conversationRunning = false;
+        _currentLineIndex = 0;
+
+        DialogueUI.Instance.CloseDialogue();
     }
 }

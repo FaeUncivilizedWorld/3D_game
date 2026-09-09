@@ -99991,7 +99991,6 @@ MonoBehaviour:
   AtticMusic: {fileID: 8300000, guid: c3156bbce1f41674f866e85deb31ae3e, type: 3}
   SequenceSceneMusic: {fileID: 8300000, guid: c3156bbce1f41674f866e85deb31ae3e, type: 3}
   WholeHouseMusic: {fileID: 8300000, guid: c3156bbce1f41674f866e85deb31ae3e, type: 3}
-  MainMenuMusic: {fileID: 8300000, guid: c3156bbce1f41674f866e85deb31ae3e, type: 3}
   musicSlider: {fileID: 563389536}
 --- !u!43 &1470926928
 Mesh:
@@ -100203,6 +100202,7 @@ MonoBehaviour:
   dialoguePanel: {fileID: 577706348}
   nameText: {fileID: 1428354128}
   conversationText: {fileID: 1927645714}
+  typingSpeed: 0.03
 --- !u!4 &1485982269
 Transform:
   m_ObjectHideFlags: 0
@@ -147327,13 +147327,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NPCDialogue
   npcName: Mabel
   dialogueLines:
-  - "Ethy? You haven\u2019t been back here in years, I thought you\u2019d never come
-    back\r\nGranny said we should be patient and wait for you to come back\r\nShe
-    told us that you could help us \r\nYou should follow me upstairs; I have so much
-    to show you \u2026\r\nI\u2019m happy your back, You\u2019ve already found the
-    code for the attic as well\u2026\r\nMaybe Granny was right, you really can help
-    us "
-  - "Come on, go upstairs\u2026what are you waiting for?"
+  - 'Ethy?  '
+  - "You haven\u2019t been back here in years, I thought you\u2019d never come back\r\n "
+  - 'Granny said we should be patient and wait for you to come back '
+  - 'She told us that you could help us  '
+  - "You should follow me upstairs; I have so much to show you \u2026\r "
+  - "You\u2019ve already found the code for the attic as well\u2026\r "
+  - 'Maybe Granny was right, you really can help us '
 --- !u!114 &1854124604
 MonoBehaviour:
   m_ObjectHideFlags: 0
