@@ -99988,7 +99988,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MusicManager
   BedroomMusic: {fileID: 8300000, guid: c3156bbce1f41674f866e85deb31ae3e, type: 3}
-  AtticMusic: {fileID: 8300000, guid: c3156bbce1f41674f866e85deb31ae3e, type: 3}
+  AtticMusic: {fileID: 8300000, guid: ba42b0d58f97fde4ca122c217d8e3de5, type: 3}
   SequenceSceneMusic: {fileID: 8300000, guid: c3156bbce1f41674f866e85deb31ae3e, type: 3}
   WholeHouseMusic: {fileID: 8300000, guid: c3156bbce1f41674f866e85deb31ae3e, type: 3}
   musicSlider: {fileID: 563389536}
@@ -100202,7 +100202,7 @@ MonoBehaviour:
   dialoguePanel: {fileID: 577706348}
   nameText: {fileID: 1428354128}
   conversationText: {fileID: 1927645714}
-  typingSpeed: 0.09
+  typingSpeed: 0.06
 --- !u!4 &1485982269
 Transform:
   m_ObjectHideFlags: 0

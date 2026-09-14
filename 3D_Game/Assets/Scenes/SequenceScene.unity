@@ -1022,7 +1022,7 @@ MonoBehaviour:
     house all along. \r\n"
   dialogueText: {fileID: 66449988}
   audioSource: {fileID: 1583020678}
-  closetSound: {fileID: 0}
+  closetSound: {fileID: 8300000, guid: 4a65289a8aef60f4eab014f88274b6d1, type: 3}
   swayAmount: 2.5
   swaySpeed: 0.4
 --- !u!4 &1583020677
