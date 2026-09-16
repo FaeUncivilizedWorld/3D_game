@@ -24,7 +24,6 @@ public class InteractableObject : MonoBehaviour, IInteractable
         {
             hasBeenUsed = true;
 
-            // Disable the collider so the SphereCast safely ignores it now
             if (TryGetComponent<Collider>(out var col)) col.enabled = false;
 
             // Destroy the object or hide its visuals

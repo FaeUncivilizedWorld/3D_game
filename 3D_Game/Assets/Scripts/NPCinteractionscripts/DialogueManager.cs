@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class DialogueUI : MonoBehaviour
 {
@@ -83,5 +84,10 @@ public class DialogueUI : MonoBehaviour
     public bool IsTyping()
     {
         return isTyping;
+    }
+
+    internal void DisplaySentence(string v, Action onLineFinished)
+    {
+        throw new NotImplementedException();
     }
 }
