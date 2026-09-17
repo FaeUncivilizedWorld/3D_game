@@ -1,8 +1,10 @@
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
+using UnityEditor.PackageManager.UI;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.XR;
 using UnityEngine.Rendering;
 
 public class FPController : MonoBehaviour
@@ -15,6 +17,9 @@ public class FPController : MonoBehaviour
     [Header("Mouse Look")]
     public float mouseSensitivity = 100f;
     public Transform cameraHolder;
+
+    [Header("Player Stats")]
+    //This is where we write all the information that needs to be saved
 
     private CharacterController characterController;
     private Vector3 velocity;
@@ -31,6 +36,14 @@ public class FPController : MonoBehaviour
         Cursor.visible = false;
 
         objectText.SetActive(false);
+
+        // Check if we requested a load from the Main Menu or previous session
+        if (PlayerPrefs.GetInt("LoadOnStart", 0) == 1)
+        {
+            LoadPlayerData();
+            // Reset the flag so it doesn't force-load every scene reload unexpectedly
+            PlayerPrefs.SetInt("LoadOnStart", 0);
+        }
 
     }
 
@@ -121,5 +134,37 @@ public class FPController : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
 
         characterController.Move(velocity * Time.deltaTime);
+    }
+
+    public void SavePlayerData()
+    {
+        PlayerData data = new PlayerData();
+
+        // Save stats
+
+        // Save position
+        data.positionX = transform.position.x;
+        data.positionY = transform.position.y;
+        data.positionZ = transform.position.z;
+
+        SaveSystem.SavePlayer(data);
+    }
+
+    public void LoadPlayerData()
+    {
+        PlayerData data = SaveSystem.LoadPlayer();
+
+        if (data != null)
+        {
+            // If using a CharacterController or NavMeshAgent, disable it before changing transform.position
+            CharacterController controller = GetComponent<CharacterController>();
+            if (controller != null) controller.enabled = false;
+
+            transform.position = new Vector3(data.positionX, data.positionY, data.positionZ);
+
+            if (controller != null) controller.enabled = true;
+
+            Debug.Log("Player Loaded Successfully!");
+        }
     }
 }
