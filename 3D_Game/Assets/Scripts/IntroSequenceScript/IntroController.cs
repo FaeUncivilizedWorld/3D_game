@@ -31,6 +31,17 @@ public class IntroController : MonoBehaviour
     public float swayAmount = 2.5f; // Amount of sway in degrees
     public float swaySpeed = 0.4f; // Speed of the sway
 
+    [Header("Typewriter Settings")]
+    public float typingSpeed = 0.035f;
+
+    [Header("Text Jiggle")]
+    public float textJiggleAmount = 1.5f;
+    public float textJiggleSpeed = 3f;
+
+    private Coroutine typingCoroutine;
+    private RectTransform dialogueRect;
+    private Vector2 dialogueStartPos;
+
     // Reference to the RectTransform of the storyPage
     private RectTransform pageRect;
     private Vector2 startPos;
@@ -44,26 +55,40 @@ public class IntroController : MonoBehaviour
         currentPage = 0;
         ShowPage();
 
+        dialogueRect = dialogueText.GetComponent<RectTransform>();
+        dialogueStartPos = dialogueRect.anchoredPosition;
+
         clickHint.SetActive(true);
         fadeImage.color = new Color(
             fadeImage.color.r,
             fadeImage.color.g,
             fadeImage.color.b,
             0
-        ); // Ensure the fade image is initially transparent
+        ); 
     }
-
     void Update()
     {
         PageSway();
+        TextJiggle();
 
-        // Check for mouse click to advance the story
-        if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame && !isTransitioning)
+        if (Mouse.current != null &&
+            Mouse.current.leftButton.wasPressedThisFrame &&
+            !isTransitioning)
         {
             HandleClick();
         }
     }
+    void TextJiggle()
+    {
+        if (dialogueRect == null)
+            return;
 
+        float x = Mathf.Sin(Time.time * textJiggleSpeed) * textJiggleAmount;
+        float y = Mathf.Cos(Time.time * textJiggleSpeed * 0.8f) * textJiggleAmount;
+
+        dialogueRect.anchoredPosition =
+            dialogueStartPos + new Vector2(x, y);
+    }
     void PageSway()
     {
         float t = Time.time * swaySpeed;
@@ -75,6 +100,20 @@ public class IntroController : MonoBehaviour
 
     void HandleClick()
     {
+        if (typingCoroutine != null)
+        {
+            StopCoroutine(typingCoroutine);
+            typingCoroutine = null;
+
+            if (pageDialogues != null && currentPage < pageDialogues.Length)
+            {
+                dialogueText.text = pageDialogues[currentPage];
+                dialogueText.maxVisibleCharacters = dialogueText.text.Length;
+            }
+
+            return;
+        }
+
         if (currentPage < pages.Length - 1)
         {
             currentPage++;
@@ -87,19 +126,36 @@ public class IntroController : MonoBehaviour
 
     void ShowPage()
     {
-        // Set the sprite image
         storyPage.sprite = pages[currentPage];
+
+        if (typingCoroutine != null)
+        {
+            StopCoroutine(typingCoroutine);
+        }
+
+        dialogueText.text = "";
 
         if (pageDialogues != null && currentPage < pageDialogues.Length)
         {
-            dialogueText.text = pageDialogues[currentPage];
+            typingCoroutine = StartCoroutine(TypeDialogue(pageDialogues[currentPage]));
         }
-        else
-        {
-            dialogueText.text = ""; // Keeps it blank if i don't have a dialogue for that page
-        }
-    }
 
+        dialogueStartPos = dialogueRect.anchoredPosition;
+    }
+    IEnumerator TypeDialogue(string text)
+    {
+        dialogueText.text = text;
+        dialogueText.maxVisibleCharacters = 0;
+
+        for (int i = 0; i <= text.Length; i++)
+        {
+            dialogueText.maxVisibleCharacters = i;
+
+            yield return new WaitForSeconds(typingSpeed);
+        }
+
+        typingCoroutine = null;
+    }
     IEnumerator EndSequence()
     {
         isTransitioning = true;

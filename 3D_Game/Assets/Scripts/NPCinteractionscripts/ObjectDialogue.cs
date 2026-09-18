@@ -2,16 +2,11 @@ using UnityEngine;
 
 public class ObjectDialogue : MonoBehaviour
 {
-    //[Header("NPC Data")]
-    //[SerializeField] private string npcName = "name";
-
     [Header("Conversation Lines")]
     [SerializeField]
     [TextArea(3, 5)]
     private string[] dialogueLines = new string[]
     {
-        "text",
-        "text",
         "text"
     };
 
@@ -39,11 +34,12 @@ public class ObjectDialogue : MonoBehaviour
             EndConversation();
             return;
         }
+
         DialogueUI.Instance.DisplaySentence(
-     "",
-     dialogueLines[_currentLineIndex],
-     OnLineFinished
-         );
+            "",
+            dialogueLines[_currentLineIndex],
+            OnLineFinished
+        );
     }
 
     private void OnLineFinished()

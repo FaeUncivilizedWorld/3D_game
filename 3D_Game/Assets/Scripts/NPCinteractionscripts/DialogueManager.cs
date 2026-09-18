@@ -48,21 +48,21 @@ public class DialogueUI : MonoBehaviour
     private IEnumerator TypeSentence(string text, System.Action onFinished)
     {
         isTyping = true;
-        conversationText.text = "";
 
-        foreach (char letter in text)
+        conversationText.text = text;
+        conversationText.maxVisibleCharacters = 0;
+
+        for (int i = 0; i <= text.Length; i++)
         {
-            conversationText.text += letter;
+            conversationText.maxVisibleCharacters = i;
             yield return new WaitForSeconds(typingSpeed);
         }
 
         isTyping = false;
         typingCoroutine = null;
 
-        // Tell NPCDialogue that this line has finished typing
         onFinished?.Invoke();
     }
-
     public void CloseDialogue()
     {
         if (typingCoroutine != null)
@@ -73,6 +73,7 @@ public class DialogueUI : MonoBehaviour
 
         isTyping = false;
         conversationText.text = "";
+        conversationText.maxVisibleCharacters = 9999;
         dialoguePanel.SetActive(false);
     }
 
@@ -84,10 +85,5 @@ public class DialogueUI : MonoBehaviour
     public bool IsTyping()
     {
         return isTyping;
-    }
-
-    internal void DisplaySentence(string v, Action onLineFinished)
-    {
-        throw new NotImplementedException();
     }
 }
