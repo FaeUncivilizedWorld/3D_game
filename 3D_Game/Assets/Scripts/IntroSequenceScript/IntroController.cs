@@ -1,74 +1,74 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
-using TMPro; 
+using UnityEngine.UI;
+using TMPro;
 
 public class IntroController : MonoBehaviour
 {
+    [Header("Intro UI")]
     public GameObject clickHint;
-    public Image fadeImage;
+    public Image storyPage;
+
+    [Header("Scene Loading")]
+    public LevelLoader levelLoader;
 
     [Header("Story Configurations")]
-    public Image storyPage;
-    // Array of sprites for the story pages, set in the inspector
     public Sprite[] pages;
 
     [TextArea(3, 5)]
     public string[] pageDialogues;
+
     public TextMeshProUGUI dialogueText;
 
-    [Header("Audio Settings")]
+    [Header("Audio")]
     public AudioSource audioSource;
+    public AudioClip introBGM;
     public AudioClip closetSound;
 
-    // Called when the mouse is clicked
-    private int currentPage = 0;
-    private bool isTransitioning = false;
-
-    [Header("Sway Settings")]
-    public float swayAmount = 2.5f; // Amount of sway in degrees
-    public float swaySpeed = 0.4f; // Speed of the sway
-
-    [Header("Typewriter Settings")]
+    [Header("Typewriter")]
     public float typingSpeed = 0.035f;
 
     [Header("Text Jiggle")]
     public float textJiggleAmount = 1.5f;
     public float textJiggleSpeed = 3f;
 
-    private Coroutine typingCoroutine;
-    private RectTransform dialogueRect;
-    private Vector2 dialogueStartPos;
+    [Header("Music Fade")]
+    public float musicFadeDuration = 2f;
 
-    // Reference to the RectTransform of the storyPage
-    private RectTransform pageRect;
-    private Vector2 startPos;
+    private int currentPage = 0;
+    private bool isTransitioning = false;
+
+    private Coroutine typingCoroutine;
+
+    private RectTransform dialogueRect;
+    private Vector2 dialogueStartPosition;
 
     void Start()
     {
-        // Get the RectTransform component of the storyPage
-        pageRect = storyPage.GetComponent<RectTransform>();
-        startPos = pageRect.anchoredPosition;
-
         currentPage = 0;
+
+        // Get the dialogue text's position
+        dialogueRect = dialogueText.GetComponent<RectTransform>();
+        dialogueStartPosition = dialogueRect.anchoredPosition;
+
         ShowPage();
 
-        dialogueRect = dialogueText.GetComponent<RectTransform>();
-        dialogueStartPos = dialogueRect.anchoredPosition;
-
         clickHint.SetActive(true);
-        fadeImage.color = new Color(
-            fadeImage.color.r,
-            fadeImage.color.g,
-            fadeImage.color.b,
-            0
-        ); 
+
+        // Start intro music
+        if (audioSource != null && introBGM != null)
+        {
+            audioSource.clip = introBGM;
+            audioSource.loop = true;
+            audioSource.volume = 1f;
+            audioSource.Play();
+        }
     }
+
     void Update()
     {
-        PageSway();
         TextJiggle();
 
         if (Mouse.current != null &&
@@ -78,6 +78,7 @@ public class IntroController : MonoBehaviour
             HandleClick();
         }
     }
+
     void TextJiggle()
     {
         if (dialogueRect == null)
@@ -87,33 +88,29 @@ public class IntroController : MonoBehaviour
         float y = Mathf.Cos(Time.time * textJiggleSpeed * 0.8f) * textJiggleAmount;
 
         dialogueRect.anchoredPosition =
-            dialogueStartPos + new Vector2(x, y);
-    }
-    void PageSway()
-    {
-        float t = Time.time * swaySpeed;
-        float x = Mathf.Sin(t) * swayAmount;
-        float y = Mathf.Cos(t * 0.9f) * swayAmount;
-        // Apply the sway to the anchored position of the RectTransform
-        pageRect.anchoredPosition = startPos + new Vector2(x, y);
+            dialogueStartPosition + new Vector2(x, y);
     }
 
     void HandleClick()
     {
+        // Finish typing if the text hasn't finished
         if (typingCoroutine != null)
         {
             StopCoroutine(typingCoroutine);
             typingCoroutine = null;
 
-            if (pageDialogues != null && currentPage < pageDialogues.Length)
+            if (pageDialogues != null &&
+                currentPage < pageDialogues.Length)
             {
                 dialogueText.text = pageDialogues[currentPage];
-                dialogueText.maxVisibleCharacters = dialogueText.text.Length;
+                dialogueText.maxVisibleCharacters =
+                    dialogueText.text.Length;
             }
 
             return;
         }
 
+        // Go to next page
         if (currentPage < pages.Length - 1)
         {
             currentPage++;
@@ -121,6 +118,7 @@ public class IntroController : MonoBehaviour
             return;
         }
 
+        // End intro
         StartCoroutine(EndSequence());
     }
 
@@ -133,15 +131,19 @@ public class IntroController : MonoBehaviour
             StopCoroutine(typingCoroutine);
         }
 
-        dialogueText.text = "";
-
-        if (pageDialogues != null && currentPage < pageDialogues.Length)
+        if (pageDialogues != null &&
+            currentPage < pageDialogues.Length)
         {
-            typingCoroutine = StartCoroutine(TypeDialogue(pageDialogues[currentPage]));
+            typingCoroutine =
+                StartCoroutine(TypeDialogue(pageDialogues[currentPage]));
         }
-
-        dialogueStartPos = dialogueRect.anchoredPosition;
+        else
+        {
+            dialogueText.text = "";
+            dialogueText.maxVisibleCharacters = 0;
+        }
     }
+
     IEnumerator TypeDialogue(string text)
     {
         dialogueText.text = text;
@@ -156,16 +158,17 @@ public class IntroController : MonoBehaviour
 
         typingCoroutine = null;
     }
+
     IEnumerator EndSequence()
     {
         isTransitioning = true;
-        pageRect.anchoredPosition = startPos;
+
         clickHint.SetActive(false);
 
-        // Hide the dialogue text during the final fade sequence
-        if (dialogueText != null) dialogueText.text = "";
-
-        yield return new WaitForSeconds(0.5f);
+        if (dialogueText != null)
+        {
+            dialogueText.text = "";
+        }
 
         if (audioSource != null && closetSound != null)
         {
@@ -174,36 +177,31 @@ public class IntroController : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        yield return StartCoroutine(FadeOut());
+        yield return StartCoroutine(FadeMusicOut());
 
-        // FORCE FRAME RENDER BEFORE SCENE CHANGE
-        yield return null;
-
-        //SceneManager.LoadScene("VNScene");
+        levelLoader.LoadNextLevel();
     }
-
-    IEnumerator FadeOut()
+    IEnumerator FadeMusicOut()
     {
-        Debug.Log("Fade starting (Image method)");
+        if (audioSource == null)
+            yield break;
 
-        float duration = 3f;
-        float t = 0f;
+        float startingVolume = audioSource.volume;
+        float timer = 0f;
 
-        Color c = fadeImage.color;
-
-        while (t < duration)
+        while (timer < musicFadeDuration)
         {
-            t += Time.deltaTime;
+            timer += Time.deltaTime;
 
-            float progress = t / duration;
-            float alpha = Mathf.SmoothStep(0f, 1f, progress);
+            float progress = Mathf.Clamp01(timer / musicFadeDuration);
 
-            fadeImage.color = new Color(c.r, c.g, c.b, alpha);
+            audioSource.volume =
+                Mathf.Lerp(startingVolume, 0f, progress);
 
             yield return null;
         }
 
-        fadeImage.color = new Color(c.r, c.g, c.b, 1f);
+        audioSource.volume = 0f;
+        audioSource.Stop();
     }
 }
-
