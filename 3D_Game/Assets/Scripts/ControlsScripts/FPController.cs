@@ -35,6 +35,9 @@ public class FPController : MonoBehaviour
 
     public GameObject objectText;
 
+    private bool playingFootsteps = false;
+    public float footstepSpeed = 0.5f; // 
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -107,25 +110,10 @@ public class FPController : MonoBehaviour
 
         if (Keyboard.current != null)
         {
-            if (Keyboard.current.wKey.isPressed)
-            {
-                input.y += 1;
-            }
-
-            if (Keyboard.current.sKey.isPressed)
-            {
-                input.y -= 1;
-            }
-
-            if (Keyboard.current.aKey.isPressed)
-            {
-                input.x -= 1;
-            }
-
-            if (Keyboard.current.dKey.isPressed)
-            {
-                input.x += 1;
-            }
+            if (Keyboard.current.wKey.isPressed) { input.y += 1; }
+            if (Keyboard.current.sKey.isPressed) { input.y -= 1; }
+            if (Keyboard.current.aKey.isPressed) { input.x -= 1; }
+            if (Keyboard.current.dKey.isPressed) { input.x += 1; }
         }
 
         Vector3 move = transform.right * input.x + transform.forward * input.y;
@@ -133,6 +121,18 @@ public class FPController : MonoBehaviour
             move.Normalize();
 
         characterController.Move(move * moveSpeed * Time.deltaTime);
+
+        // Checks if input keys are being pressed and the player is on the ground
+        bool isMoving = input.magnitude > 0.1f && characterController.isGrounded;
+
+        if (isMoving && !playingFootsteps)
+        {
+            StartFootsteps();
+        }
+        else if (!isMoving && playingFootsteps)
+        {
+            StopFootsteps();
+        }
 
         if (characterController.isGrounded && velocity.y < 0)
         {
@@ -209,5 +209,20 @@ public class FPController : MonoBehaviour
 
             Debug.Log("Player Loaded Successfully!");
         }
+    void StartFootsteps()
+    {
+        playingFootsteps = true;
+        InvokeRepeating(nameof(PlayFootstep), 0f, footstepSpeed);
+    }
+
+    void StopFootsteps()
+    {
+        playingFootsteps = false;
+        CancelInvoke(nameof(PlayFootstep));
+    }
+
+    void PlayFootstep()
+    {
+        SoundEffectManager.Play("Footsteps");
     }
 }
