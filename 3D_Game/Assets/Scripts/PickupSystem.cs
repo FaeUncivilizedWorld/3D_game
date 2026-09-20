@@ -54,9 +54,28 @@ public class PickupSystem : MonoBehaviour
         {
             if (hit.rigidbody != null)
             {
+                if (currentHeldObject != null)
+                {
+                    currentHeldObject.isKinematic = true;
+                    currentHeldObject.useGravity = false;
+                    currentHeldObject.linearVelocity = Vector3.zero;
+                    currentHeldObject.angularVelocity = Vector3.zero;
+                }
+
+                if (holdPoint != null)
+                {
+                    transform.SetParent(holdPoint);
+                    transform.localPosition = Vector3.zero;
+                    transform.localRotation = Quaternion.identity;
+                }
+                else
+                {
+                    Debug.LogError("Holdpoint is missing in the inspector on " + gameObject.name);
+                }
+
                 currentHeldObject = hit.rigidbody;
-                currentHeldObject.useGravity = false;
-                currentHeldObject.freezeRotation = true; // Prevents wild spinning while carrying
+                currentHeldObject.useGravity = true;
+               // currentHeldObject.freezeRotation = true; // Prevents wild spinning while carrying
                 objectPanel.SetActive(true);
 
                 ExamineObjects examine = FindAnyObjectByType<ExamineObjects>();
@@ -70,9 +89,12 @@ public class PickupSystem : MonoBehaviour
 
     void DropObject()
     {
+        transform.SetParent(null);
+
         if (currentHeldObject != null)
         {
             currentHeldObject.useGravity = true;
+            currentHeldObject.isKinematic = false;
             currentHeldObject.freezeRotation = false;
             currentHeldObject.linearVelocity = Vector3.zero; // Clear carried velocity
             currentHeldObject = null;

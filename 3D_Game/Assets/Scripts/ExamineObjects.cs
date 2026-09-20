@@ -53,10 +53,19 @@ public class ExamineObjects : MonoBehaviour
 
     private void RotateExamineObject()
     {
+        if (currentExamineObject == null)
+        {
+            Debug.LogWarning("Nothing to rotate");
+            return;
+        }
+
         // Rotate the examined object using mouse drag or stick input
         if (Mouse.current != null && Mouse.current.leftButton.isPressed)
         {
             Vector2 mouseDelta = Mouse.current.delta.ReadValue();
+
+            Debug.Log($"Rotating Object! Delta: {mouseDelta}");
+
             currentExamineObject.Rotate(Vector3.up, -mouseDelta.x * 0.2f, Space.World);
             currentExamineObject.Rotate(Vector3.right, mouseDelta.y * 0.2f, Space.World);
         }

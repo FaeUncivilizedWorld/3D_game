@@ -15,7 +15,7 @@ public class FPController : MonoBehaviour
     public float gravity = -20f;
 
     [Header("Mouse Look")]
-    public float mouseSensitivity = 100f;
+    public float mouseSensitivity = 75f;
     public Transform cameraHolder;
     public bool isExamining = false;
 
@@ -23,6 +23,8 @@ public class FPController : MonoBehaviour
     public float crouchHeight = 1f;
     public float standHeight = 2f;
     public float crouchSpeed = 2.5f;
+
+    private float originalMoveSpeed;
 
     //[Header("Player Stats")]
     //This is where we write all the information that needs to be saved
@@ -145,6 +147,20 @@ public class FPController : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
 
         characterController.Move(velocity * Time.deltaTime);
+    }
+
+    public void Crouch(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            characterController.height = crouchHeight;
+            moveSpeed = crouchSpeed;
+        }
+        else if (context.canceled)
+        {
+            characterController.height = standHeight;
+            moveSpeed = originalMoveSpeed;
+        }
     }
 
     public void DisableControlsForExamine()
