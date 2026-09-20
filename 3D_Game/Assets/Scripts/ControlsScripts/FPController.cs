@@ -209,6 +209,8 @@ public class FPController : MonoBehaviour
 
             Debug.Log("Player Loaded Successfully!");
         }
+    }
+
     void StartFootsteps()
     {
         playingFootsteps = true;
