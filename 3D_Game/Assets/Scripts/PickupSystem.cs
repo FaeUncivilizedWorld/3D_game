@@ -9,9 +9,14 @@ public class PickupSystem : MonoBehaviour
     public float pickupDistance = 7f;
     public float moveSpeed = 15f;
     public LayerMask pickupLayer;
+    public GameObject objectPanel;
 
     private Rigidbody currentHeldObject;
 
+    void Start()
+    {
+        objectPanel.SetActive(false);
+    }
 
     // Update is called once per frame
     void Update()
@@ -52,6 +57,13 @@ public class PickupSystem : MonoBehaviour
                 currentHeldObject = hit.rigidbody;
                 currentHeldObject.useGravity = false;
                 currentHeldObject.freezeRotation = true; // Prevents wild spinning while carrying
+                objectPanel.SetActive(true);
+
+                ExamineObjects examine = FindAnyObjectByType<ExamineObjects>();
+                if (examine != null)
+                {
+                    examine.StartExamining(this.transform);
+                }
             }
         }
     }
@@ -64,6 +76,13 @@ public class PickupSystem : MonoBehaviour
             currentHeldObject.freezeRotation = false;
             currentHeldObject.linearVelocity = Vector3.zero; // Clear carried velocity
             currentHeldObject = null;
+            objectPanel.SetActive(false);
+
+            ExamineObjects examine = FindAnyObjectByType<ExamineObjects>();
+            if (examine != null)
+            {
+                examine.StopExamining();
+            }
         }
     }
 }

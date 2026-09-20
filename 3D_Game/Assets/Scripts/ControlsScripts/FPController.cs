@@ -17,8 +17,14 @@ public class FPController : MonoBehaviour
     [Header("Mouse Look")]
     public float mouseSensitivity = 100f;
     public Transform cameraHolder;
+    public bool isExamining = false;
 
-    [Header("Player Stats")]
+    [Header("Crouch")]
+    public float crouchHeight = 1f;
+    public float standHeight = 2f;
+    public float crouchSpeed = 2.5f;
+
+    //[Header("Player Stats")]
     //This is where we write all the information that needs to be saved
 
     private CharacterController characterController;
@@ -44,15 +50,20 @@ public class FPController : MonoBehaviour
             // Reset the flag so it doesn't force-load every scene reload unexpectedly
             PlayerPrefs.SetInt("LoadOnStart", 0);
         }
-
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (isExamining)
+        {
+            return;
+        }
+
         Look();
         Move();
     }
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -134,6 +145,22 @@ public class FPController : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
 
         characterController.Move(velocity * Time.deltaTime);
+    }
+
+    public void DisableControlsForExamine()
+    {
+        isExamining = true;
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+    public void EnableControlsAfterExamine()
+    {
+        isExamining = false;
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public void SavePlayerData()
