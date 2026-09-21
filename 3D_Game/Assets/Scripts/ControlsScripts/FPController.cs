@@ -19,12 +19,12 @@ public class FPController : MonoBehaviour
     public Transform cameraHolder;
     public bool isExamining = false;
 
-    [Header("Crouch")]
+   /* [Header("Crouch")]
     public float crouchHeight = 1f;
     public float standHeight = 2f;
     public float crouchSpeed = 2.5f;
 
-    private float originalMoveSpeed;
+    private float originalMoveSpeed;*/
 
     //[Header("Player Stats")]
     //This is where we write all the information that needs to be saved
@@ -149,7 +149,7 @@ public class FPController : MonoBehaviour
         characterController.Move(velocity * Time.deltaTime);
     }
 
-    public void Crouch(InputAction.CallbackContext context)
+   /* public void Crouch(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
@@ -161,7 +161,7 @@ public class FPController : MonoBehaviour
             characterController.height = standHeight;
             moveSpeed = originalMoveSpeed;
         }
-    }
+    }*/
 
     public void DisableControlsForExamine()
     {

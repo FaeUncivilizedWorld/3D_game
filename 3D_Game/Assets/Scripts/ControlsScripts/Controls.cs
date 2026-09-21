@@ -111,15 +111,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Jump"",
-                    ""type"": ""Button"",
-                    ""id"": ""cc24b569-5554-4825-b292-bd4a50543bb6"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Pickup"",
                     ""type"": ""Button"",
                     ""id"": ""0a36a7c1-1a9b-4e9e-b1a6-d66237e0f3cf"",
@@ -132,15 +123,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""name"": ""DoorAction"",
                     ""type"": ""Button"",
                     ""id"": ""65b5c38d-18f9-4631-94d4-ad62f251dbf4"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Crouch"",
-                    ""type"": ""Button"",
-                    ""id"": ""9a3c3ba2-6c5f-4434-be0b-00cbb97c2ba1"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -337,28 +319,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""5c9b0683-7c22-49cd-a479-4e7fc57b4adf"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard/Mouse"",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""7dea59d7-f07a-4a39-aff6-0cfea7e9d2b7"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""ee2ea2a4-1cd7-4196-8522-26264dde791d"",
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
@@ -387,28 +347,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Keyboard/Mouse"",
                     ""action"": ""DoorAction"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""b5199379-d5c6-4ad5-b1b8-1329c0a052d5"",
-                    ""path"": ""<Keyboard>/leftCtrl"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard/Mouse"",
-                    ""action"": ""Crouch"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""fd5e8a08-f20e-4128-8f91-80085a56b5cc"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""Crouch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -449,10 +387,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
-        m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Pickup = m_Player.FindAction("Pickup", throwIfNotFound: true);
         m_Player_DoorAction = m_Player.FindAction("DoorAction", throwIfNotFound: true);
-        m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
     }
 
     ~@Controls()
@@ -535,10 +471,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_Look;
-    private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Pickup;
     private readonly InputAction m_Player_DoorAction;
-    private readonly InputAction m_Player_Crouch;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -559,10 +493,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Look => m_Wrapper.m_Player_Look;
         /// <summary>
-        /// Provides access to the underlying input action "Player/Jump".
-        /// </summary>
-        public InputAction @Jump => m_Wrapper.m_Player_Jump;
-        /// <summary>
         /// Provides access to the underlying input action "Player/Pickup".
         /// </summary>
         public InputAction @Pickup => m_Wrapper.m_Player_Pickup;
@@ -570,10 +500,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/DoorAction".
         /// </summary>
         public InputAction @DoorAction => m_Wrapper.m_Player_DoorAction;
-        /// <summary>
-        /// Provides access to the underlying input action "Player/Crouch".
-        /// </summary>
-        public InputAction @Crouch => m_Wrapper.m_Player_Crouch;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -606,18 +532,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Look.started += instance.OnLook;
             @Look.performed += instance.OnLook;
             @Look.canceled += instance.OnLook;
-            @Jump.started += instance.OnJump;
-            @Jump.performed += instance.OnJump;
-            @Jump.canceled += instance.OnJump;
             @Pickup.started += instance.OnPickup;
             @Pickup.performed += instance.OnPickup;
             @Pickup.canceled += instance.OnPickup;
             @DoorAction.started += instance.OnDoorAction;
             @DoorAction.performed += instance.OnDoorAction;
             @DoorAction.canceled += instance.OnDoorAction;
-            @Crouch.started += instance.OnCrouch;
-            @Crouch.performed += instance.OnCrouch;
-            @Crouch.canceled += instance.OnCrouch;
         }
 
         /// <summary>
@@ -635,18 +555,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Look.started -= instance.OnLook;
             @Look.performed -= instance.OnLook;
             @Look.canceled -= instance.OnLook;
-            @Jump.started -= instance.OnJump;
-            @Jump.performed -= instance.OnJump;
-            @Jump.canceled -= instance.OnJump;
             @Pickup.started -= instance.OnPickup;
             @Pickup.performed -= instance.OnPickup;
             @Pickup.canceled -= instance.OnPickup;
             @DoorAction.started -= instance.OnDoorAction;
             @DoorAction.performed -= instance.OnDoorAction;
             @DoorAction.canceled -= instance.OnDoorAction;
-            @Crouch.started -= instance.OnCrouch;
-            @Crouch.performed -= instance.OnCrouch;
-            @Crouch.canceled -= instance.OnCrouch;
         }
 
         /// <summary>
@@ -728,13 +642,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnLook(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Jump" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnJump(InputAction.CallbackContext context);
-        /// <summary>
         /// Method invoked when associated input action "Pickup" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
@@ -748,12 +655,5 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnDoorAction(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "Crouch" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnCrouch(InputAction.CallbackContext context);
     }
 }
