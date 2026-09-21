@@ -5,56 +5,36 @@ public class NPCDialogue : MonoBehaviour
     [Header("NPC Data")]
     [SerializeField] private string npcName = "name";
 
-    [Header("First Conversation")]
+    [Header("Conversation Lines")]
     [SerializeField]
     [TextArea(3, 5)]
-    private string[] firstDialogueLines =
+    private string[] dialogueLines = new string[]
     {
-        "First dialogue.",
-        "Another line."
-    };
-
-    [Header("Second Conversation")]
-    [SerializeField]
-    [TextArea(3, 5)]
-    private string[] secondDialogueLines =
-    {
-        "Second dialogue.",
-        "Another line."
+        "text",
+        "text",
+        "text"
     };
 
     private int _currentLineIndex = 0;
     private bool _conversationRunning = false;
-    private int _conversationNumber = 0;
 
     public void Speak()
     {
         if (_conversationRunning)
             return;
 
-        string[] currentDialogue;
-
-        if (_conversationNumber == 0)
-        {
-            currentDialogue = firstDialogueLines;
-        }
-        else
-        {
-            currentDialogue = secondDialogueLines;
-        }
-
-        if (currentDialogue == null || currentDialogue.Length == 0)
+        if (dialogueLines == null || dialogueLines.Length == 0)
             return;
 
         _currentLineIndex = 0;
         _conversationRunning = true;
 
-        ShowCurrentLine(currentDialogue);
+        ShowCurrentLine();
     }
 
-    private void ShowCurrentLine(string[] currentDialogue)
+    private void ShowCurrentLine()
     {
-        if (_currentLineIndex >= currentDialogue.Length)
+        if (_currentLineIndex >= dialogueLines.Length)
         {
             EndConversation();
             return;
@@ -62,22 +42,22 @@ public class NPCDialogue : MonoBehaviour
 
         DialogueUI.Instance.DisplaySentence(
             npcName,
-            currentDialogue[_currentLineIndex],
-            () => OnLineFinished(currentDialogue)
+            dialogueLines[_currentLineIndex],
+            OnLineFinished
         );
     }
 
-    private void OnLineFinished(string[] currentDialogue)
+    private void OnLineFinished()
     {
         _currentLineIndex++;
 
-        if (_currentLineIndex >= currentDialogue.Length)
+        if (_currentLineIndex >= dialogueLines.Length)
         {
             EndConversation();
         }
         else
         {
-            ShowCurrentLine(currentDialogue);
+            ShowCurrentLine();
         }
     }
 
@@ -85,16 +65,6 @@ public class NPCDialogue : MonoBehaviour
     {
         _conversationRunning = false;
         _currentLineIndex = 0;
-
-        // Switch to the other conversation
-        if (_conversationNumber == 0)
-        {
-            _conversationNumber = 1;
-        }
-        else
-        {
-            _conversationNumber = 0;
-        }
 
         DialogueUI.Instance.CloseDialogue();
     }
