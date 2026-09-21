@@ -39,4 +39,28 @@ public class Door : MonoBehaviour
             interactionText.SetActive(false);
         }
     }
+
+    public void SavePlayerData()
+    {
+        PlayerData data = new PlayerData();
+
+        // Save stats
+
+
+        data.rotationY = transform.eulerAngles.y;
+
+        SaveSystem.SavePlayer(data);
+    }
+
+     public void LoadPlayerData()
+    {
+        PlayerData data = SaveSystem.LoadPlayer();
+
+        if (data != null)
+        {
+            transform.rotation = Quaternion.Euler(0f, data.rotationY,0f);
+
+            Debug.Log("Door Loaded Successfully!");
+        }
+    }
 }
