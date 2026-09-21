@@ -15,7 +15,7 @@ public class FPController : MonoBehaviour
     public float gravity = -20f;
 
     [Header("Mouse Look")]
-    public float mouseSensitivity = 75f;
+    public float mouseSensitivity = 55f;
     public Transform cameraHolder;
     public bool isExamining = false;
 
