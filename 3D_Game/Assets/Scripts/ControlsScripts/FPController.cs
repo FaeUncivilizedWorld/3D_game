@@ -15,7 +15,7 @@ public class FPController : MonoBehaviour
     public float gravity = -20f;
 
     [Header("Mouse Look")]
-    public float mouseSensitivity = 55f;
+    public float mouseSensitivity = 40f;
     public Transform cameraHolder;
     public bool isExamining = false;
 
@@ -190,6 +190,8 @@ public class FPController : MonoBehaviour
         data.positionY = transform.position.y;
         data.positionZ = transform.position.z;
 
+        data.rotationY = transform.rotation.y;
+
         SaveSystem.SavePlayer(data);
     }
 
@@ -204,6 +206,7 @@ public class FPController : MonoBehaviour
             if (controller != null) controller.enabled = false;
 
             transform.position = new Vector3(data.positionX, data.positionY, data.positionZ);
+            transform.rotation = Quaternion.identity;
 
             if (controller != null) controller.enabled = true;
 
