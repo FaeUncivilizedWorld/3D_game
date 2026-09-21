@@ -786,6 +786,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 365692527}
   m_CullTransparentMesh: 1
+<<<<<<< HEAD
 --- !u!1 &424537356
 GameObject:
   m_ObjectHideFlags: 0
@@ -865,6 +866,8 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 424537356}
   m_CullTransparentMesh: 1
+=======
+>>>>>>> parent of d0d0186 (Fixing up some stuff)
 --- !u!1 &614876511
 GameObject:
   m_ObjectHideFlags: 0
@@ -1376,6 +1379,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+<<<<<<< HEAD
       - m_Target: {fileID: 358894188}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: PlayOneShot
@@ -1388,6 +1392,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+=======
+>>>>>>> parent of d0d0186 (Fixing up some stuff)
 --- !u!114 &1260812215
 MonoBehaviour:
   m_ObjectHideFlags: 0
