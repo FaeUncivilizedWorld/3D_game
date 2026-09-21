@@ -15,16 +15,16 @@ public class FPController : MonoBehaviour
     public float gravity = -20f;
 
     [Header("Mouse Look")]
-    public float mouseSensitivity = 40f;
+    public float mouseSensitivity = 55f;
     public Transform cameraHolder;
     public bool isExamining = false;
 
-   /* [Header("Crouch")]
+    [Header("Crouch")]
     public float crouchHeight = 1f;
     public float standHeight = 2f;
     public float crouchSpeed = 2.5f;
 
-    private float originalMoveSpeed;*/
+    private float originalMoveSpeed;
 
     //[Header("Player Stats")]
     //This is where we write all the information that needs to be saved
@@ -149,7 +149,7 @@ public class FPController : MonoBehaviour
         characterController.Move(velocity * Time.deltaTime);
     }
 
-   /* public void Crouch(InputAction.CallbackContext context)
+    public void Crouch(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
@@ -161,7 +161,7 @@ public class FPController : MonoBehaviour
             characterController.height = standHeight;
             moveSpeed = originalMoveSpeed;
         }
-    }*/
+    }
 
     public void DisableControlsForExamine()
     {
@@ -190,8 +190,6 @@ public class FPController : MonoBehaviour
         data.positionY = transform.position.y;
         data.positionZ = transform.position.z;
 
-        data.rotationY = transform.rotation.y;
-
         SaveSystem.SavePlayer(data);
     }
 
@@ -206,7 +204,6 @@ public class FPController : MonoBehaviour
             if (controller != null) controller.enabled = false;
 
             transform.position = new Vector3(data.positionX, data.positionY, data.positionZ);
-            transform.rotation = Quaternion.identity;
 
             if (controller != null) controller.enabled = true;
 
