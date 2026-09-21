@@ -1,14 +1,56 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    public void NewGame()
+    [Header("Audio")]
+    public AudioSource audioSource;
+    public AudioClip menuMusic;
+    public AudioClip buttonSFX;
+
+    [Header("Continue")]
+    public Button continueButton;
+    public string gameSceneName = "WholeHouse";
+
+    private void Start()
     {
-        SceneManager.LoadScene("WholeHouse");
+        // Start menu music
+        if (audioSource != null && menuMusic != null)
+        {
+            audioSource.clip = menuMusic;
+            audioSource.loop = true;
+            audioSource.volume = 1f;
+            audioSource.Play();
+        }
+
+        // Disable Continue if no save data exists
+        if (continueButton != null)
+        {
+            continueButton.interactable = SaveSystem.HasSavedData();
+        }
     }
 
+    public void NewGame()
+    {
+        StartCoroutine(NewGameWithSound());
+    }
+
+    private IEnumerator NewGameWithSound()
+    {
+        if (audioSource != null && buttonSFX != null)
+        {
+            audioSource.PlayOneShot(buttonSFX);
+            yield return new WaitForSeconds(buttonSFX.length);
+        }
+
+        PlayerPrefs.SetInt("LoadOnStart", 0);
+        PlayerPrefs.Save();
+
+        // New Game goes to the sequence scene first
+        SceneManager.LoadScene("SequenceScene");
+    }
 
     public void QuitGame()
     {
@@ -16,31 +58,33 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
-    public Button continueButton;
-    public string gameSceneName = "WholeHouse";
-
-    private void Start()
-    {
-        // Disables "Continue" button if no save data exists
-        if (continueButton != null)
-        {
-            continueButton.interactable = SaveSystem.HasSavedData();
-        }
-    }
-
     public void OnClickNewGame()
     {
-        PlayerPrefs.SetInt("LoadOnStart", 0);
-        SceneManager.LoadScene(gameSceneName);
+        NewGame();
     }
 
     public void OnClickContinue()
     {
         if (SaveSystem.HasSavedData())
         {
-            // Set flag so PlayerController knows to load save data once loaded
-            PlayerPrefs.SetInt("LoadOnStart", 1);
-            SceneManager.LoadScene(gameSceneName);
+            StartCoroutine(ContinueWithSound());
         }
     }
+
+    private IEnumerator ContinueWithSound()
+    {
+        if (audioSource != null && buttonSFX != null)
+        {
+            audioSource.PlayOneShot(buttonSFX);
+            yield return new WaitForSeconds(buttonSFX.length);
+        }
+
+        // Tell PlayerController to load the saved data
+        PlayerPrefs.SetInt("LoadOnStart", 1);
+        PlayerPrefs.Save();
+
+        // Continue goes directly to WholeHouse
+        SceneManager.LoadScene(gameSceneName);
+    }
 }
+
