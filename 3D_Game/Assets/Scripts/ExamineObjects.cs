@@ -14,6 +14,7 @@ public class ExamineObjects : MonoBehaviour
     {
         if (isExamining && currentExamineObject != null)
         {
+            Debug.Log("test test test");
             RotateExamineObject();
         }
     }
