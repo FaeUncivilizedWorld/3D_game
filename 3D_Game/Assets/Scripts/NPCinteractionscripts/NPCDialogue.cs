@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class NPCDialogue : MonoBehaviour
@@ -27,34 +28,32 @@ public class NPCDialogue : MonoBehaviour
     private bool _conversationRunning = false;
     private int _conversationNumber = 0;
 
+    private string[] _activeDialogue;
+
     public void Speak()
     {
         if (_conversationRunning)
             return;
 
-        string[] currentDialogue;
+        if (DialogueUI.Instance == null)
+            return;
 
-        if (_conversationNumber == 0)
-        {
-            currentDialogue = firstDialogueLines;
-        }
-        else
-        {
-            currentDialogue = secondDialogueLines;
-        }
+        _activeDialogue = _conversationNumber == 0
+            ? firstDialogueLines
+            : secondDialogueLines;
 
-        if (currentDialogue == null || currentDialogue.Length == 0)
+        if (_activeDialogue == null || _activeDialogue.Length == 0)
             return;
 
         _currentLineIndex = 0;
         _conversationRunning = true;
 
-        ShowCurrentLine(currentDialogue);
+        ShowCurrentLine();
     }
 
-    private void ShowCurrentLine(string[] currentDialogue)
+    private void ShowCurrentLine()
     {
-        if (_currentLineIndex >= currentDialogue.Length)
+        if (_currentLineIndex >= _activeDialogue.Length)
         {
             EndConversation();
             return;
@@ -62,22 +61,22 @@ public class NPCDialogue : MonoBehaviour
 
         DialogueUI.Instance.DisplaySentence(
             npcName,
-            currentDialogue[_currentLineIndex],
-            () => OnLineFinished(currentDialogue)
+            _activeDialogue[_currentLineIndex],
+            OnLineAdvanced
         );
     }
 
-    private void OnLineFinished(string[] currentDialogue)
+    private void OnLineAdvanced()
     {
         _currentLineIndex++;
 
-        if (_currentLineIndex >= currentDialogue.Length)
+        if (_currentLineIndex >= _activeDialogue.Length)
         {
             EndConversation();
         }
         else
         {
-            ShowCurrentLine(currentDialogue);
+            ShowCurrentLine();
         }
     }
 
@@ -86,16 +85,11 @@ public class NPCDialogue : MonoBehaviour
         _conversationRunning = false;
         _currentLineIndex = 0;
 
-        // Switch to the other conversation
-        if (_conversationNumber == 0)
-        {
-            _conversationNumber = 1;
-        }
-        else
-        {
-            _conversationNumber = 0;
-        }
+        // Alternate between the two conversations.
+        _conversationNumber = (_conversationNumber == 0) ? 1 : 0;
 
         DialogueUI.Instance.CloseDialogue();
+
+        _activeDialogue = null;
     }
 }

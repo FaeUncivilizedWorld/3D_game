@@ -1550,11 +1550,15 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.40390968, y: 2.90182, z: 8.197041}
+  m_LocalPosition: {x: 10.68416, y: -1.7270701, z: -1.2349701}
+494fe10092e23d760dbf6810c6300369fc47e478
   m_LocalScale: {x: 0.21862915, y: 0.2344532, z: 0.104578555}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1397581929}
   m_Father: {fileID: 225060985}
+  m_Father: {fileID: 1531526119}
+ 494fe10092e23d760dbf6810c6300369fc47e478
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2207417
 GameObject:
@@ -8354,11 +8358,15 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.27490997, y: 3.38482, z: 1.5940399}
+  m_LocalPosition: {x: 10.55516, y: -1.24407, z: -7.83797}
+ 494fe10092e23d760dbf6810c6300369fc47e478
   m_LocalScale: {x: 0.15723404, y: 0.49047437, z: 0.40474793}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2062147685}
   m_Father: {fileID: 225060985}
+  m_Father: {fileID: 1531526119}
+ 494fe10092e23d760dbf6810c6300369fc47e478
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &101120362
 GameObject:
@@ -52663,11 +52671,15 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.7094753, y: -0.0042135096, z: 0.0041851792, w: 0.7047053}
   m_LocalPosition: {x: 19.67071, y: 10.237, z: 6.9902306}
+  m_LocalPosition: {x: 12.94216, y: 4.5579305, z: -5.21197}
+ 494fe10092e23d760dbf6810c6300369fc47e478
   m_LocalScale: {x: 1, y: 1, z: 0.45987}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 627575205}
   m_Father: {fileID: 1297569602}
+  m_Father: {fileID: 1531526119}
+ 494fe10092e23d760dbf6810c6300369fc47e478
   m_LocalEulerAnglesHint: {x: 90.38599, y: 0, z: 0.68099976}
 --- !u!1 &331720820
 GameObject:
@@ -108570,6 +108582,7 @@ MonoBehaviour:
   dialoguePanel: {fileID: 1586793919}
   nameText: {fileID: 234822177}
   conversationText: {fileID: 669620834}
+  playerController: {fileID: 1343730675}
   typingSpeed: 0.061
 --- !u!43 &433692732
 Mesh:
@@ -153399,11 +153412,15 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 6.7519093, y: 2.87982, z: 8.197041}
+  m_LocalPosition: {x: 17.03216, y: -1.7490699, z: -1.2349701}
+ 494fe10092e23d760dbf6810c6300369fc47e478
   m_LocalScale: {x: 0.21862915, y: 0.2344532, z: 0.104578555}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1216603075}
   m_Father: {fileID: 225060985}
+  m_Father: {fileID: 1531526119}
+ 494fe10092e23d760dbf6810c6300369fc47e478
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &556486235
 Mesh:
@@ -161636,8 +161653,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -57.9}
-  m_SizeDelta: {x: 677.1865, y: 85.0475}
+  m_AnchoredPosition: {x: -9, y: -402}
+  m_SizeDelta: {x: 1009.6398, y: 145.5166}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &637855394
 MonoBehaviour:
@@ -161660,19 +161677,19 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 0c4f17a05fab6e4449dd5c3c45d7d26a, type: 3}
-    m_FontSize: 40
+    m_Font: {fileID: 12800000, guid: e2870931dad9e2e41a787e36cfacffab, type: 3}
+    m_FontSize: 60
     m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 2
-    m_MaxSize: 40
+    m_MinSize: 0
+    m_MaxSize: 80
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: YOU CANNOT ENTER!
+  m_Text: 'Hmmm I don''t really need the toilet right now '
 --- !u!222 &637855395
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -597630,11 +597647,15 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 22.237709, y: 9, z: 1.78}
+  m_LocalPosition: {x: 15.50916, y: 3.32093, z: -10.299971}
+ 494fe10092e23d760dbf6810c6300369fc47e478
   m_LocalScale: {x: 0.4622264, y: 0.69108, z: 0.37811}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1804672235}
   m_Father: {fileID: 1297569602}
+  m_Father: {fileID: 1531526119}
+ 494fe10092e23d760dbf6810c6300369fc47e478
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &879374880
 Mesh:
@@ -599246,11 +599267,15 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 19.92071, y: 9, z: 10.82723}
+  m_LocalPosition: {x: 13.19216, y: 3.32093, z: -1.37497}
+ 494fe10092e23d760dbf6810c6300369fc47e478
   m_LocalScale: {x: 0.4622264, y: 0.69108, z: 0.37811}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 746573676}
   m_Father: {fileID: 1297569602}
+  m_Father: {fileID: 1531526119}
+ 494fe10092e23d760dbf6810c6300369fc47e478
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &886671351
 GameObject:
@@ -700792,6 +700817,13 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1037982163}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 5.28416, y: 0.026929855, z: -5.93497}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1531526119}
+ 494fe10092e23d760dbf6810c6300369fc47e478
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &1203539173
 GameObject:
@@ -715047,11 +715079,15 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 24.79071, y: 10.308, z: 6.9172306}
+  m_LocalPosition: {x: 18.06216, y: 2.9679303, z: -5.28497}
+ 494fe10092e23d760dbf6810c6300369fc47e478
   m_LocalScale: {x: 0.4622264, y: 0.69108, z: 0.37811}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1521530110}
   m_Father: {fileID: 1297569602}
+  m_Father: {fileID: 1531526119}
+ 494fe10092e23d760dbf6810c6300369fc47e478
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1325095513
 GameObject:
@@ -715160,11 +715196,15 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.27490997, y: 3.38482, z: 6.21704}
+  m_LocalPosition: {x: 10.55516, y: -1.24407, z: -3.2149699}
+ 494fe10092e23d760dbf6810c6300369fc47e478
   m_LocalScale: {x: 0.15723404, y: 0.49047437, z: 0.40474793}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1081488002}
   m_Father: {fileID: 225060985}
+  m_Father: {fileID: 1531526119}
+ 494fe10092e23d760dbf6810c6300369fc47e478
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1327201191
 GameObject:
@@ -763647,6 +763687,15 @@ Transform:
   - {fileID: 2129011979}
   - {fileID: 1549894976}
   - {fileID: 392536313}
+  - {fileID: 554509798}
+  - {fileID: 1983882}
+  - {fileID: 886655551}
+  - {fileID: 878021994}
+  - {fileID: 1321474540}
+  - {fileID: 327507218}
+  - {fileID: 99213198}
+  - {fileID: 1325095517}
+  - {fileID: 1201508046}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1531705345
@@ -849051,6 +849100,12 @@ MonoBehaviour:
     - {fileID: 8300000, guid: b1faa5c7a6d37124698cd04c331d76bc, type: 3}
     - {fileID: 8300000, guid: 4d6d0c904611e3749b66a2f7b7c807d3, type: 3}
     - {fileID: 8300000, guid: d7fbae8afe36e30428aa8f8e917067e7, type: 3}
+  - name: Open door
+    audioClips: []
+  - name: 'Object Pick up '
+    audioClips: []
+  - name: 'Journal Page '
+    audioClips: []
 --- !u!82 &1710876862
 AudioSource:
   m_ObjectHideFlags: 0
@@ -849315,7 +849370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactor
   interactionPoint: {fileID: 1714198110}
-  interactionDistance: 3
+  interactionDistance: 2
   interactableMask:
     serializedVersion: 2
     m_Bits: 128
