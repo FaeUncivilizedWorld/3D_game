@@ -16,6 +16,7 @@ public class Door : MonoBehaviour
     {
         if (playerInRange && Keyboard.current.eKey.wasPressedThisFrame)
         {
+            SoundEffectManager.Play("DoorOpen");
             doorAnimator.SetTrigger("OpenDoor");
             interactionText.SetActive(false);
             playerInRange = false;

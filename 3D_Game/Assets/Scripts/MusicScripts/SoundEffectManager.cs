@@ -49,14 +49,31 @@ public class SoundEffectManager : MonoBehaviour
             audioSource.PlayOneShot(audioClip);
         }
     }
-
     void Start()
     {
+        float savedVolume = PlayerPrefs.GetFloat("SFXVolume", 1f);
+
+        SetVolume(savedVolume);
+
         if (sfxSlider != null)
         {
-            sfxSlider.onValueChanged.AddListener(delegate { onValueChanged(); });
+            sfxSlider.SetValueWithoutNotify(savedVolume);
+
+            sfxSlider.onValueChanged.RemoveListener(OnSFXSliderChanged);
+            sfxSlider.onValueChanged.AddListener(OnSFXSliderChanged);
         }
     }
+
+    private void OnSFXSliderChanged(float volume)
+    {
+        volume = Mathf.Clamp01(volume);
+
+        PlayerPrefs.SetFloat("SFXVolume", volume);
+        PlayerPrefs.Save();
+
+        SetVolume(volume);
+    }
+
 
     public static void SetVolume(float volume)
     {

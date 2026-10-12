@@ -11,7 +11,7 @@ public class InteractionUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI promptText;
 
     [Header("Settings")]
-    [SerializeField] private string defaultKeyText = "[E]";
+    [SerializeField] private string defaultKeyText = "[F]";
 
     private void Awake()
     {
