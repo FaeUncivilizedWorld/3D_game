@@ -55481,7 +55481,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 851b361231acf4646b3a1878a1661092, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.551
+      value: 2.4456
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 851b361231acf4646b3a1878a1661092, type: 3}
       propertyPath: m_LocalPosition.z
@@ -55522,6 +55522,18 @@ PrefabInstance:
     - target: {fileID: -2509290083502623200, guid: 851b361231acf4646b3a1878a1661092, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -1162899831233969059, guid: 851b361231acf4646b3a1878a1661092, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -1162899831233969059, guid: 851b361231acf4646b3a1878a1661092, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.1105
+      objectReference: {fileID: 0}
+    - target: {fileID: -1162899831233969059, guid: 851b361231acf4646b3a1878a1661092, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.0632
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 851b361231acf4646b3a1878a1661092, type: 3}
       propertyPath: m_Name
@@ -700799,7 +700811,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1203539174}
   m_Layer: 0
-  m_Name: Audio
+  m_Name: Audio Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -700814,10 +700826,11 @@ Transform:
   m_GameObject: {fileID: 1203539173}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 941.98615, y: 535.36053, z: -0.79931986}
+  m_LocalPosition: {x: 950.35516, y: 537.8178, z: 1.388}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1627971248}
   - {fileID: 1710876859}
   - {fileID: 1717826913}
   - {fileID: 806749564}
@@ -700825,7 +700838,7 @@ Transform:
   - {fileID: 1103239561}
   - {fileID: 254924518}
   - {fileID: 1529820699}
-  m_Father: {fileID: 1627971248}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1211454929
 GameObject:
@@ -716034,7 +716047,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed6adc543ecd26f4baeda0b210243ddb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoorTrigger
-  text: {fileID: 0}
+  text: {fileID: 333418118}
   door: {fileID: 1352902524}
 --- !u!65 &1352902528
 BoxCollider:
@@ -809887,13 +809900,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1627971246}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.36896, y: 2.45728, z: 2.18732}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -941.98615, y: -535.3606, z: 0.7993199}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1203539174}
-  m_Father: {fileID: 0}
+  m_Children: []
+  m_Father: {fileID: 1203539174}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1627971249
 AudioSource:
@@ -849052,12 +849064,9 @@ MonoBehaviour:
     - {fileID: 8300000, guid: b1faa5c7a6d37124698cd04c331d76bc, type: 3}
     - {fileID: 8300000, guid: 4d6d0c904611e3749b66a2f7b7c807d3, type: 3}
     - {fileID: 8300000, guid: d7fbae8afe36e30428aa8f8e917067e7, type: 3}
-  - name: Open door
-    audioClips: []
-  - name: 'Object Pick up '
-    audioClips: []
-  - name: 'Journal Page '
-    audioClips: []
+  - name: DoorOpen
+    audioClips:
+    - {fileID: 8300000, guid: 4a65289a8aef60f4eab014f88274b6d1, type: 3}
 --- !u!82 &1710876862
 AudioSource:
   m_ObjectHideFlags: 0
@@ -849322,7 +849331,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactor
   interactionPoint: {fileID: 1714198110}
-  interactionDistance: 2
+  interactionDistance: 3
   interactableMask:
     serializedVersion: 2
     m_Bits: 128
@@ -1026319,7 +1026328,7 @@ SceneRoots:
   - {fileID: 257476906}
   - {fileID: 1343730673}
   - {fileID: 380098618}
-  - {fileID: 1627971248}
+  - {fileID: 1203539174}
   - {fileID: 163708055}
   - {fileID: 473567653}
   - {fileID: 1531526119}

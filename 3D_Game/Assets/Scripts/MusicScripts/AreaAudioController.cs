@@ -47,50 +47,56 @@ public class AreaAudioController : MonoBehaviour
 
     private void SetupSliders()
     {
-        // MUSIC SLIDER
-        if (musicSlider != null)
-        {
-            musicSlider.onValueChanged.RemoveListener(SetMusicVolume);
+        // Load saved volume settings.
+        musicVolume = PlayerPrefs.GetFloat("MusicVolume", 1f);
+        ambienceVolume = PlayerPrefs.GetFloat("AmbienceVolume", 1f);
 
-            musicVolume = musicSlider.value;
+        // Apply saved volumes to this scene's AudioSources.
+        if (musicSource != null)
             musicSource.volume = musicVolume;
 
+        if (ambienceSource != null)
+            ambienceSource.volume = ambienceVolume;
+
+        // Set up the music slider.
+        if (musicSlider != null)
+        {
+            musicSlider.SetValueWithoutNotify(musicVolume);
+            musicSlider.onValueChanged.RemoveListener(SetMusicVolume);
             musicSlider.onValueChanged.AddListener(SetMusicVolume);
         }
 
-        // AMBIENCE SLIDER
+        // Set up the ambience slider.
         if (ambienceSlider != null)
         {
+            ambienceSlider.SetValueWithoutNotify(ambienceVolume);
             ambienceSlider.onValueChanged.RemoveListener(SetAmbienceVolume);
-
-            ambienceVolume = ambienceSlider.value;
-            ambienceSource.volume = ambienceVolume;
-
             ambienceSlider.onValueChanged.AddListener(SetAmbienceVolume);
         }
     }
 
     public void SetMusicVolume(float volume)
     {
-        musicVolume = volume;
+        musicVolume = Mathf.Clamp01(volume);
 
-        // Only change the volume directly if music isn't currently fading.
-        if (musicFadeCoroutine == null)
-        {
+        PlayerPrefs.SetFloat("MusicVolume", musicVolume);
+        PlayerPrefs.Save();
+
+        if (musicSource != null && musicFadeCoroutine == null)
             musicSource.volume = musicVolume;
-        }
     }
 
     public void SetAmbienceVolume(float volume)
     {
-        ambienceVolume = volume;
+        ambienceVolume = Mathf.Clamp01(volume);
 
-        // Only change the volume directly if ambience isn't currently fading.
-        if (ambienceFadeCoroutine == null)
-        {
+        PlayerPrefs.SetFloat("AmbienceVolume", ambienceVolume);
+        PlayerPrefs.Save();
+
+        if (ambienceSource != null && ambienceFadeCoroutine == null)
             ambienceSource.volume = ambienceVolume;
-        }
     }
+
 
     public void ChangeAreaAudio(AudioClip newMusic, AudioClip newAmbience)
     {
