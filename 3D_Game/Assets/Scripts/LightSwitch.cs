@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class LightSwitch : MonoBehaviour 
 {
-
     public GameObject text;             //display the UI text
 
     private bool PlayerInZone;                  //check if the player is in trigger
@@ -20,7 +20,7 @@ public class LightSwitch : MonoBehaviour
 
     private void Update()
     {
-        if (PlayerInZone && Input.GetKeyDown(KeyCode.E))           //if in zone and press E key
+        if (PlayerInZone && Keyboard.current.fKey.wasPressedThisFrame)           //if in zone and press E key
         {
             lightorobj.SetActive(!lightorobj.activeSelf);
             gameObject.GetComponent<AudioSource>().Play();
