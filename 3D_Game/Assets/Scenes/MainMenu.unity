@@ -3465,8 +3465,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AreaAudioController
   musicSource: {fileID: 1465226251}
   ambienceSource: {fileID: 1465226250}
-  musicSlider: {fileID: 1601344833}
-  ambienceSlider: {fileID: 546305380}
+  musicSlider: {fileID: 546305380}
+  ambienceSlider: {fileID: 1601344833}
   musicFadeDuration: 0.3
   ambienceFadeDuration: 2
 --- !u!4 &1465226253
