@@ -50030,7 +50030,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Hmmm, I don''t really need the toilet right now '
+  m_Text: There's probably nothing intresting in here....
 --- !u!222 &333418121
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -482102,7 +482102,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Hmmm, I don''t really need the toilet right now '
+  m_Text: 'I''ll make something to eat later '
 --- !u!222 &1175086322
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -594047,6 +594047,15 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 4d6d0c904611e3749b66a2f7b7c807d3, type: 3}
     - {fileID: 8300000, guid: d7fbae8afe36e30428aa8f8e917067e7, type: 3}
   - name: DoorOpen
+    audioClips:
+    - {fileID: 8300000, guid: 4a65289a8aef60f4eab014f88274b6d1, type: 3}
+  - name: LightSwitch
+    audioClips:
+    - {fileID: 8300000, guid: 901604b330ac67141a58fd801c03585b, type: 3}
+  - name: DoorRattle
+    audioClips:
+    - {fileID: 8300000, guid: 4a65289a8aef60f4eab014f88274b6d1, type: 3}
+  - name: OpenDrawer
     audioClips:
     - {fileID: 8300000, guid: 4a65289a8aef60f4eab014f88274b6d1, type: 3}
 --- !u!82 &1710876862

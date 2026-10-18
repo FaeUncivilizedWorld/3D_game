@@ -14,7 +14,7 @@ public class LightSwitch : MonoBehaviour
 
     private void Start()
     {
-
+        SoundEffectManager.Play("LightSwitch");
         PlayerInZone = false;                         
         text.SetActive(false);
     }
