@@ -3,73 +3,189 @@ using UnityEngine.InputSystem;
 
 public class ExamineObjects : MonoBehaviour
 {
-    [Header("References")]
-    public FPController controller;
-    public Transform examinePoint;
+    [Header("Item Data")]
+    [SerializeField] private InventoryObjects itemData;
+    [SerializeField] private bool requireDialogue = true;
 
-    private Transform currentExamineObject;
-    private bool isExamining = false;
+    [Header("Inspection Settings")]
+    [SerializeField] private float rotationSpeed = 200f;
+    [SerializeField] private float examineRange = 3f;
+    [SerializeField] private float inspectDistance = 1.5f;
+
+    [Header("UI Prompts")]
+    [SerializeField] private GameObject inspectText;
+    [SerializeField] private GameObject rotationText;
+
+    private bool isDialogueFinished = false;
+    private bool isBeingInspected = false;
+    private Rigidbody rb;
+    private Collider col;
+
+    private Vector3 originalPosition;
+    private Quaternion originalRotation;
+    private Vector3 localCenter;
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+        col = GetComponent<Collider>();
+
+        if (itemData == null && GetComponent<InventoryObjects>() != null)
+        {
+            itemData = GetComponent<InventoryObjects>();
+        }
+
+        MeshFilter meshFilter = GetComponent<MeshFilter>();
+        if (meshFilter != null && meshFilter.sharedMesh != null)
+        {
+            localCenter = meshFilter.sharedMesh.bounds.center;
+        }
+        else
+        {
+            Collider itemCollider = GetComponent<Collider>();
+            if (itemCollider != null)
+            {
+                localCenter = transform.InverseTransformPoint(itemCollider.bounds.center);
+            }
+            else
+            {
+                Renderer itemRenderer = GetComponent<Renderer>();
+                if (itemRenderer != null)
+                {
+                    localCenter = transform.InverseTransformPoint(itemRenderer.bounds.center);
+                }
+                else
+                {
+                    localCenter = Vector3.zero;
+                }
+            }
+        }
+
+        if (inspectText != null) inspectText.SetActive(false);
+        if (rotationText != null) rotationText.SetActive(false);
+    }
 
     void Update()
     {
-        if (isExamining && currentExamineObject != null)
+        if (isBeingInspected)
         {
-            Debug.Log("test test test");
-            RotateExamineObject();
+            Transform cam = Camera.main.transform;
+
+            Vector3 targetPosition = cam.position + (cam.forward * inspectDistance);
+            transform.position = targetPosition;
+
+            if (Mouse.current != null && Mouse.current.leftButton.isPressed)
+            {
+                Vector2 mouseDelta = Mouse.current.delta.ReadValue();
+                float xRotation = mouseDelta.x * rotationSpeed * Time.unscaledDeltaTime;
+                float yRotation = mouseDelta.y * rotationSpeed * Time.unscaledDeltaTime;
+
+                Vector3 worldCenter = transform.TransformPoint(localCenter);
+
+                transform.RotateAround(worldCenter, cam.up, -xRotation);
+                transform.RotateAround(worldCenter, cam.right, yRotation);
+            }
+
+            if (Mouse.current != null && Mouse.current.rightButton.wasPressedThisFrame)
+            {
+                EndInspection();
+            }
+        }
+        else
+        {
+            bool canInspect = !requireDialogue || isDialogueFinished;
+
+            if (canInspect)
+            {
+                bool isLookingAtItem = CheckIfLookingAtObject();
+
+                if (isLookingAtItem)
+                {
+                    if (inspectText != null && !inspectText.activeSelf)
+                    {
+                        inspectText.SetActive(true);
+                    }
+
+                    if (Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame)
+                    {
+                        if (inspectText != null) inspectText.SetActive(false);
+                        StartInspection();
+                    }
+                }
+                else
+                {
+                    if (inspectText != null && inspectText.activeSelf)
+                    {
+                        inspectText.SetActive(false);
+                    }
+                }
+            }
         }
     }
 
-    public void StartExamining(Transform targetObject)
+    public void UnlockExamination()
     {
-        isExamining = true;
-        currentExamineObject = targetObject;
+        isDialogueFinished = true;
+    }
 
-        // Position object at the examine point in front of camera
-        currentExamineObject.position = examinePoint.position;
-        currentExamineObject.SetParent(examinePoint);
-
-        // Pause player look & movement
-        if (controller != null)
+    private bool CheckIfLookingAtObject()
+    {
+        Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+        if (Physics.Raycast(ray, out RaycastHit hit, examineRange))
         {
-            controller.DisableControlsForExamine();
+            return hit.collider.gameObject == gameObject;
+        }
+        return false;
+    }
+
+    public void StartInspection()
+    {
+        isBeingInspected = true;
+
+        if (inspectText != null) inspectText.SetActive(false);
+        if (rotationText != null) rotationText.SetActive(true);
+
+        originalPosition = transform.position;
+        originalRotation = transform.rotation;
+
+        if (rb != null)
+        {
+            rb.isKinematic = true;
+            rb.detectCollisions = false;
+        }
+
+        if (col != null) col.enabled = false;
+
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        Time.timeScale = 0f;
+
+        InventoryManager manager = FindFirstObjectByType<InventoryManager>();
+        if (manager != null && itemData != null)
+        {
+            manager.AddItem(itemData);
         }
     }
 
-    public void StopExamining()
+    public void EndInspection()
     {
-        isExamining = false;
+        isBeingInspected = false;
 
-        if (currentExamineObject != null)
+        if (rotationText != null) rotationText.SetActive(false);
+
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        Time.timeScale = 1f;
+
+        transform.position = originalPosition;
+        transform.rotation = originalRotation;
+
+        if (rb != null)
         {
-            currentExamineObject.SetParent(null);
-            currentExamineObject = null;
+            rb.isKinematic = false;
+            rb.detectCollisions = true;
         }
 
-        // Resume player look & movement
-        if (controller != null)
-        {
-            controller.EnableControlsAfterExamine();
-        }
-    }
-
-    private void RotateExamineObject()
-    {
-        if (currentExamineObject == null)
-        {
-            Debug.LogWarning("Nothing to rotate");
-            return;
-        }
-
-        // Rotate the examined object using mouse drag or stick input
-        if (Mouse.current != null && Mouse.current.leftButton.isPressed)
-        {
-            Vector2 mouseDelta = Mouse.current.delta.ReadValue();
-
-            Debug.Log($"Rotating Object! Delta: {mouseDelta}");
-
-            currentExamineObject.Rotate(Vector3.up, -mouseDelta.x * 0.2f, Space.World);
-            currentExamineObject.Rotate(Vector3.right, mouseDelta.y * 0.2f, Space.World);
-        }
+        if (col != null) col.enabled = true;
     }
 }
-

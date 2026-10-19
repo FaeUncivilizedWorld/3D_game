@@ -18,13 +18,13 @@ public class InventoryObjects : MonoBehaviour
 
     private bool isCollected = false;
 
+    [System.Obsolete]
     public void Interact()
     {
         if (!isCollected)
         {
             isCollected = true;
 
-            // Find the InventoryManager in the scene and add this item's info
             InventoryManager manager = FindObjectOfType<InventoryManager>();
             if (manager != null)
             {
