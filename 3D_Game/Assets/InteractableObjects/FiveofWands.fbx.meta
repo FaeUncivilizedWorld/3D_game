@@ -1,64 +1,9 @@
 fileFormatVersion: 2
-guid: c91f10e36175b4446afb2fe9b99d3efd
+guid: 7d65267ba17bfe94e98a596d639878d6
 ModelImporter:
   serializedVersion: 24300
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Back of the ten of cups
-    second: {fileID: 2100000, guid: e5ad89a5fb211e54e9b37d356d3c2430, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Front of the ten of cups
-    second: {fileID: 2100000, guid: 0d4e3d61e0b40ca4da47baf9929356e0, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: The ten of cups UV
-    second: {fileID: 2100000, guid: ceecfb4c6d3856843a2849a676bedc10, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: back of four of wands
-    second: {fileID: 2100000, guid: 93dec44c55496fa46825b607af5cfe18, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: back of magician
-    second: {fileID: 2100000, guid: f6de2422b993330458f405e5bca9182b, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: front of four of wands
-    second: {fileID: 2100000, guid: dd344ab14a07744448d43d440c919aa9, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: front of magician
-    second: {fileID: 2100000, guid: bcbcfb13de81a384d854f9aa1bdac29c, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: back of tart card
-    second: {fileID: 2800000, guid: c9aeff517b802694289a8a2ef9a5fecf, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: four of wands
-    second: {fileID: 2800000, guid: d49b369fbfbaf344086ba4164bfc16e9, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: ten of cards
-    second: {fileID: 2800000, guid: 51f0d12246c21d44dbec5cebd4fbc260, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: the magician
-    second: {fileID: 2800000, guid: ba3947c00cb546940b0788595fbea792, type: 3}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0

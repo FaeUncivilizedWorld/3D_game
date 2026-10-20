@@ -3,27 +3,7 @@ guid: 95265a2dbb41aaa499750a8b228ebe91
 ModelImporter:
   serializedVersion: 24300
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Candle box
-    second: {fileID: 2100000, guid: 580885f62f480f24eb25f135ea8c07b1, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material
-    second: {fileID: 2100000, guid: 5cc8d04ba33ba11409f79a31674fa85d, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: MAP
-    second: {fileID: 2800000, guid: 1dfeed756c1a01f4ca7be62bbab1d4db, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: THUMB MAP
-    second: {fileID: 2800000, guid: 717022ea6ef78104da043650f0f530b0, type: 3}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0

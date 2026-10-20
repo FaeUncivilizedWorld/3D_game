@@ -1,49 +1,9 @@
 fileFormatVersion: 2
-guid: f3d5466a8a6b64544a8748d8649016ab
+guid: f782c74dc97258e45aedff37d541ea4f
 ModelImporter:
   serializedVersion: 24300
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.001
-    second: {fileID: 2100000, guid: 3656b24f5d6c6a54c80b3ecf817056f9, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.002
-    second: {fileID: 2100000, guid: baa68ddf7a8c4d647a788443e5b2164b, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.003
-    second: {fileID: 2100000, guid: a156fe7bf50280e48b10e87ff0623d5c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.004
-    second: {fileID: 2100000, guid: a2129b0dc3abd5c4781e8d7a36c58864, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: back of birthday cardback
-    second: {fileID: 2800000, guid: 0f7cd90c930fba940baf6d2595e8ea7a, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: birthday cardMAP
-    second: {fileID: 2800000, guid: eea0ea5d61fbfba4296019a0c3878f9a, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: inside of birthday card_left&right.pgs secondmap(1)
-    second: {fileID: 2800000, guid: b86a2f6a5628fe04eb4b31746ecf3db3, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: inside of birthday card_left&rightmap.pgs
-    second: {fileID: 2800000, guid: 9a8c41ca803fcf147b9e2509d252b194, type: 3}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0

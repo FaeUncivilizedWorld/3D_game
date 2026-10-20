@@ -3,27 +3,7 @@ guid: 74e7df33d4948824a82476fe00682ee5
 ModelImporter:
   serializedVersion: 24300
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Musroom Cap
-    second: {fileID: 2100000, guid: d6b91cfe6fa5ad540a38ab4dddeb88f6, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mushroom
-    second: {fileID: 2100000, guid: 969659fb338f86d48b0ca6ba05f2d7ec, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: UV METALLIC Grid
-    second: {fileID: 2800000, guid: 17866fb820f054548b5b1c6e134cdfa9, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: UV ROUGHNESS
-    second: {fileID: 2800000, guid: 2dda91d0633da1a4d8d5008dfd50d098, type: 3}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0

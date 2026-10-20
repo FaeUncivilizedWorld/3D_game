@@ -81,6 +81,7 @@ public class ExamineObjects : MonoBehaviour
                 float yRotation = mouseDelta.y * rotationSpeed * Time.unscaledDeltaTime;
 
                 Vector3 worldCenter = transform.TransformPoint(localCenter);
+                Debug.Log("Center is: " + worldCenter);
 
                 transform.RotateAround(worldCenter, cam.up, -xRotation);
                 transform.RotateAround(worldCenter, cam.right, yRotation);
