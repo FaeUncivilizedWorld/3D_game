@@ -3,7 +3,17 @@ guid: 3d608d8783835bd43b9d6e95a1667ddc
 ModelImporter:
   serializedVersion: 24300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: back of magician
+    second: {fileID: 2100000, guid: f6de2422b993330458f405e5bca9182b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: front of magician
+    second: {fileID: 2100000, guid: bcbcfb13de81a384d854f9aa1bdac29c, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

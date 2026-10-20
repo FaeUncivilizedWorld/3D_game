@@ -3,7 +3,22 @@ guid: 006b98a823cabc841ae8677d10c8fe66
 ModelImporter:
   serializedVersion: 24300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Glass Material
+    second: {fileID: 2100000, guid: 0ab3c5ef06b180a4da63cbe5f00b79d2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wrapper
+    second: {fileID: 2100000, guid: ce647497e69bb5343bc61dcb83864332, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: bee potion
+    second: {fileID: 2800000, guid: 7400a570c2233f446b9c90795f896e4a, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0

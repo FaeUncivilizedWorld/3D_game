@@ -3,7 +3,67 @@ guid: b8c5fb349f40df14f9b0f94e216f7a8e
 ModelImporter:
   serializedVersion: 24300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: b230d6fd898f745449b1b7981cdf242c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: 536faf58181a3f34e87aa0b9b57423a9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.010
+    second: {fileID: 2100000, guid: 69ac621b25d5e9043acb4f95d0fb8c4a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.011
+    second: {fileID: 2100000, guid: 8ebde1358ca44ab4aa46a5e6c331a567, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.013
+    second: {fileID: 2100000, guid: a091b8860c8d3c9478dec6696094c8eb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.014
+    second: {fileID: 2100000, guid: f70dfd773e6927b418b4735c330cccb0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.016
+    second: {fileID: 2100000, guid: a9492ae3b2a5f114abb6722059fd23d7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.017
+    second: {fileID: 2100000, guid: 53682e45851ee764c89a560fa25bfce4, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: BODYMAP
+    second: {fileID: 2800000, guid: 94672b26b1a307a44bac3a7ea943dca3, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: BODYMAP2
+    second: {fileID: 2800000, guid: efdc887998716b846aaec9ad924b2ecb, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: button textures
+    second: {fileID: 2800000, guid: d5e4986f6196011488b645725f0b32b4, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: horns
+    second: {fileID: 2800000, guid: 2e37afdd32e213148aaf8e843ec68326, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0

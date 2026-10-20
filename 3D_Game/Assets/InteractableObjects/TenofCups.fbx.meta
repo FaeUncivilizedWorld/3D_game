@@ -3,7 +3,17 @@ guid: f53e9cb13b4fcb54b89b6a8fb9fcfee2
 ModelImporter:
   serializedVersion: 24300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Back of the ten of cups
+    second: {fileID: 2100000, guid: e5ad89a5fb211e54e9b37d356d3c2430, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Front of the ten of cups
+    second: {fileID: 2100000, guid: 0d4e3d61e0b40ca4da47baf9929356e0, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
