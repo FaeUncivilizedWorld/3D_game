@@ -82646,7 +82646,7 @@ MonoBehaviour:
   dialogueLines:
   - 'By the time I finished high school, Mom finally decided she''d had enough.
 
-    
+
 
 '
   - '"I can''t keep doing this," she said.
@@ -379426,7 +379426,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: blahh
+  m_text: 'Text '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 44c3656635f873d41849973d81cea1d4, type: 2}
   m_sharedMaterial: {fileID: 2855775871770892621, guid: 44c3656635f873d41849973d81cea1d4, type: 2}
