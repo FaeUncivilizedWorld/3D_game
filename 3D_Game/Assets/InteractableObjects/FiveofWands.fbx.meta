@@ -3,7 +3,17 @@ guid: 7d65267ba17bfe94e98a596d639878d6
 ModelImporter:
   serializedVersion: 24300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: back of four of wands
+    second: {fileID: 2100000, guid: 93dec44c55496fa46825b607af5cfe18, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: front of four of wands
+    second: {fileID: 2100000, guid: dd344ab14a07744448d43d440c919aa9, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

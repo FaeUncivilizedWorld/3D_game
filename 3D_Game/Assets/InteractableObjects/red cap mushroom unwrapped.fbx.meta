@@ -3,7 +3,17 @@ guid: 74e7df33d4948824a82476fe00682ee5
 ModelImporter:
   serializedVersion: 24300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Musroom Cap
+    second: {fileID: 2100000, guid: d6b91cfe6fa5ad540a38ab4dddeb88f6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mushroom
+    second: {fileID: 2100000, guid: 969659fb338f86d48b0ca6ba05f2d7ec, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

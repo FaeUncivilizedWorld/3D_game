@@ -3,7 +3,57 @@ guid: 683321a71f8bd384db5c555378f31ccf
 ModelImporter:
   serializedVersion: 24300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.018
+    second: {fileID: 2100000, guid: 91dc202bafeaf17498c39bb6964809bd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.019
+    second: {fileID: 2100000, guid: 3400badf4bfca0546b6c56c382bcbe48, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.020
+    second: {fileID: 2100000, guid: 14df10af82b559a4cbd3da9589aee193, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.021
+    second: {fileID: 2100000, guid: 80270dbecf3066a40b6d03a653def6a5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.022
+    second: {fileID: 2100000, guid: dfd534dfae3bcec49940868b4acd4107, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.023
+    second: {fileID: 2100000, guid: b617350693e345d41bf342b741762f13, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: bear base colour
+    second: {fileID: 2800000, guid: faae77081de97514584148d67e91a3f4, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: button textures
+    second: {fileID: 2800000, guid: 5010944c170c0dc43933d753b8322082, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: ears
+    second: {fileID: 2800000, guid: 441496bd7da41ef4fb549f3c89930f92, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: nose.001
+    second: {fileID: 2800000, guid: e9611b5c40589a241849002e251c4900, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -3,7 +3,17 @@ guid: 78772c37aa142f442ad8db483d6b3e0b
 ModelImporter:
   serializedVersion: 24300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Frogs breath
+    second: {fileID: 2100000, guid: 66eaa7f9a5b193f49b5db2ff4b8672f6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Label
+    second: {fileID: 2100000, guid: 07570047e3aa066439568da83b1a8165, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
