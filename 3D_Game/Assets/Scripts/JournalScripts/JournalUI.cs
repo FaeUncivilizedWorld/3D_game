@@ -38,10 +38,10 @@ public class JournalUI : MonoBehaviour
 
     public void OpenJournal()
     {
-        SoundEffectManager.Play("PageFlip");
 
         if (isOpen || pages == null || pages.Length == 0)
             return;
+        SoundEffectManager.Play("PageFlip");
 
         isOpen = true;
         currentPage = 0;
@@ -66,6 +66,7 @@ public class JournalUI : MonoBehaviour
 
         currentPage++;
         UpdatePage();
+        SoundEffectManager.Play("PageFlip2");
     }
 
     public void PreviousPage()
@@ -75,6 +76,7 @@ public class JournalUI : MonoBehaviour
 
         currentPage--;
         UpdatePage();
+        SoundEffectManager.Play("PageFlip2");
     }
 
     public void GoToPage(int pageNumber)
@@ -85,6 +87,7 @@ public class JournalUI : MonoBehaviour
 
         currentPage = pageNumber - 1;
         UpdatePage();
+        SoundEffectManager.Play("PageFlip2");
     }
 
     private void UpdatePage()
