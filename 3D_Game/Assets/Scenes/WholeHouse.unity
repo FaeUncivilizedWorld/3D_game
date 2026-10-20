@@ -599869,6 +599869,9 @@ MonoBehaviour:
   - name: PageFlip
     audioClips:
     - {fileID: 8300000, guid: 2eacd7bc8eebcf54196ff2396b048168, type: 3}
+  - name: PageFlip2
+    audioClips:
+    - {fileID: 8300000, guid: aa67d039fd9bd004191198da25be3dff, type: 3}
 --- !u!82 &1710876862
 AudioSource:
   m_ObjectHideFlags: 0
@@ -608741,14 +608744,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.5882353}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 298e86e5334977844ade437e18f0d053, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -608802,7 +608805,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -671, y: 491}
+  m_AnchoredPosition: {x: -692, y: 482}
   m_SizeDelta: {x: 160, y: 39.0215}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1814322434
@@ -926991,7 +926994,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 707, y: -480}
+  m_AnchoredPosition: {x: 683, y: -480}
   m_SizeDelta: {x: 150, y: 47.554}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1964152162
@@ -1011051,6 +1011054,204 @@ Mesh:
       - serializedVersion: 1
         m_IndexStart: 0
         m_IndexCount: 0
+--- !u!1001 &2098016681
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 115278195}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: f3d5466a8a6b64544a8748d8649016ab, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f3d5466a8a6b64544a8748d8649016ab, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f3d5466a8a6b64544a8748d8649016ab, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f3d5466a8a6b64544a8748d8649016ab, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 16.241
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f3d5466a8a6b64544a8748d8649016ab, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.851
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f3d5466a8a6b64544a8748d8649016ab, type: 3}
+      propertyPath: m_LocalPosition.z
+
+      value: 1.706
+
+      value: -9.905
+
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f3d5466a8a6b64544a8748d8649016ab, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.27248803
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f3d5466a8a6b64544a8748d8649016ab, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.0057642683
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f3d5466a8a6b64544a8748d8649016ab, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.9620194
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f3d5466a8a6b64544a8748d8649016ab, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.015352759
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f3d5466a8a6b64544a8748d8649016ab, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 1.513
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f3d5466a8a6b64544a8748d8649016ab, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 148.356
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f3d5466a8a6b64544a8748d8649016ab, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -1.115
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f3d5466a8a6b64544a8748d8649016ab, type: 3}
+      propertyPath: m_Name
+      value: 'BirthdayCard '
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f3d5466a8a6b64544a8748d8649016ab, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f3d5466a8a6b64544a8748d8649016ab, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2098016686}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f3d5466a8a6b64544a8748d8649016ab, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2098016685}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f3d5466a8a6b64544a8748d8649016ab, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2098016684}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f3d5466a8a6b64544a8748d8649016ab, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2098016689}
+  m_SourcePrefab: {fileID: 100100000, guid: f3d5466a8a6b64544a8748d8649016ab, type: 3}
+--- !u!4 &2098016682 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f3d5466a8a6b64544a8748d8649016ab, type: 3}
+  m_PrefabInstance: {fileID: 2098016681}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2098016683 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: f3d5466a8a6b64544a8748d8649016ab, type: 3}
+  m_PrefabInstance: {fileID: 2098016681}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2098016684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2098016683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f0e185325012434ea0cbfdca8a82721, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ObjectDialogue
+  dialogueLines:
+  - "\u201C10/05/1970\u2026Happy 7th Birthday Mabel\u2026I am so proud of how far
+    you\u2019ve come\u2026love Martha,\u201D huh, I wonder whose card this belongs
+    to??? I never knew a Mabel\u2026maybe she\u2019s a childhood friend I forgot
+    about? "
+--- !u!114 &2098016685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2098016683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0572ed37558b0694090c701882efce51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractableObject
+  prompt: PRESS       TO INTERACT
+  onInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2098016684}
+        m_TargetAssemblyTypeName: ObjectDialogue, Assembly-CSharp
+        m_MethodName: Speak
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2098016689}
+        m_TargetAssemblyTypeName: ExamineObjects, Assembly-CSharp
+        m_MethodName: UnlockExamination
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  isSingleUse: 0
+--- !u!65 &2098016686
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2098016683}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 128
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.037971236, y: 0.056108583, z: 0.041648783}
+  m_Center: {x: -0.08046505, y: 0.051987395, z: -0.0052712555}
+--- !u!114 &2098016689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2098016683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb51eeef2afd14245aecae0dcd0d66d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExamineObjects
+  itemData: {fileID: 0}
+  requireDialogue: 1
+  rotationSpeed: 200
+  examineRange: 3
+  inspectDistance: 1.5
+  inspectText: {fileID: 1370603449}
+  rotationText: {fileID: 1794366301}
+ 5340b06626c11ed17f355094aa2a10cd674a7443
 --- !u!1 &2098752937
 GameObject:
   m_ObjectHideFlags: 0
