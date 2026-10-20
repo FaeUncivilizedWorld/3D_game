@@ -14,7 +14,6 @@ public class LightSwitch : MonoBehaviour
 
     private void Start()
     {
-        SoundEffectManager.Play("LightSwitch");
         PlayerInZone = false;                         
         text.SetActive(false);
     }
@@ -25,7 +24,9 @@ public class LightSwitch : MonoBehaviour
         {
             lightorobj.SetActive(!lightorobj.activeSelf);
             gameObject.GetComponent<Animator>().Play("Switch");
+            SoundEffectManager.Play("LightSwitch");
         }
+      
     }
 
     private void OnTriggerEnter(Collider other)
