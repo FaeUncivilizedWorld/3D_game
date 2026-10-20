@@ -6,6 +6,8 @@ using TMPro;
 
 public class InventoryManager : MonoBehaviour
 {
+    public static InventoryManager Instance;
+
     [Header("UI Panels & Prompts")]
     [SerializeField] private GameObject inventoryPanel;
     [SerializeField] private GameObject inventoryText;
@@ -19,6 +21,21 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private TMP_Text itemDescriptionText;
 
     private List<InventoryObjects> collectedItems = new List<InventoryObjects>();
+
+    void Awake()
+    {
+        // Ensures only one InventoryManager exists and it doesn't get destroyed
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+    }
 
     void Start()
     {

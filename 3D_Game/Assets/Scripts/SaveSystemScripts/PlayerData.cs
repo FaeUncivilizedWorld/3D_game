@@ -1,12 +1,25 @@
 using UnityEngine;
 using System;
+using System.Collections.Generic;
 
 [Serializable]
-public class PlayerData 
+public struct ObjectSaveData
 {
+    public string objectId;
+    public float posX, posY, posZ;
+    public float rotX, rotY, rotZ;
+    public bool isOpen;
+}
+
+[Serializable]
+public class PlayerData
+{
+    // Player Stats & Position
     public float positionX;
     public float positionY;
     public float positionZ;
-
     public float rotationY;
+
+    // List to hold all movable objects in the world
+    public List<ObjectSaveData> savedObjects = new List<ObjectSaveData>();
 }
