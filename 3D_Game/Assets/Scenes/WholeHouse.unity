@@ -5799,13 +5799,91 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 21871dae8e4902c4ea541d84e1a02aec, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 80117841}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 21871dae8e4902c4ea541d84e1a02aec, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 80117840}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 21871dae8e4902c4ea541d84e1a02aec, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 80117839}
   m_SourcePrefab: {fileID: 100100000, guid: 21871dae8e4902c4ea541d84e1a02aec, type: 3}
 --- !u!4 &80117837 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 21871dae8e4902c4ea541d84e1a02aec, type: 3}
   m_PrefabInstance: {fileID: 80117836}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &80117838 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 21871dae8e4902c4ea541d84e1a02aec, type: 3}
+  m_PrefabInstance: {fileID: 80117836}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &80117839
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 80117838}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 128
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.028891, y: 3.4034855, z: 1.9160626}
+  m_Center: {x: 0, y: -3.507484, z: -0.004293085}
+--- !u!114 &80117840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 80117838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0572ed37558b0694090c701882efce51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractableObject
+  prompt: PRESS       TO INTERACT
+  onInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 80117841}
+        m_TargetAssemblyTypeName: ObjectDialogue, Assembly-CSharp
+        m_MethodName: Speak
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  isSingleUse: 0
+--- !u!114 &80117841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 80117838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f0e185325012434ea0cbfdca8a82721, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ObjectDialogue
+  dialogueLines:
+  - "hmmm frogs breath \u2026 *giggle* how did she even get this into a jar???"
 --- !u!43 &83081171
 Mesh:
   m_ObjectHideFlags: 0
@@ -8211,6 +8289,7 @@ Transform:
   - {fileID: 747189096}
   - {fileID: 1995681}
   - {fileID: 263197282}
+  - {fileID: 1282027081}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &115582138
@@ -50219,7 +50298,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Hmmm, I don''t really need the toilet right now '
+  m_Text: 'I''m sure there''s nothing intresting in here '
 --- !u!222 &333418121
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -67200,7 +67279,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectDialogue
   dialogueLines:
-  - text
+  - 'Oh my goodness, mr snuggles?? I used to be so scared of you, now you''re just
+    adorable '
 --- !u!114 &374861788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67213,7 +67293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0572ed37558b0694090c701882efce51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractableObject
-  prompt: 
+  prompt: PRESS       TO INTERACT
   onInteract:
     m_PersistentCalls:
       m_Calls:
@@ -79600,7 +79680,6 @@ Transform:
   - {fileID: 487487098}
   - {fileID: 914495820}
   - {fileID: 1228478988}
-  - {fileID: 1282027081}
   - {fileID: 1025691244}
   - {fileID: 263230320}
   m_Father: {fileID: 0}
@@ -483531,7 +483610,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Hmmm, I don''t really need the toilet right now '
+  m_Text: 'I''ll make myself something ro eat later '
 --- !u!222 &1175086322
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -484774,13 +484853,60 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: -2928707585973528521, guid: 9a1f1cb54c4fb524ea4b86d5b0e76985, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1228478991}
+    - targetCorrespondingSourceObject: {fileID: -2928707585973528521, guid: 9a1f1cb54c4fb524ea4b86d5b0e76985, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1228478990}
   m_SourcePrefab: {fileID: 100100000, guid: 9a1f1cb54c4fb524ea4b86d5b0e76985, type: 3}
 --- !u!4 &1228478988 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9a1f1cb54c4fb524ea4b86d5b0e76985, type: 3}
   m_PrefabInstance: {fileID: 1228478987}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1228478989 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -2928707585973528521, guid: 9a1f1cb54c4fb524ea4b86d5b0e76985, type: 3}
+  m_PrefabInstance: {fileID: 1228478987}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1228478990
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1228478989}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1b47a120e9a6e8e488963e868a9bc6ff, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1228478991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1228478989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2e1a681c0a1a5d49bef9228d9afb93e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DrawerAnimation
+  drawerAnimator: {fileID: 0}
+  animationTrigger: OpenDrawer
 --- !u!1 &1230169011
 GameObject:
   m_ObjectHideFlags: 0
@@ -524109,19 +524235,19 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 556907167}
+    m_TransformParent: {fileID: 115278195}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 006b98a823cabc841ae8677d10c8fe66, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.86026
+      value: 16.95918
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 006b98a823cabc841ae8677d10c8fe66, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.0829101
+      value: 4.01193
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 006b98a823cabc841ae8677d10c8fe66, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.62359
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 006b98a823cabc841ae8677d10c8fe66, type: 3}
       propertyPath: m_LocalRotation.w
@@ -524162,13 +524288,91 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 006b98a823cabc841ae8677d10c8fe66, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1282027085}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 006b98a823cabc841ae8677d10c8fe66, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1282027084}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 006b98a823cabc841ae8677d10c8fe66, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1282027083}
   m_SourcePrefab: {fileID: 100100000, guid: 006b98a823cabc841ae8677d10c8fe66, type: 3}
 --- !u!4 &1282027081 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 006b98a823cabc841ae8677d10c8fe66, type: 3}
   m_PrefabInstance: {fileID: 1282027080}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1282027082 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 006b98a823cabc841ae8677d10c8fe66, type: 3}
+  m_PrefabInstance: {fileID: 1282027080}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1282027083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282027082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0572ed37558b0694090c701882efce51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractableObject
+  prompt: PRESS       TO INTERACT
+  onInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1282027084}
+        m_TargetAssemblyTypeName: ObjectDialogue, Assembly-CSharp
+        m_MethodName: Speak
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  isSingleUse: 0
+--- !u!114 &1282027084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282027082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f0e185325012434ea0cbfdca8a82721, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ObjectDialogue
+  dialogueLines:
+  - "A potion made from bee\u2019s???...smells weird\u2026. why is this even here?"
+--- !u!65 &1282027085
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282027082}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 128
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.12711333, y: 0.16066197, z: 0.11865438}
+  m_Center: {x: 0, y: 0.032764543, z: -0.00032396987}
 --- !u!1 &1288349679
 GameObject:
   m_ObjectHideFlags: 0
@@ -571963,12 +572167,174 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8658650034713432621, guid: c91f10e36175b4446afb2fe9b99d3efd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 475753106}
+    - targetCorrespondingSourceObject: {fileID: -2509290083502623200, guid: c91f10e36175b4446afb2fe9b99d3efd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1403712199}
+    - targetCorrespondingSourceObject: {fileID: -2509290083502623200, guid: c91f10e36175b4446afb2fe9b99d3efd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1403712198}
+    - targetCorrespondingSourceObject: {fileID: -2509290083502623200, guid: c91f10e36175b4446afb2fe9b99d3efd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1403712197}
+    - targetCorrespondingSourceObject: {fileID: 4726846933935186997, guid: c91f10e36175b4446afb2fe9b99d3efd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1403712196}
+    - targetCorrespondingSourceObject: {fileID: 4726846933935186997, guid: c91f10e36175b4446afb2fe9b99d3efd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1403712195}
+    - targetCorrespondingSourceObject: {fileID: 4726846933935186997, guid: c91f10e36175b4446afb2fe9b99d3efd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1403712194}
   m_SourcePrefab: {fileID: 100100000, guid: c91f10e36175b4446afb2fe9b99d3efd, type: 3}
 --- !u!4 &1403712191 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c91f10e36175b4446afb2fe9b99d3efd, type: 3}
   m_PrefabInstance: {fileID: 1403712190}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1403712192 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4726846933935186997, guid: c91f10e36175b4446afb2fe9b99d3efd, type: 3}
+  m_PrefabInstance: {fileID: 1403712190}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1403712193 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -2509290083502623200, guid: c91f10e36175b4446afb2fe9b99d3efd, type: 3}
+  m_PrefabInstance: {fileID: 1403712190}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1403712194
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403712192}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.07, y: 0.001, z: 0.042958066}
+  m_Center: {x: 0, y: -0.0005, z: -0.013520966}
+--- !u!114 &1403712195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403712192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f0e185325012434ea0cbfdca8a82721, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ObjectDialogue
+  dialogueLines:
+  - In high school I met a friend who was just like gran, we always hung out under
+    the bleachers at school away from everybody, she was the only one who truly understood
+    me apart from my grandmother.
+  - The ten of cups upside down if I remember represents that you wish for a strong
+    connection but whenever you try, something always goes wrong and ruins the connection,
+    she pulled this out when I asked for a love reading on my crush Coney.
+--- !u!114 &1403712196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403712192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0572ed37558b0694090c701882efce51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractableObject
+  prompt: PRESS       TO INTERACT
+  onInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1403712195}
+        m_TargetAssemblyTypeName: ObjectDialogue, Assembly-CSharp
+        m_MethodName: Speak
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  isSingleUse: 0
+--- !u!114 &1403712197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403712193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0572ed37558b0694090c701882efce51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractableObject
+  prompt: PRESS       TO INTERACT
+  onInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1403712198}
+        m_TargetAssemblyTypeName: ObjectDialogue, Assembly-CSharp
+        m_MethodName: Speak
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  isSingleUse: 0
+--- !u!114 &1403712198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403712193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f0e185325012434ea0cbfdca8a82721, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ObjectDialogue
+  dialogueLines:
+  - "If I\u2019m not mistaken this is meant to bring you resources and energy to
+    make your dreams come true\u2026clich\xE9."
+--- !u!65 &1403712199
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403712193}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.07, y: 0.001, z: 0.042958066}
+  m_Center: {x: 0, y: -0.0005, z: -0.013520966}
 --- !u!43 &1405535890
 Mesh:
   m_ObjectHideFlags: 0
@@ -999758,7 +1000124,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectDialogue
   dialogueLines:
-  - text
+  - "This is a mushroom that needs to be picked at dawn, I remember going with gran
+    to collect these in the forest nearby\u2026 "
+  - "She always chattered about it being for an appearance potion that would protect
+    me, I\u2019m still unsure on how a mushroom would protect me from anything. "
 --- !u!114 &2059267642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1005537,7 +1005906,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Hmmm, I don''t really need the toilet right now '
+  m_Text: Ughh I'm too tired to go all the way up there.
 --- !u!222 &2098752940
 CanvasRenderer:
   m_ObjectHideFlags: 0
