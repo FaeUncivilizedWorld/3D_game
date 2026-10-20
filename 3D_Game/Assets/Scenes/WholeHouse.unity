@@ -598926,6 +598926,9 @@ MonoBehaviour:
   - name: PageFlip
     audioClips:
     - {fileID: 8300000, guid: 2eacd7bc8eebcf54196ff2396b048168, type: 3}
+  - name: PageFlip2
+    audioClips:
+    - {fileID: 8300000, guid: aa67d039fd9bd004191198da25be3dff, type: 3}
 --- !u!82 &1710876862
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1009822,7 +1009825,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f3d5466a8a6b64544a8748d8649016ab, type: 3}
       propertyPath: m_LocalPosition.z
+
       value: 1.706
+
+      value: -9.905
+
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f3d5466a8a6b64544a8748d8649016ab, type: 3}
       propertyPath: m_LocalRotation.w
