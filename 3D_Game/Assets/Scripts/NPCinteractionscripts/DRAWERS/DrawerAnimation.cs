@@ -8,23 +8,15 @@ public class DrawerAnimation : MonoBehaviour
 
     [SerializeField] private string animationTrigger = "OpenDrawer";
 
-    private bool hasOpened = false;
     public void OpenDrawer()
     {
-        if (hasOpened)
-            return;
-
         if (drawerAnimator == null)
         {
-            Debug.LogWarning(
-                "Drawer Animator is not assigned!",
-                this
-            );
+            Debug.LogWarning("Drawer Animator is not assigned!", this);
             return;
         }
 
+        drawerAnimator.ResetTrigger(animationTrigger);
         drawerAnimator.SetTrigger(animationTrigger);
-        hasOpened = true;
     }
 }
-
