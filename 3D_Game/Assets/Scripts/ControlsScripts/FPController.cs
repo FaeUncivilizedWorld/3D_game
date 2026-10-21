@@ -136,13 +136,14 @@ public class FPController : MonoBehaviour
 
     public void SavePlayerData()
     {
-        PlayerData data = new PlayerData();
+        PlayerData data = SaveSystem.LoadPlayer() ?? new PlayerData();
 
         data.positionX = transform.position.x;
         data.positionY = transform.position.y;
         data.positionZ = transform.position.z;
         data.rotationY = transform.eulerAngles.y;
 
+        data.savedObjects.Clear();
         SaveableObject[] allSaveableObjects = FindObjectsByType<SaveableObject>(FindObjectsSortMode.None);
 
         foreach (SaveableObject obj in allSaveableObjects)

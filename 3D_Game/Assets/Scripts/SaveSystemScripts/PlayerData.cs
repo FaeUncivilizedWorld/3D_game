@@ -9,6 +9,7 @@ public struct ObjectSaveData
     public float posX, posY, posZ;
     public float rotX, rotY, rotZ;
     public bool isOpen;
+
 }
 
 [Serializable]
@@ -20,6 +21,7 @@ public class PlayerData
     public float positionZ;
     public float rotationY;
 
-    // List to hold all movable objects in the world
+  
     public List<ObjectSaveData> savedObjects = new List<ObjectSaveData>();
+    public List<string> lightsOnIds = new List<string>();
 }

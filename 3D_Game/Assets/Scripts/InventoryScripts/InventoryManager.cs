@@ -22,20 +22,7 @@ public class InventoryManager : MonoBehaviour
 
     private List<InventoryObjects> collectedItems = new List<InventoryObjects>();
 
-    void Awake()
-    {
-        // Ensures only one InventoryManager exists and it doesn't get destroyed
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
-    }
+
 
     void Start()
     {
@@ -52,6 +39,8 @@ public class InventoryManager : MonoBehaviour
         {
             if (Keyboard.current.iKey.wasPressedThisFrame)
             {
+                if (inventoryPanel == null) return;
+
                 if ((inventoryText != null && inventoryText.activeSelf) || inventoryPanel.activeSelf)
                 {
                     ToggleInventory();
