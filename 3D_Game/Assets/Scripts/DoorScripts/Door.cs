@@ -7,20 +7,47 @@ public class Door : MonoBehaviour
     public GameObject interactionText;
     private bool playerInRange = false;
 
+    [Header("Door Save State")]
+    public bool isOpen = false; 
+
     private void Start()
     {
-        interactionText.SetActive(false);
+        if (interactionText != null)
+            interactionText.SetActive(false);
+
+        if (isOpen && doorAnimator != null)
+        {
+            doorAnimator.SetTrigger("OpenDoor");
+        }
     }
 
     private void Update()
     {
-        if (playerInRange && Keyboard.current.eKey.wasPressedThisFrame)
+        if (playerInRange && Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame)
         {
-            SoundEffectManager.Play("DoorOpen");
-            doorAnimator.SetTrigger("OpenDoor");
-            interactionText.SetActive(false);
-            playerInRange = false;
+            ToggleDoor();
         }
+    }
+
+    public void ToggleDoor()
+    {
+        SoundEffectManager.Play("DoorOpen");
+
+        if (!isOpen)
+        {
+            doorAnimator.SetTrigger("OpenDoor");
+            isOpen = true;
+        }
+        else
+        {
+            doorAnimator.SetTrigger("CloseDoor");
+            isOpen = false;
+        }
+
+        if (interactionText != null)
+            interactionText.SetActive(false);
+
+        playerInRange = false;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -28,7 +55,8 @@ public class Door : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInRange = true;
-            interactionText.SetActive(true);
+            if (interactionText != null)
+                interactionText.SetActive(true);
         }
     }
 
@@ -37,31 +65,8 @@ public class Door : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInRange = false;
-            interactionText.SetActive(false);
-        }
-    }
-
-    public void SavePlayerData()
-    {
-        PlayerData data = new PlayerData();
-
-        // Save stats
-
-
-        data.rotationY = transform.eulerAngles.y;
-
-        SaveSystem.SavePlayer(data);
-    }
-
-     public void LoadPlayerData()
-    {
-        PlayerData data = SaveSystem.LoadPlayer();
-
-        if (data != null)
-        {
-            transform.rotation = Quaternion.Euler(0f, data.rotationY,0f);
-
-            Debug.Log("Door Loaded Successfully!");
+            if (interactionText != null)
+                interactionText.SetActive(false);
         }
     }
 }
