@@ -23,7 +23,7 @@ public class ExamineObjects : MonoBehaviour
 
     private Vector3 originalPosition;
     private Quaternion originalRotation;
-    private Vector3 localCenter;
+    private Vector3 localCenter; 
 
     void Start()
     {
@@ -70,7 +70,6 @@ public class ExamineObjects : MonoBehaviour
         if (isBeingInspected)
         {
             Transform cam = Camera.main.transform;
-
             Vector3 targetPosition = cam.position + (cam.forward * inspectDistance);
             transform.position = targetPosition;
 
@@ -81,12 +80,12 @@ public class ExamineObjects : MonoBehaviour
                 float yRotation = mouseDelta.y * rotationSpeed * Time.unscaledDeltaTime;
 
                 Vector3 worldCenter = transform.TransformPoint(localCenter);
-                Debug.Log("Center is: " + worldCenter);
 
                 transform.RotateAround(worldCenter, cam.up, -xRotation);
                 transform.RotateAround(worldCenter, cam.right, yRotation);
             }
 
+            // Exit inspection
             if (Mouse.current != null && Mouse.current.rightButton.wasPressedThisFrame)
             {
                 EndInspection();
@@ -94,7 +93,7 @@ public class ExamineObjects : MonoBehaviour
         }
         else
         {
-            bool canInspect = !requireDialogue || isDialogueFinished;
+            bool canInspect = (!requireDialogue || isDialogueFinished) && !ObjectDialogue.IsDialogueActive;
 
             if (canInspect)
             {
@@ -119,6 +118,13 @@ public class ExamineObjects : MonoBehaviour
                     {
                         inspectText.SetActive(false);
                     }
+                }
+            }
+            else
+            {
+                if (inspectText != null && inspectText.activeSelf)
+                {
+                    inspectText.SetActive(false);
                 }
             }
         }
