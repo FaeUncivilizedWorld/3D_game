@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class ObjectDialogue : MonoBehaviour
 {
-    public static bool IsDialogueActive { get; private set; } = false;
-
     [Header("Conversation Lines")]
     [SerializeField]
     [TextArea(3, 5)]
@@ -25,7 +23,6 @@ public class ObjectDialogue : MonoBehaviour
 
         _currentLineIndex = 0;
         _conversationRunning = true;
-        IsDialogueActive = true;
 
         ShowCurrentLine();
     }
@@ -63,7 +60,6 @@ public class ObjectDialogue : MonoBehaviour
     {
         _conversationRunning = false;
         _currentLineIndex = 0;
-        IsDialogueActive = false;
 
         DialogueUI.Instance.CloseDialogue();
     }

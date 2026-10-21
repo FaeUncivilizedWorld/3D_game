@@ -1,5 +1,10 @@
+using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Animations;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.XR;
+using UnityEngine.Rendering;
 
 public class FPController : MonoBehaviour
 {
@@ -11,16 +16,28 @@ public class FPController : MonoBehaviour
     [Header("Mouse Look")]
     public float mouseSensitivity = 40f;
     public Transform cameraHolder;
-
     public bool isExamining = false;
+
+   /* [Header("Crouch")]
+    public float crouchHeight = 1f;
+    public float standHeight = 2f;
+    public float crouchSpeed = 2.5f;
+
+    private float originalMoveSpeed;*/
+
+    //[Header("Player Stats")]
+    //This is where we write all the information that needs to be saved
 
     private CharacterController characterController;
     private Vector3 velocity;
     private float XRotation = 0f;
 
-    private bool playingFootsteps = false;
-    public float footstepSpeed = 0.5f;
+    public GameObject objectText;
 
+    private bool playingFootsteps = false;
+    public float footstepSpeed = 0.5f; // 
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -28,13 +45,18 @@ public class FPController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
+        objectText.SetActive(false);
+
+        // Check if we requested a load from the Main Menu or previous session
         if (PlayerPrefs.GetInt("LoadOnStart", 0) == 1)
         {
             LoadPlayerData();
+            // Reset the flag so it doesn't force-load every scene reload unexpectedly
             PlayerPrefs.SetInt("LoadOnStart", 0);
         }
     }
 
+    // Update is called once per frame
     void Update()
     {
         if (isExamining)
@@ -42,20 +64,25 @@ public class FPController : MonoBehaviour
             return;
         }
 
-        if (Keyboard.current != null)
-        {
-            if (Keyboard.current.f5Key.wasPressedThisFrame)
-            {
-                SavePlayerData();
-            }
-            if (Keyboard.current.f9Key.wasPressedThisFrame)
-            {
-                LoadPlayerData();
-            }
-        }
-
         Look();
         Move();
+    }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("PickupObject"))
+        {
+            objectText.SetActive(true);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("PickupObject"))
+        {
+            objectText.SetActive(false);
+        }
     }
 
     void Look()
@@ -94,6 +121,7 @@ public class FPController : MonoBehaviour
 
         characterController.Move(move * moveSpeed * Time.deltaTime);
 
+        // Checks if input keys are being pressed and the player is on the ground
         bool isMoving = input.magnitude > 0.1f && characterController.isGrounded;
 
         if (isMoving && !playingFootsteps)
@@ -120,9 +148,24 @@ public class FPController : MonoBehaviour
         characterController.Move(velocity * Time.deltaTime);
     }
 
+   /* public void Crouch(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            characterController.height = crouchHeight;
+            moveSpeed = crouchSpeed;
+        }
+        else if (context.canceled)
+        {
+            characterController.height = standHeight;
+            moveSpeed = originalMoveSpeed;
+        }
+    }*/
+
     public void DisableControlsForExamine()
     {
         isExamining = true;
+
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
@@ -130,6 +173,7 @@ public class FPController : MonoBehaviour
     public void EnableControlsAfterExamine()
     {
         isExamining = false;
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -138,37 +182,16 @@ public class FPController : MonoBehaviour
     {
         PlayerData data = new PlayerData();
 
+        // Save stats
+
+        // Save position
         data.positionX = transform.position.x;
         data.positionY = transform.position.y;
         data.positionZ = transform.position.z;
-        data.rotationY = transform.eulerAngles.y;
 
-        SaveableObject[] allSaveableObjects = FindObjectsByType<SaveableObject>(FindObjectsSortMode.None);
-
-        foreach (SaveableObject obj in allSaveableObjects)
-        {
-            ObjectSaveData objData = new ObjectSaveData();
-            objData.objectId = obj.objectId;
-
-            objData.posX = obj.transform.position.x;
-            objData.posY = obj.transform.position.y;
-            objData.posZ = obj.transform.position.z;
-
-            objData.rotX = obj.transform.eulerAngles.x;
-            objData.rotY = obj.transform.eulerAngles.y;
-            objData.rotZ = obj.transform.eulerAngles.z;
-
-            Door doorScript = obj.GetComponent<Door>();
-            if (doorScript != null)
-            {
-                objData.isOpen = doorScript.isOpen;
-            }
-
-            data.savedObjects.Add(objData);
-        }
+        data.rotationY = transform.rotation.y;
 
         SaveSystem.SavePlayer(data);
-        Debug.Log("Game and World Objects Saved!");
     }
 
     public void LoadPlayerData()
@@ -177,43 +200,16 @@ public class FPController : MonoBehaviour
 
         if (data != null)
         {
+            // If using a CharacterController or NavMeshAgent, disable it before changing transform.position
             CharacterController controller = GetComponent<CharacterController>();
             if (controller != null) controller.enabled = false;
 
             transform.position = new Vector3(data.positionX, data.positionY, data.positionZ);
-            transform.rotation = Quaternion.Euler(0f, data.rotationY, 0f);
+            transform.rotation = Quaternion.identity;
 
             if (controller != null) controller.enabled = true;
 
-            SaveableObject[] allSaveableObjects = FindObjectsByType<SaveableObject>(FindObjectsSortMode.None);
-
-            foreach (SaveableObject obj in allSaveableObjects)
-            {
-                ObjectSaveData match = data.savedObjects.Find(x => x.objectId == obj.objectId);
-
-                if (!string.IsNullOrEmpty(match.objectId))
-                {
-                    Rigidbody rb = obj.GetComponent<Rigidbody>();
-                    if (rb != null) rb.isKinematic = true;
-
-                    obj.transform.position = new Vector3(match.posX, match.posY, match.posZ);
-                    obj.transform.rotation = Quaternion.Euler(match.rotX, match.rotY, match.rotZ);
-
-                    if (rb != null) rb.isKinematic = false;
-
-                    Door doorScript = obj.GetComponent<Door>();
-                    if (doorScript != null)
-                    {
-                        doorScript.isOpen = match.isOpen;
-                        if (doorScript.isOpen && doorScript.doorAnimator != null)
-                        {
-                            doorScript.doorAnimator.SetTrigger("OpenDoor");
-                        }
-                    }
-                }
-            }
-
-            Debug.Log("Player and World Objects Loaded Successfully!");
+            Debug.Log("Player Loaded Successfully!");
         }
     }
 
