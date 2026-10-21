@@ -3574,8 +3574,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ObjectDialogue
   dialogueLines:
   - "It\u2019s been years since I\u2019ve seen these photos, they\u2019re even getting
-    mouldy\u2026I wonder if things would\u2019ve been different if my mother never
-    found out. "
+    mouldy, I wonder if things would\u2019ve been different if my mother never found
+    out. "
 --- !u!114 &29353425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77608,13 +77608,8 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-
-  m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
-
   m_StaticEditorFlags: 0
   m_IsActive: 0
-
 --- !u!4 &545724937
 Transform:
   m_ObjectHideFlags: 0
@@ -447982,13 +447977,8 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-
-  m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
-
   m_StaticEditorFlags: 0
   m_IsActive: 0
-
 --- !u!4 &720377180
 Transform:
   m_ObjectHideFlags: 0
@@ -569070,13 +569060,8 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-
-  m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
-
   m_StaticEditorFlags: 0
   m_IsActive: 0
-
 --- !u!4 &1339926170
 Transform:
   m_ObjectHideFlags: 0
@@ -575873,13 +575858,8 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-
-  m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
-
   m_StaticEditorFlags: 0
   m_IsActive: 0
-
 --- !u!4 &1467673144
 Transform:
   m_ObjectHideFlags: 0
@@ -604030,13 +604010,8 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-
-  m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
-
   m_StaticEditorFlags: 0
   m_IsActive: 0
-
 --- !u!4 &1787169099
 Transform:
   m_ObjectHideFlags: 0
@@ -924435,13 +924410,8 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-
-  m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
-
   m_StaticEditorFlags: 0
   m_IsActive: 0
-
 --- !u!4 &1959867126
 Transform:
   m_ObjectHideFlags: 0
