@@ -5,103 +5,45 @@ using UnityEngine.InputSystem;
 
 public class LightSwitch : MonoBehaviour
 {
-    [Header("Save Settings")]
-    [Tooltip("Type a completely unique ID for this switch, like 'Bedroom_Main_Lights'")]
-    [SerializeField] private string lightID;
 
-    [Header("References")]
-    public GameObject text;
-    public GameObject lightorobj; 
+    public GameObject text;             
 
-    private bool PlayerInZone;
+    private bool PlayerInZone;               
+
+    public GameObject lightorobj;
 
     private void Start()
     {
-        PlayerInZone = false;
-        if (text != null) text.SetActive(false);
-
-        LoadLightState();
+        PlayerInZone = false;                         
+        text.SetActive(false);
     }
 
     private void Update()
     {
-        if (PlayerInZone && Keyboard.current != null && Keyboard.current.fKey.wasPressedThisFrame)
+        if (PlayerInZone && Keyboard.current.fKey.wasPressedThisFrame)
         {
-            ToggleLights();
+            lightorobj.SetActive(!lightorobj.activeSelf);
+            gameObject.GetComponent<Animator>().Play("Switch");
+            SoundEffectManager.Play("LightSwitch");
         }
-    }
-
-    private void ToggleLights()
-    {
-
-        bool newState = !lightorobj.activeSelf;
-        lightorobj.SetActive(newState);
-
-        if (TryGetComponent<Animator>(out Animator anim))
-        {
-            anim.Play("Switch");
-        }
-        SoundEffectManager.Play("LightSwitch");
-
-        SaveLightState(newState);
-    }
-
-    private void SaveLightState(bool isOn)
-    {
-        PlayerData data = SaveSystem.LoadPlayer() ?? new PlayerData();
-
-        if (data.lightsOnIds == null)
-        {
-            data.lightsOnIds = new List<string>();
-        }
-
-        if (isOn)
-        {
-            if (!data.lightsOnIds.Contains(lightID))
-            {
-                data.lightsOnIds.Add(lightID);
-            }
-        }
-        else
-        {
-            if (data.lightsOnIds.Contains(lightID))
-            {
-                data.lightsOnIds.Remove(lightID);
-            }
-        }
-
-        SaveSystem.SavePlayer(data);
-    }
-
-    private void LoadLightState()
-    {
-        PlayerData data = SaveSystem.LoadPlayer();
-
-        if (data == null || data.lightsOnIds == null)
-        {
-            lightorobj.SetActive(false);
-            return;
-        }
-
-        bool shouldBeOn = data.lightsOnIds.Contains(lightID);
-        lightorobj.SetActive(shouldBeOn);
+      
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.gameObject.tag == "Player")     
         {
-            if (text != null) text.SetActive(true);
+            text.SetActive(true);
             PlayerInZone = true;
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider other)     
     {
-        if (other.CompareTag("Player"))
+        if (other.gameObject.tag == "Player")
         {
             PlayerInZone = false;
-            if (text != null) text.SetActive(false);
+            text.SetActive(false);
         }
     }
 }

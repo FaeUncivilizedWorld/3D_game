@@ -6,8 +6,6 @@ using TMPro;
 
 public class InventoryManager : MonoBehaviour
 {
-    public static InventoryManager Instance;
-
     [Header("UI Panels & Prompts")]
     [SerializeField] private GameObject inventoryPanel;
     [SerializeField] private GameObject inventoryText;
@@ -21,8 +19,6 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private TMP_Text itemDescriptionText;
 
     private List<InventoryObjects> collectedItems = new List<InventoryObjects>();
-
-
 
     void Start()
     {
@@ -39,8 +35,6 @@ public class InventoryManager : MonoBehaviour
         {
             if (Keyboard.current.iKey.wasPressedThisFrame)
             {
-                if (inventoryPanel == null) return;
-
                 if ((inventoryText != null && inventoryText.activeSelf) || inventoryPanel.activeSelf)
                 {
                     ToggleInventory();
