@@ -6,13 +6,18 @@ using UnityEngine.InputSystem;
 public class LightSwitch : MonoBehaviour
 {
     [Header("Save Settings")]
-    [Tooltip("Type a completely unique ID for this switch, like 'Bedroom_Main_Lights'")]
+    [Tooltip("Type a completely unique ID for this switch")]
     [SerializeField] private string lightID;
 
     [Header("References")]
-    public GameObject text;
-    public GameObject lightorobj; 
+    [SerializeField] private GameObject text; // Your LightText object
+    [SerializeField] private GameObject lightsParent; // Drag your "Lights" empty object here
 
+    [Header("Behavior Settings")]
+    [Tooltip("Check this if you want the lights to automatically turn ON the moment the player enters the zone.")]
+    [SerializeField] private bool turnOnWhenEntering = false;
+
+    private Light[] targetLights;
     private bool PlayerInZone;
 
     private void Start()
@@ -20,7 +25,25 @@ public class LightSwitch : MonoBehaviour
         PlayerInZone = false;
         if (text != null) text.SetActive(false);
 
-        LoadLightState();
+        // Automatically find all point lights inside the Lights parent object
+        if (lightsParent != null)
+        {
+            targetLights = lightsParent.GetComponentsInChildren<Light>(true);
+        }
+        else
+        {
+            GameObject foundParent = GameObject.Find("Lights");
+            if (foundParent != null)
+            {
+                targetLights = foundParent.GetComponentsInChildren<Light>(true);
+            }
+        }
+
+        // Force lights to start OFF by default on game start
+        SetLightsState(false);
+
+        // Optional: Load saved state if you want persistence across game loads
+        // LoadLightState();
     }
 
     private void Update()
@@ -33,17 +56,32 @@ public class LightSwitch : MonoBehaviour
 
     private void ToggleLights()
     {
+        bool currentState = targetLights != null && targetLights.Length > 0 && targetLights[0].enabled;
+        bool newState = !currentState;
 
-        bool newState = !lightorobj.activeSelf;
-        lightorobj.SetActive(newState);
+        SetLightsState(newState);
 
         if (TryGetComponent<Animator>(out Animator anim))
         {
-            anim.Play("Switch");
+            anim.Play("Switch", 0, 0f);
         }
+
         SoundEffectManager.Play("LightSwitch");
 
         SaveLightState(newState);
+    }
+
+    private void SetLightsState(bool state)
+    {
+        if (targetLights == null || targetLights.Length == 0) return;
+
+        foreach (Light l in targetLights)
+        {
+            if (l != null)
+            {
+                l.enabled = state;
+            }
+        }
     }
 
     private void SaveLightState(bool isOn)
@@ -57,17 +95,11 @@ public class LightSwitch : MonoBehaviour
 
         if (isOn)
         {
-            if (!data.lightsOnIds.Contains(lightID))
-            {
-                data.lightsOnIds.Add(lightID);
-            }
+            if (!data.lightsOnIds.Contains(lightID)) data.lightsOnIds.Add(lightID);
         }
         else
         {
-            if (data.lightsOnIds.Contains(lightID))
-            {
-                data.lightsOnIds.Remove(lightID);
-            }
+            if (data.lightsOnIds.Contains(lightID)) data.lightsOnIds.Remove(lightID);
         }
 
         SaveSystem.SavePlayer(data);
@@ -79,26 +111,37 @@ public class LightSwitch : MonoBehaviour
 
         if (data == null || data.lightsOnIds == null)
         {
-            lightorobj.SetActive(false);
+            SetLightsState(false);
             return;
         }
 
         bool shouldBeOn = data.lightsOnIds.Contains(lightID);
-        lightorobj.SetActive(shouldBeOn);
+        SetLightsState(shouldBeOn);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") || other.name.Contains("Player"))
         {
             if (text != null) text.SetActive(true);
             PlayerInZone = true;
+
+            // If you want them to turn on automatically just by walking in:
+            if (turnOnWhenEntering)
+            {
+                SetLightsState(true);
+                if (TryGetComponent<Animator>(out Animator anim))
+                {
+                    anim.Play("Switch", 0, 0f);
+                }
+                SoundEffectManager.Play("LightSwitch");
+            }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") || other.name.Contains("Player"))
         {
             PlayerInZone = false;
             if (text != null) text.SetActive(false);
