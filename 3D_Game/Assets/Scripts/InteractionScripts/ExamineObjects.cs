@@ -46,7 +46,6 @@ public class ExamineObjects : MonoBehaviour
             itemData = GetComponent<InventoryObjects>();
         }
 
-        // Deep-search the scene for UI prompts if they aren't assigned
         if (inspectText == null)
         {
             Text[] allTexts = Object.FindObjectsByType<Text>(FindObjectsInactive.Include, FindObjectsSortMode.None);
@@ -123,7 +122,6 @@ public class ExamineObjects : MonoBehaviour
         {
             Transform cam = Camera.main.transform;
 
-            // 1. Handle Zooming with Mouse Scroll Wheel
             if (Mouse.current != null)
             {
                 Vector2 scrollValue = Mouse.current.scroll.ReadValue();
@@ -135,14 +133,12 @@ public class ExamineObjects : MonoBehaviour
                 }
             }
 
-            // 2. Position the object in front of the camera with zoom and screen offset applied
             Vector3 targetPosition = cam.position + (cam.forward * currentInspectDistance)
                                    + (cam.right * screenOffset.x)
                                    + (cam.up * screenOffset.y)
                                    + (cam.forward * screenOffset.z);
             transform.position = targetPosition;
 
-            // 3. Handle Rotation with Left Click Drag
             if (Mouse.current != null && Mouse.current.leftButton.isPressed)
             {
                 Vector2 mouseDelta = Mouse.current.delta.ReadValue();
@@ -155,7 +151,6 @@ public class ExamineObjects : MonoBehaviour
                 transform.RotateAround(worldCenter, cam.right, yRotation);
             }
 
-            // 4. Exit Inspection on Right Click
             if (Mouse.current != null && Mouse.current.rightButton.wasPressedThisFrame)
             {
                 EndInspection();
@@ -229,7 +224,6 @@ public class ExamineObjects : MonoBehaviour
 
         if (inspectText != null) inspectText.SetActive(false);
 
-        // Simply turn on the text objects; whatever you typed in the UI Inspector stays intact!
         if (rotationText != null)
         {
             rotationText.SetActive(true);

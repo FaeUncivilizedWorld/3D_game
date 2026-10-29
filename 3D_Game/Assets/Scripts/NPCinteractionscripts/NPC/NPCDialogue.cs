@@ -6,9 +6,13 @@ public class NPCDialogue : MonoBehaviour
     [Header("NPC Data")]
     [SerializeField] private string npcName = "name";
 
+    [Header("Attic Puzzle Reveal")]
+    [SerializeField] private GameObject stairsToReveal;
+
     [Header("First Conversation")]
     [SerializeField]
     [TextArea(3, 5)]
+
     private string[] firstDialogueLines =
     {
         "First dialogue.",
@@ -32,18 +36,26 @@ public class NPCDialogue : MonoBehaviour
 
     public void Speak()
     {
+        Debug.Log("Mabel Speak() called!");
+
         if (_conversationRunning)
             return;
 
         if (DialogueUI.Instance == null)
+        {
+            Debug.LogError("DialogueUI.Instance is missing in the scene!");
             return;
+        }
 
         _activeDialogue = _conversationNumber == 0
             ? firstDialogueLines
             : secondDialogueLines;
 
         if (_activeDialogue == null || _activeDialogue.Length == 0)
+        {
+            Debug.LogWarning("No dialogue lines assigned in Inspector!");
             return;
+        }
 
         _currentLineIndex = 0;
         _conversationRunning = true;
@@ -82,14 +94,25 @@ public class NPCDialogue : MonoBehaviour
 
     private void EndConversation()
     {
+        Debug.Log("EndConversation() REACHED!");
+
         _conversationRunning = false;
         _currentLineIndex = 0;
 
-        // Alternate between the two conversations.
         _conversationNumber = (_conversationNumber == 0) ? 1 : 0;
 
         DialogueUI.Instance.CloseDialogue();
 
         _activeDialogue = null;
+
+        if (stairsToReveal != null)
+        {
+            stairsToReveal.SetActive(true);
+            Debug.Log("Stairs revealed successfully!");
+        }
+        else
+        {
+            Debug.LogWarning("stairsToReveal is NOT required in John's inspector!");
+        }
     }
 }
