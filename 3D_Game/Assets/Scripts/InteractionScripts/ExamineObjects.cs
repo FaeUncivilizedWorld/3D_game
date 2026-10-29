@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class ExamineObjects : MonoBehaviour
 {
@@ -10,11 +11,18 @@ public class ExamineObjects : MonoBehaviour
     [Header("Inspection Settings")]
     [SerializeField] private float rotationSpeed = 200f;
     [SerializeField] private float examineRange = 3f;
-    [SerializeField] private float inspectDistance = 1.5f;
+    [SerializeField] private float inspectDistance = 1.0f;
+
+    [Header("Zoom & Offset Settings")]
+    [SerializeField] private float minInspectDistance = 0.5f;
+    [SerializeField] private float maxInspectDistance = 3.0f;
+    [SerializeField] private float zoomSpeed = 0.5f;
+    [SerializeField] private Vector3 screenOffset = new Vector3(0f, -0.1f, 0f);
 
     [Header("UI Prompts")]
     [SerializeField] private GameObject inspectText;
     [SerializeField] private GameObject rotationText;
+    [SerializeField] private GameObject zoomText;
 
     private bool isDialogueFinished = false;
     private bool isBeingInspected = false;
@@ -24,6 +32,9 @@ public class ExamineObjects : MonoBehaviour
     private Vector3 originalPosition;
     private Quaternion originalRotation;
     private Vector3 localCenter;
+    private float currentInspectDistance;
+
+    private static ExamineObjects currentlyInspectedObject;
 
     void Start()
     {
@@ -33,6 +44,46 @@ public class ExamineObjects : MonoBehaviour
         if (itemData == null && GetComponent<InventoryObjects>() != null)
         {
             itemData = GetComponent<InventoryObjects>();
+        }
+
+        // Deep-search the scene for UI prompts if they aren't assigned
+        if (inspectText == null)
+        {
+            Text[] allTexts = Object.FindObjectsByType<Text>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+            foreach (Text t in allTexts)
+            {
+                if (t.gameObject.name == "InspectText")
+                {
+                    inspectText = t.gameObject;
+                    break;
+                }
+            }
+        }
+
+        if (rotationText == null)
+        {
+            Text[] allTexts = Object.FindObjectsByType<Text>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+            foreach (Text t in allTexts)
+            {
+                if (t.gameObject.name == "RotationText")
+                {
+                    rotationText = t.gameObject;
+                    break;
+                }
+            }
+        }
+
+        if (zoomText == null)
+        {
+            Text[] allTexts = Object.FindObjectsByType<Text>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+            foreach (Text t in allTexts)
+            {
+                if (t.gameObject.name == "ZoomText")
+                {
+                    zoomText = t.gameObject;
+                    break;
+                }
+            }
         }
 
         MeshFilter meshFilter = GetComponent<MeshFilter>();
@@ -63,6 +114,7 @@ public class ExamineObjects : MonoBehaviour
 
         if (inspectText != null) inspectText.SetActive(false);
         if (rotationText != null) rotationText.SetActive(false);
+        if (zoomText != null) zoomText.SetActive(false);
     }
 
     void Update()
@@ -71,9 +123,26 @@ public class ExamineObjects : MonoBehaviour
         {
             Transform cam = Camera.main.transform;
 
-            Vector3 targetPosition = cam.position + (cam.forward * inspectDistance);
+            // 1. Handle Zooming with Mouse Scroll Wheel
+            if (Mouse.current != null)
+            {
+                Vector2 scrollValue = Mouse.current.scroll.ReadValue();
+                if (scrollValue.y != 0)
+                {
+                    float scrollDelta = Mathf.Clamp(scrollValue.y, -1f, 1f);
+                    currentInspectDistance -= scrollDelta * zoomSpeed * 0.1f;
+                    currentInspectDistance = Mathf.Clamp(currentInspectDistance, minInspectDistance, maxInspectDistance);
+                }
+            }
+
+            // 2. Position the object in front of the camera with zoom and screen offset applied
+            Vector3 targetPosition = cam.position + (cam.forward * currentInspectDistance)
+                                   + (cam.right * screenOffset.x)
+                                   + (cam.up * screenOffset.y)
+                                   + (cam.forward * screenOffset.z);
             transform.position = targetPosition;
 
+            // 3. Handle Rotation with Left Click Drag
             if (Mouse.current != null && Mouse.current.leftButton.isPressed)
             {
                 Vector2 mouseDelta = Mouse.current.delta.ReadValue();
@@ -81,12 +150,12 @@ public class ExamineObjects : MonoBehaviour
                 float yRotation = mouseDelta.y * rotationSpeed * Time.unscaledDeltaTime;
 
                 Vector3 worldCenter = transform.TransformPoint(localCenter);
-                Debug.Log("Center is: " + worldCenter);
 
                 transform.RotateAround(worldCenter, cam.up, -xRotation);
                 transform.RotateAround(worldCenter, cam.right, yRotation);
             }
 
+            // 4. Exit Inspection on Right Click
             if (Mouse.current != null && Mouse.current.rightButton.wasPressedThisFrame)
             {
                 EndInspection();
@@ -94,7 +163,13 @@ public class ExamineObjects : MonoBehaviour
         }
         else
         {
-            bool canInspect = !requireDialogue || isDialogueFinished;
+            if (currentlyInspectedObject == null)
+            {
+                if (rotationText != null && rotationText.activeSelf) rotationText.SetActive(false);
+                if (zoomText != null && zoomText.activeSelf) zoomText.SetActive(false);
+            }
+
+            bool canInspect = (!requireDialogue || isDialogueFinished) && !ObjectDialogue.IsDialogueActive;
 
             if (canInspect)
             {
@@ -121,6 +196,13 @@ public class ExamineObjects : MonoBehaviour
                     }
                 }
             }
+            else
+            {
+                if (inspectText != null && inspectText.activeSelf)
+                {
+                    inspectText.SetActive(false);
+                }
+            }
         }
     }
 
@@ -142,9 +224,37 @@ public class ExamineObjects : MonoBehaviour
     public void StartInspection()
     {
         isBeingInspected = true;
+        currentlyInspectedObject = this;
+        currentInspectDistance = inspectDistance;
 
         if (inspectText != null) inspectText.SetActive(false);
-        if (rotationText != null) rotationText.SetActive(true);
+
+        // Simply turn on the text objects; whatever you typed in the UI Inspector stays intact!
+        if (rotationText != null)
+        {
+            rotationText.SetActive(true);
+            Text legacyText = rotationText.GetComponent<Text>();
+            if (legacyText != null)
+            {
+                legacyText.enabled = false;
+                legacyText.enabled = true;
+                legacyText.SetAllDirty();
+            }
+        }
+
+        if (zoomText != null)
+        {
+            zoomText.SetActive(true);
+            Text legacyZoomText = zoomText.GetComponent<Text>();
+            if (legacyZoomText != null)
+            {
+                legacyZoomText.enabled = false;
+                legacyZoomText.enabled = true;
+                legacyZoomText.SetAllDirty();
+            }
+        }
+
+        Canvas.ForceUpdateCanvases();
 
         originalPosition = transform.position;
         originalRotation = transform.rotation;
@@ -172,7 +282,13 @@ public class ExamineObjects : MonoBehaviour
     {
         isBeingInspected = false;
 
+        if (currentlyInspectedObject == this)
+        {
+            currentlyInspectedObject = null;
+        }
+
         if (rotationText != null) rotationText.SetActive(false);
+        if (zoomText != null) zoomText.SetActive(false);
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
