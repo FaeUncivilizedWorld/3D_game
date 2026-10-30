@@ -35,6 +35,48 @@ public class ExamineObjects : MonoBehaviour
             itemData = GetComponent<InventoryObjects>();
         }
 
+
+
+        if (inspectText == null)
+        {
+            Text[] allTexts = Object.FindObjectsByType<Text>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+            foreach (Text t in allTexts)
+            {
+                if (t.gameObject.name == "InspectText")
+                {
+                    inspectText = t.gameObject;
+                    break;
+                }
+            }
+        }
+
+        if (rotationText == null)
+        {
+            Text[] allTexts = Object.FindObjectsByType<Text>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+            foreach (Text t in allTexts)
+            {
+                if (t.gameObject.name == "RotationText")
+                {
+                    rotationText = t.gameObject;
+                    break;
+                }
+            }
+        }
+
+        if (zoomText == null)
+        {
+            Text[] allTexts = Object.FindObjectsByType<Text>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+            foreach (Text t in allTexts)
+            {
+                if (t.gameObject.name == "ZoomText")
+                {
+                    zoomText = t.gameObject;
+                    break;
+                }
+            }
+        }
+
+
         MeshFilter meshFilter = GetComponent<MeshFilter>();
         if (meshFilter != null && meshFilter.sharedMesh != null)
         {
@@ -71,7 +113,25 @@ public class ExamineObjects : MonoBehaviour
         {
             Transform cam = Camera.main.transform;
 
+
             Vector3 targetPosition = cam.position + (cam.forward * inspectDistance);
+
+            if (Mouse.current != null)
+            {
+                Vector2 scrollValue = Mouse.current.scroll.ReadValue();
+                if (scrollValue.y != 0)
+                {
+                    float scrollDelta = Mathf.Clamp(scrollValue.y, -1f, 1f);
+                    currentInspectDistance -= scrollDelta * zoomSpeed * 0.1f;
+                    currentInspectDistance = Mathf.Clamp(currentInspectDistance, minInspectDistance, maxInspectDistance);
+                }
+            }
+
+            Vector3 targetPosition = cam.position + (cam.forward * currentInspectDistance)
+                                   + (cam.right * screenOffset.x)
+                                   + (cam.up * screenOffset.y)
+                                   + (cam.forward * screenOffset.z);
+
             transform.position = targetPosition;
 
             if (Mouse.current != null && Mouse.current.leftButton.isPressed)
@@ -144,7 +204,36 @@ public class ExamineObjects : MonoBehaviour
         isBeingInspected = true;
 
         if (inspectText != null) inspectText.SetActive(false);
+
         if (rotationText != null) rotationText.SetActive(true);
+
+
+        if (rotationText != null)
+        {
+            rotationText.SetActive(true);
+            Text legacyText = rotationText.GetComponent<Text>();
+            if (legacyText != null)
+            {
+                legacyText.enabled = false;
+                legacyText.enabled = true;
+                legacyText.SetAllDirty();
+            }
+        }
+
+        if (zoomText != null)
+        {
+            zoomText.SetActive(true);
+            Text legacyZoomText = zoomText.GetComponent<Text>();
+            if (legacyZoomText != null)
+            {
+                legacyZoomText.enabled = false;
+                legacyZoomText.enabled = true;
+                legacyZoomText.SetAllDirty();
+            }
+        }
+
+        Canvas.ForceUpdateCanvases();
+
 
         originalPosition = transform.position;
         originalRotation = transform.rotation;

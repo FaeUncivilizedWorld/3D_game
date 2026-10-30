@@ -1,10 +1,10 @@
+
 using System;
 using UnityEngine;
-using UnityEngine.InputSystem; 
+using UnityEngine.InputSystem;
 
 public class Interactor : MonoBehaviour
 {
-    // Events for the UI to listen to
     public static event Action<string> OnTargetChange;
 
     [Header("Interaction Settings")]
@@ -15,15 +15,18 @@ public class Interactor : MonoBehaviour
     private PlayerInput _playerInput;
     private IInteractable currentTarget;
 
+    // Other scripts can check whether the player is occupied.
+    public bool InputLocked { get; private set; }
+
     private void Awake()
     {
-        // Finds PlayerInput on this object or its parent
         _playerInput = GetComponentInParent<PlayerInput>();
     }
 
     private void OnEnable()
     {
-        if (_playerInput != null && _playerInput.actions["Interact"] != null)
+        if (_playerInput != null &&
+            _playerInput.actions["Interact"] != null)
         {
             _playerInput.actions["Interact"].performed += OnInteractPressed;
         }
@@ -31,27 +34,47 @@ public class Interactor : MonoBehaviour
 
     private void OnDisable()
     {
-        if (_playerInput != null && _playerInput.actions["Interact"] != null)
+        if (_playerInput != null &&
+            _playerInput.actions["Interact"] != null)
         {
             _playerInput.actions["Interact"].performed -= OnInteractPressed;
         }
     }
+
     private void Update()
     {
-        if (DialogueUI.Instance != null && DialogueUI.Instance.IsDialogueActive())
+        if (InputLocked ||
+            (DialogueUI.Instance != null &&
+             DialogueUI.Instance.IsDialogueActive()))
         {
-            if (currentTarget != null)
-            {
-                currentTarget = null;
-                OnTargetChange?.Invoke(null);
-            }
-
+            ClearCurrentTarget();
             return;
         }
 
         FindInteractable();
     }
 
+    // Called by other scripts to lock player interaction.
+    public void LockInput()
+    {
+        InputLocked = true;
+        ClearCurrentTarget();
+    }
+
+    // Called when the interaction is finished.
+    public void UnlockInput()
+    {
+        InputLocked = false;
+    }
+
+    private void ClearCurrentTarget()
+    {
+        if (currentTarget != null)
+        {
+            currentTarget = null;
+            OnTargetChange?.Invoke(null);
+        }
+    }
 
     private void FindInteractable()
     {
@@ -66,34 +89,34 @@ public class Interactor : MonoBehaviour
 
         if (found)
         {
-            
-            if (hit.collider.TryGetComponent(out IInteractable interactable))//||
-               // hit.collider.GetComponentInParent<IInteractable>(out interactable)) 
+            if (hit.collider.TryGetComponent(out IInteractable interactable))
             {
                 if (interactable != currentTarget)
                 {
                     currentTarget = interactable;
                     OnTargetChange?.Invoke(currentTarget.InteractionPrompt);
                 }
+
                 return;
             }
         }
 
-        // Clear target if raycast hits nothing or a non-interactable object
-        if (currentTarget != null)
-        {
-            currentTarget = null;
-            OnTargetChange?.Invoke(null);
-        }
+        ClearCurrentTarget();
     }
 
     private void OnInteractPressed(InputAction.CallbackContext context)
     {
+        if (InputLocked)
+            return;
+
+        if (DialogueUI.Instance != null &&
+            DialogueUI.Instance.IsDialogueActive())
+            return;
+
         if (currentTarget != null)
         {
             bool success = currentTarget.Interact(this);
 
-            // If the object was single-use and consumed, force-clear the UI immediately
             if (success && currentTarget == null)
             {
                 OnTargetChange?.Invoke(null);
@@ -103,8 +126,15 @@ public class Interactor : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if (interactionPoint == null) return;
+        if (interactionPoint == null)
+            return;
+
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(interactionPoint.position + (interactionPoint.forward * interactionDistance), 0.3f);
+
+        Gizmos.DrawWireSphere(
+            interactionPoint.position +
+            (interactionPoint.forward * interactionDistance),
+            0.3f
+        );
     }
 }
