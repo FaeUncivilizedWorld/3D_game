@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 351662d91a68bac47ade3c6432eeb8b3
+guid: d106e9a1122469645a59b2dd15b4ae22
 ModelImporter:
   serializedVersion: 24300
   internalIDToNameTable: []
@@ -9,31 +9,6 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Material
     second: {fileID: 2100000, guid: 49e47471d618a5f41a8c0d9294b025a0, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Oamogetswe_Motsomane_Group07_A2_NPC_Roughness
-    second: {fileID: 2800000, guid: 2e675d4f4fdcff84ca1781bb7d4852d8, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Oamogetswe_Motsomane_Group7_A2_NPC_BaseColour
-    second: {fileID: 2800000, guid: 7bbfd156d1b289745ba40e73a39166c6, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Oamogetswe_Motsomane_Group7_A2_NPC_Metallic
-    second: {fileID: 2800000, guid: 9aa89593c78cce94e96c933b3e396bbc, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Oamogetswe_Motsomane_Group7_A2_NPC_Normal
-    second: {fileID: 2800000, guid: ddebb369dd8ec2a4fb6b6ed6722c7cca, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Oamogetswe_Motsomane_Group7_A2_NPC_UVCheck
-    second: {fileID: 2800000, guid: c6d1f403104f2be43a94cd7167ef0f6f, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -62,11 +37,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Armature|Idle_Animation (1)
-      takeName: Armature|Idle_Animation
+      name: Armature|Character_WalkingAnimation
+      takeName: Armature|Character_WalkingAnimation
       internalID: -1220818383695898940
       firstFrame: 0
-      lastFrame: 24
+      lastFrame: 23
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -102,7 +77,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
