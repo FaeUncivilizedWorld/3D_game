@@ -12447,7 +12447,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NPCDialogue
   npcName: Mabel
   stairsToReveal: {fileID: 2073319629}
-  playerInteractor: {fileID: 0}
+  playerInteractor: {fileID: 1714198113}
   firstDialogueLines:
   - "Ethy?\r\nYou haven\u2019t been back here in years, I thought you\u2019d never
     come back"
@@ -80932,9 +80932,10 @@ GameObject:
   - component: {fileID: 572331442}
   - component: {fileID: 572331441}
   - component: {fileID: 572331440}
-  - component: {fileID: 572331439}
   - component: {fileID: 572331443}
-  m_Layer: 0
+  - component: {fileID: 572331444}
+  - component: {fileID: 572331445}
+  m_Layer: 7
   m_Name: Door
   m_TagString: Door
   m_Icon: {fileID: 0}
@@ -80956,20 +80957,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1586724919}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &572331439
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 572331437}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed6adc543ecd26f4baeda0b210243ddb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DoorTrigger
-  text: {fileID: 1175086319}
-  door: {fileID: 572331437}
 --- !u!65 &572331440
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -80980,7 +80967,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -81070,6 +81057,54 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &572331444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 572331437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b64962b95e2262044a98b052391d8bc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CabinetDoorInteraction
+  soundEffectName: CabinetStruggle
+  interactionUI: {fileID: 1667729731}
+  dialogueTexts:
+  - {fileID: 1175086319}
+  playerController: {fileID: 1343730675}
+  dialogueDelay: 1
+  textDuration: 2
+--- !u!114 &572331445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 572331437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0572ed37558b0694090c701882efce51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractableObject
+  prompt: PRESS        TO INTERACT
+  onInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 572331444}
+        m_TargetAssemblyTypeName: CabinetDoorInteraction, Assembly-CSharp
+        m_MethodName: InteractWithObject
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  isSingleUse: 0
 --- !u!1 &577756695
 GameObject:
   m_ObjectHideFlags: 0
@@ -476466,7 +476501,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1013825822
 Transform:
   m_ObjectHideFlags: 0
@@ -488152,7 +488187,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1195079073
 Transform:
   m_ObjectHideFlags: 0
@@ -489130,8 +489165,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2e1a681c0a1a5d49bef9228d9afb93e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DrawerAnimation
-  drawerAnimator: {fileID: 1228478990}
-  animationTrigger: OpenDrawer
+  cabinetAnimator: {fileID: 1228478990}
+  animationTrigger: OpenCabinet
 --- !u!114 &1228478992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -573906,9 +573941,10 @@ GameObject:
   - component: {fileID: 1352902530}
   - component: {fileID: 1352902529}
   - component: {fileID: 1352902528}
-  - component: {fileID: 1352902527}
   - component: {fileID: 1352902526}
-  m_Layer: 0
+  - component: {fileID: 1352902531}
+  - component: {fileID: 1352902532}
+  m_Layer: 7
   m_Name: Door
   m_TagString: Door
   m_Icon: {fileID: 0}
@@ -573952,20 +573988,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1352902527
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1352902524}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed6adc543ecd26f4baeda0b210243ddb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DoorTrigger
-  text: {fileID: 333418118}
-  door: {fileID: 1352902524}
 --- !u!65 &1352902528
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -573976,7 +573998,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -574044,6 +574066,54 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1352902524}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1352902531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1352902524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b64962b95e2262044a98b052391d8bc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CabinetDoorInteraction
+  soundEffectName: CabinetStruggle
+  interactionUI: {fileID: 1667729731}
+  dialogueTexts:
+  - {fileID: 333418118}
+  playerController: {fileID: 1343730675}
+  dialogueDelay: 1
+  textDuration: 2
+--- !u!114 &1352902532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1352902524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0572ed37558b0694090c701882efce51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractableObject
+  prompt: PRESS        TO INTERACT
+  onInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1352902531}
+        m_TargetAssemblyTypeName: CabinetDoorInteraction, Assembly-CSharp
+        m_MethodName: InteractWithObject
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  isSingleUse: 0
 --- !u!1 &1361003467
 GameObject:
   m_ObjectHideFlags: 0
@@ -591736,7 +591806,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.20754719, g: 0.15594979, b: 0.013705918, a: 0.5803922}
+  m_Color: {r: 0.28930807, g: 0.28907153, b: 0.2883983, a: 0.5803922}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -601957,8 +602027,9 @@ GameObject:
   - component: {fileID: 1674305825}
   - component: {fileID: 1674305824}
   - component: {fileID: 1674305823}
-  - component: {fileID: 1674305822}
   - component: {fileID: 1674305821}
+  - component: {fileID: 1674305826}
+  - component: {fileID: 1674305827}
   m_Layer: 7
   m_Name: 'Door '
   m_TagString: Door
@@ -602003,20 +602074,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1674305822
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1674305819}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed6adc543ecd26f4baeda0b210243ddb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DoorTrigger
-  text: {fileID: 702929327}
-  door: {fileID: 1674305819}
 --- !u!65 &1674305823
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -602095,6 +602152,54 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1674305819}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1674305826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1674305819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b64962b95e2262044a98b052391d8bc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CabinetDoorInteraction
+  soundEffectName: CabinetStruggle
+  interactionUI: {fileID: 1667729731}
+  dialogueTexts:
+  - {fileID: 702929327}
+  playerController: {fileID: 1343730675}
+  dialogueDelay: 1
+  textDuration: 2
+--- !u!114 &1674305827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1674305819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0572ed37558b0694090c701882efce51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractableObject
+  prompt: PRESS        TO INTERACT
+  onInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1674305826}
+        m_TargetAssemblyTypeName: CabinetDoorInteraction, Assembly-CSharp
+        m_MethodName: InteractWithObject
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  isSingleUse: 0
 --- !u!1 &1675920065
 GameObject:
   m_ObjectHideFlags: 0
@@ -602937,6 +603042,9 @@ MonoBehaviour:
   - name: PageFlip2
     audioClips:
     - {fileID: 8300000, guid: aa67d039fd9bd004191198da25be3dff, type: 3}
+  - name: CabinetStruggle
+    audioClips:
+    - {fileID: 8300000, guid: 1ac49cc4df0dd41448865fcd95276cf2, type: 3}
 --- !u!82 &1710876862
 AudioSource:
   m_ObjectHideFlags: 0
@@ -682487,10 +682595,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1976764065}
     m_Modifications:
-    - target: {fileID: 8818922443926125654, guid: 351662d91a68bac47ade3c6432eeb8b3, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d106e9a1122469645a59b2dd15b4ae22, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.7964001
@@ -682548,6 +682652,10 @@ PrefabInstance:
       value: John NPC
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d106e9a1122469645a59b2dd15b4ae22, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8818922443926125654, guid: 351662d91a68bac47ade3c6432eeb8b3, type: 3}
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
