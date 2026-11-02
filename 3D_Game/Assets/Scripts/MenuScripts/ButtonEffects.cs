@@ -21,14 +21,12 @@ public class ButtonEffects : MonoBehaviour,
 
     void Start()
     {
-        // Capture the true starting scale of the button
         originalScale = transform.localScale;
         targetScale = originalScale;
     }
 
     void Update()
     {
-        // Smoothly interpolate scale
         transform.localScale = Vector3.Lerp(transform.localScale, targetScale, Time.unscaledDeltaTime * smoothSpeed);
     }
 

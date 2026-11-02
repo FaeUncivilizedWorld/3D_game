@@ -5,19 +5,6 @@ using UnityEngine.InputSystem;
 
 public class LightSwitch : MonoBehaviour
 {
-
-
-    public GameObject text;             
-
-    private bool PlayerInZone;               
-
-    public GameObject lightorobj;
-
-    private void Start()
-    {
-        PlayerInZone = false;                         
-        text.SetActive(false);
-
     [Header("Save Settings")]
     [Tooltip("Type a completely unique ID for this switch")]
     [SerializeField] private string lightID;
@@ -57,20 +44,14 @@ public class LightSwitch : MonoBehaviour
 
         // Optional: Load saved state if you want persistence across game loads
         // LoadLightState();
-
     }
 
     private void Update()
     {
-        if (PlayerInZone && Keyboard.current.fKey.wasPressedThisFrame)
+        if (PlayerInZone && Keyboard.current != null && Keyboard.current.fKey.wasPressedThisFrame)
         {
-            lightorobj.SetActive(!lightorobj.activeSelf);
-            gameObject.GetComponent<Animator>().Play("Switch");
-            SoundEffectManager.Play("LightSwitch");
+            ToggleLights();
         }
-
-      
-
     }
 
     private void ToggleLights()
@@ -136,18 +117,13 @@ public class LightSwitch : MonoBehaviour
 
         bool shouldBeOn = data.lightsOnIds.Contains(lightID);
         SetLightsState(shouldBeOn);
-
     }
 
     private void OnTriggerEnter(Collider other)
     {
-
-        if (other.gameObject.tag == "Player")     
-
         if (other.CompareTag("Player") || other.name.Contains("Player"))
-
         {
-            text.SetActive(true);
+            if (text != null) text.SetActive(true);
             PlayerInZone = true;
 
             // If you want them to turn on automatically just by walking in:
@@ -163,16 +139,12 @@ public class LightSwitch : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)     
+    private void OnTriggerExit(Collider other)
     {
-
-        if (other.gameObject.tag == "Player")
-
         if (other.CompareTag("Player") || other.name.Contains("Player"))
-
         {
             PlayerInZone = false;
-            text.SetActive(false);
+            if (text != null) text.SetActive(false);
         }
     }
 }

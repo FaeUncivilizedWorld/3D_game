@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class ExamineObjects : MonoBehaviour
 {
@@ -10,11 +11,18 @@ public class ExamineObjects : MonoBehaviour
     [Header("Inspection Settings")]
     [SerializeField] private float rotationSpeed = 200f;
     [SerializeField] private float examineRange = 3f;
-    [SerializeField] private float inspectDistance = 1.5f;
+    [SerializeField] private float inspectDistance = 1.0f;
+
+    [Header("Zoom & Offset Settings")]
+    [SerializeField] private float minInspectDistance = 0.5f;
+    [SerializeField] private float maxInspectDistance = 3.0f;
+    [SerializeField] private float zoomSpeed = 0.5f;
+    [SerializeField] private Vector3 screenOffset = new Vector3(0f, -0.1f, 0f);
 
     [Header("UI Prompts")]
     [SerializeField] private GameObject inspectText;
     [SerializeField] private GameObject rotationText;
+    [SerializeField] private GameObject zoomText;
 
     private bool isDialogueFinished = false;
     private bool isBeingInspected = false;
@@ -24,6 +32,9 @@ public class ExamineObjects : MonoBehaviour
     private Vector3 originalPosition;
     private Quaternion originalRotation;
     private Vector3 localCenter;
+    private float currentInspectDistance;
+
+    private static ExamineObjects currentlyInspectedObject;
 
     void Start()
     {
@@ -34,8 +45,6 @@ public class ExamineObjects : MonoBehaviour
         {
             itemData = GetComponent<InventoryObjects>();
         }
-
-
 
         if (inspectText == null)
         {
@@ -76,7 +85,6 @@ public class ExamineObjects : MonoBehaviour
             }
         }
 
-
         MeshFilter meshFilter = GetComponent<MeshFilter>();
         if (meshFilter != null && meshFilter.sharedMesh != null)
         {
@@ -105,6 +113,7 @@ public class ExamineObjects : MonoBehaviour
 
         if (inspectText != null) inspectText.SetActive(false);
         if (rotationText != null) rotationText.SetActive(false);
+        if (zoomText != null) zoomText.SetActive(false);
     }
 
     void Update()
@@ -112,9 +121,6 @@ public class ExamineObjects : MonoBehaviour
         if (isBeingInspected)
         {
             Transform cam = Camera.main.transform;
-
-
-            Vector3 targetPosition = cam.position + (cam.forward * inspectDistance);
 
             if (Mouse.current != null)
             {
@@ -131,7 +137,6 @@ public class ExamineObjects : MonoBehaviour
                                    + (cam.right * screenOffset.x)
                                    + (cam.up * screenOffset.y)
                                    + (cam.forward * screenOffset.z);
-
             transform.position = targetPosition;
 
             if (Mouse.current != null && Mouse.current.leftButton.isPressed)
@@ -141,7 +146,6 @@ public class ExamineObjects : MonoBehaviour
                 float yRotation = mouseDelta.y * rotationSpeed * Time.unscaledDeltaTime;
 
                 Vector3 worldCenter = transform.TransformPoint(localCenter);
-                Debug.Log("Center is: " + worldCenter);
 
                 transform.RotateAround(worldCenter, cam.up, -xRotation);
                 transform.RotateAround(worldCenter, cam.right, yRotation);
@@ -154,7 +158,13 @@ public class ExamineObjects : MonoBehaviour
         }
         else
         {
-            bool canInspect = !requireDialogue || isDialogueFinished;
+            if (currentlyInspectedObject == null)
+            {
+                if (rotationText != null && rotationText.activeSelf) rotationText.SetActive(false);
+                if (zoomText != null && zoomText.activeSelf) zoomText.SetActive(false);
+            }
+
+            bool canInspect = (!requireDialogue || isDialogueFinished) && !ObjectDialogue.IsDialogueActive;
 
             if (canInspect)
             {
@@ -181,6 +191,13 @@ public class ExamineObjects : MonoBehaviour
                     }
                 }
             }
+            else
+            {
+                if (inspectText != null && inspectText.activeSelf)
+                {
+                    inspectText.SetActive(false);
+                }
+            }
         }
     }
 
@@ -202,11 +219,10 @@ public class ExamineObjects : MonoBehaviour
     public void StartInspection()
     {
         isBeingInspected = true;
+        currentlyInspectedObject = this;
+        currentInspectDistance = inspectDistance;
 
         if (inspectText != null) inspectText.SetActive(false);
-
-        if (rotationText != null) rotationText.SetActive(true);
-
 
         if (rotationText != null)
         {
@@ -234,7 +250,6 @@ public class ExamineObjects : MonoBehaviour
 
         Canvas.ForceUpdateCanvases();
 
-
         originalPosition = transform.position;
         originalRotation = transform.rotation;
 
@@ -261,7 +276,13 @@ public class ExamineObjects : MonoBehaviour
     {
         isBeingInspected = false;
 
+        if (currentlyInspectedObject == this)
+        {
+            currentlyInspectedObject = null;
+        }
+
         if (rotationText != null) rotationText.SetActive(false);
+        if (zoomText != null) zoomText.SetActive(false);
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
