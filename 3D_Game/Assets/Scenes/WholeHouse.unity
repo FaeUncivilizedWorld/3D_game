@@ -8055,13 +8055,13 @@ GameObject:
   - component: {fileID: 91609331}
   - component: {fileID: 91609330}
   - component: {fileID: 91609333}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Nev Mesh Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &91609329
 Transform:
   m_ObjectHideFlags: 0
@@ -8087,7 +8087,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -495181,13 +495181,13 @@ GameObject:
   - component: {fileID: 1143734496}
   - component: {fileID: 1143734495}
   - component: {fileID: 1143734498}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Nev Mesh Point 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1143734494
 Transform:
   m_ObjectHideFlags: 0
@@ -495196,13 +495196,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1143734493}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.86602545, z: -0, w: 0.49999994}
-  m_LocalPosition: {x: -9.57, y: 4.19, z: 3.09}
+  m_LocalRotation: {x: 0, y: 0.86602545, z: 0, w: 0.49999994}
+  m_LocalPosition: {x: -9.684, y: 4.19, z: 3.249}
   m_LocalScale: {x: 0.67337555, y: 0.8860676, z: 0.72494996}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1976764065}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 120, z: 0}
 --- !u!65 &1143734495
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -495213,7 +495213,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -497427,7 +497427,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NPCDialogue
   npcName: Mabel
+
   stairsToReveal: {fileID: 0}
+
+  playerInteractor: {fileID: 1714198113}
+
   firstDialogueLines:
   - "Ethy?\r\nYou haven\u2019t been back here in years, I thought you\u2019d never
     come back\r\n"
@@ -497547,14 +497551,21 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1199515145}
+
   m_Mesh: {fileID: 0}
 --- !u!114 &1199515152
 MonoBehaviour:
+
+  m_Mesh: {fileID: -8541459805122497329, guid: f96e5f0550691bc4b8a4336047d0dd24, type: 3}
+--- !u!65 &1199515152
+BoxCollider:
+
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1199515145}
+
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bb5c021638190cd4da0bd08b42167222, type: 3}
@@ -497562,6 +497573,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MabelNPC
   stairsToReveal: {fileID: 2072456427}
   climbTriggerToReveal: {fileID: 81657650}
+
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 128
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.44429132, y: 1.4744805, z: 0.3837656}
+  m_Center: {x: 0.00000011920929, y: 0.73842406, z: -0.03725416}
+
 --- !u!1 &1201508043
 GameObject:
   m_ObjectHideFlags: 0
@@ -498165,13 +498192,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: -2928707585973528521, guid: 9a1f1cb54c4fb524ea4b86d5b0e76985, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1228478991}
-    - targetCorrespondingSourceObject: {fileID: -2928707585973528521, guid: 9a1f1cb54c4fb524ea4b86d5b0e76985, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1228478990}
-    - targetCorrespondingSourceObject: {fileID: -2928707585973528521, guid: 9a1f1cb54c4fb524ea4b86d5b0e76985, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1228478992}
     - targetCorrespondingSourceObject: {fileID: -2928707585973528521, guid: 9a1f1cb54c4fb524ea4b86d5b0e76985, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1228478996}
@@ -498208,49 +498229,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1228478991
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1228478989}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2e1a681c0a1a5d49bef9228d9afb93e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DrawerAnimation
-  drawerAnimator: {fileID: 1228478990}
-  animationTrigger: OpenDrawer
---- !u!114 &1228478992
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1228478989}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0572ed37558b0694090c701882efce51, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InteractableObject
-  prompt: PRESS       TO INTERACT
-  onInteract:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1228478991}
-        m_TargetAssemblyTypeName: DrawerAnimation, Assembly-CSharp
-        m_MethodName: OpenDrawer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  isSingleUse: 0
 --- !u!65 &1228478996
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -695415,6 +695393,120 @@ Mesh:
       - serializedVersion: 1
         m_IndexStart: 0
         m_IndexCount: 0
+
+
+--- !u!1001 &1870599345
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1976764065}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: d106e9a1122469645a59b2dd15b4ae22, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.7964001
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d106e9a1122469645a59b2dd15b4ae22, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.84625
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d106e9a1122469645a59b2dd15b4ae22, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d106e9a1122469645a59b2dd15b4ae22, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10.8
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d106e9a1122469645a59b2dd15b4ae22, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.71
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d106e9a1122469645a59b2dd15b4ae22, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.84
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d106e9a1122469645a59b2dd15b4ae22, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.49999994
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d106e9a1122469645a59b2dd15b4ae22, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d106e9a1122469645a59b2dd15b4ae22, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.86602545
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d106e9a1122469645a59b2dd15b4ae22, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d106e9a1122469645a59b2dd15b4ae22, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d106e9a1122469645a59b2dd15b4ae22, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d106e9a1122469645a59b2dd15b4ae22, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d106e9a1122469645a59b2dd15b4ae22, type: 3}
+      propertyPath: m_Name
+      value: John NPC
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d106e9a1122469645a59b2dd15b4ae22, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4057794514955370937, guid: d106e9a1122469645a59b2dd15b4ae22, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4057794514955370937, guid: d106e9a1122469645a59b2dd15b4ae22, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.27
+      objectReference: {fileID: 0}
+    - target: {fileID: 8818922443926125654, guid: d106e9a1122469645a59b2dd15b4ae22, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d106e9a1122469645a59b2dd15b4ae22, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1898459712}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d106e9a1122469645a59b2dd15b4ae22, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1898459718}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d106e9a1122469645a59b2dd15b4ae22, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1898459717}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d106e9a1122469645a59b2dd15b4ae22, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1898459716}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d106e9a1122469645a59b2dd15b4ae22, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1898459715}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d106e9a1122469645a59b2dd15b4ae22, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1898459714}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d106e9a1122469645a59b2dd15b4ae22, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1898459719}
+  m_SourcePrefab: {fileID: 100100000, guid: d106e9a1122469645a59b2dd15b4ae22, type: 3}
+--- !u!4 &1870599346 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d106e9a1122469645a59b2dd15b4ae22, type: 3}
+  m_PrefabInstance: {fileID: 1870599345}
+  m_PrefabAsset: {fileID: 0}
+
 --- !u!1 &1873500306
 GameObject:
   m_ObjectHideFlags: 0
@@ -698753,6 +698845,193 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1897927491}
   m_CullTransparentMesh: 1
+
+
+--- !u!114 &1897927496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1897927491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cd7023bc9cc05a42b81fc963c59bae2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonEffects
+  hoverScale: {x: 1.05, y: 1.05, z: 1.05}
+  pressedScale: {x: 0.95, y: 0.95, z: 0.95}
+  smoothSpeed: 15
+--- !u!1 &1898459711 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d106e9a1122469645a59b2dd15b4ae22, type: 3}
+  m_PrefabInstance: {fileID: 1870599345}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1898459712
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1898459711}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 71d6eb8f42185b74a823fc3195ab7be5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1898459714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1898459711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0572ed37558b0694090c701882efce51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractableObject
+  prompt: PRESS        TO INTERACT
+  onInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1898459715}
+        m_TargetAssemblyTypeName: NPCDialogue, Assembly-CSharp
+        m_MethodName: Speak
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  isSingleUse: 0
+--- !u!114 &1898459715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1898459711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9675de6411c45c94ba2c02b2456ad676, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NPCDialogue
+  npcName: John
+  playerInteractor: {fileID: 1714198113}
+  firstDialogueLines:
+  - "Ethel\u2026wow you\u2019ve grown so much."
+  - "Uhm, I don\u2019t know if you remember me, but I was very close with your grandmother"
+  - She passed on before me, but I stayed behind to keep the house clean for your
+    return
+  - "I attempted at the spell but because I\u2019m not gifted it never worked."
+  - Check the cabinet for more of her notes, please help everyone ascend.
+  - "Myself included so I can meet her in the afterlife\u2026"
+  secondDialogueLines:
+  - I believe you can do it  Ethel, just trust yourself.
+--- !u!114 &1898459716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1898459711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ba7ba29471d77a46ada7ad23828a537, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NpcAnimation
+  player: {fileID: 1714198113}
+  talkDistance: 4
+  animator: {fileID: 0}
+  idleState: Idle
+  walkState: Walking
+  talkState: Talk
+  crossFadeSeconds: 0.2
+  walkSpeedThreshold: 0.1
+--- !u!114 &1898459717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1898459711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 533121c8d7add4741be81a19a1771abb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NpcWaypointWalker
+  waypoints:
+  - {fileID: 1143734494}
+  - {fileID: 91609329}
+  pathMode: 1
+  waitAtWaypoint: 2
+  walkSpeed: 1.4
+  player: {fileID: 1714198113}
+  stopDistance: 4
+  turnSpeed: 5
+  animator: {fileID: 1898459712}
+  speedParameter: 
+  speedDamping: 0.1
+--- !u!195 &1898459718
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1898459711}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 1.4
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!136 &1898459719
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1898459711}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 128
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 4
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+
 --- !u!43 &1910285396
 Mesh:
   m_ObjectHideFlags: 0

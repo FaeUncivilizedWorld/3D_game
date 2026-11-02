@@ -6,8 +6,13 @@ public class NPCDialogue : MonoBehaviour
     [Header("NPC Data")]
     [SerializeField] private string npcName = "name";
 
+
     [Header("Attic Puzzle Reveal")]
     [SerializeField] private GameObject stairsToReveal;
+
+    [Header("Player")]
+    [SerializeField] private Interactor playerInteractor;
+
 
     [Header("First Conversation")]
     [SerializeField]
@@ -59,6 +64,9 @@ public class NPCDialogue : MonoBehaviour
 
         _currentLineIndex = 0;
         _conversationRunning = true;
+        if (playerInteractor != null)
+            playerInteractor.LockInput();
+        Debug.Log("NPC dialogue started. InputLocked: " + playerInteractor.InputLocked);
 
         ShowCurrentLine();
     }
@@ -102,6 +110,9 @@ public class NPCDialogue : MonoBehaviour
         _conversationNumber = (_conversationNumber == 0) ? 1 : 0;
 
         DialogueUI.Instance.CloseDialogue();
+
+        if (playerInteractor != null)
+            playerInteractor.UnlockInput();
 
         _activeDialogue = null;
 
