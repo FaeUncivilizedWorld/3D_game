@@ -9,13 +9,16 @@ public class AtticKeypad : MonoBehaviour
     private string currentInput = "";
 
     [Header("UI References")]
-    [SerializeField] private GameObject keypadPanel;   
-    [SerializeField] private Text codeDisplayText;      
-    [SerializeField] private GameObject codePromptText;   
+    [SerializeField] private GameObject keypadPanel;
+    [SerializeField] private Text codeDisplayText;
+    [SerializeField] private GameObject codePromptText;
 
-    [Header("Climb & Zone Integration")]
-    [SerializeField] private GameObject climbTriggerObject; 
-    [SerializeField] private GameObject codeTriggerZone; 
+    [Header("Climb & Zone")]
+    [SerializeField] private GameObject climbTriggerObject;
+    [SerializeField] private GameObject codeTriggerZone;
+
+    [Header("Attic Reveal")]
+    [SerializeField] private GameObject atticStairsObject;
 
     private bool playerInZone = false;
 
@@ -125,7 +128,7 @@ public class AtticKeypad : MonoBehaviour
                 codeTriggerZone.SetActive(false);
             }
 
-          //  SoundEffectManager.Play("LightSwitch");
+            //  SoundEffectManager.Play(""); ANGIEE, ADD THE SOUND HERE
             CloseKeypad();
 
             if (codePromptText != null) codePromptText.SetActive(false);
@@ -175,6 +178,40 @@ public class AtticKeypad : MonoBehaviour
             playerInZone = false;
             if (codePromptText != null) codePromptText.SetActive(false);
             CloseKeypad();
+        }
+    }
+
+    public void SetUnlockedStateFromSave()
+    {
+        IsUnlocked = true;
+
+        // 1. Ensure visual stairs are visible
+        if (atticStairsObject != null)
+        {
+            atticStairsObject.SetActive(true);
+        }
+
+        // 2. Turn on the climb/teleport trigger permanently
+        if (climbTriggerObject != null)
+        {
+            climbTriggerObject.SetActive(true);
+        }
+
+        // 3. Turn off keypad trigger zone so prompt text never pops up
+        if (codeTriggerZone != null)
+        {
+            codeTriggerZone.SetActive(false);
+        }
+
+        // 4. Ensure keypad UI panel is hidden
+        if (keypadPanel != null)
+        {
+            keypadPanel.SetActive(false);
+        }
+
+        if (codePromptText != null)
+        {
+            codePromptText.SetActive(false);
         }
     }
 }

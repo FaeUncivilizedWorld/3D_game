@@ -1,4 +1,3 @@
-using System.Text;
 using UnityEngine;
 
 public static class SaveSystem
@@ -8,7 +7,6 @@ public static class SaveSystem
     public static void SavePlayer(PlayerData data)
     {
         string json = JsonUtility.ToJson(data);
-
         PlayerPrefs.SetString(SAVE_KEY, json);
         PlayerPrefs.Save();
 
@@ -20,8 +18,8 @@ public static class SaveSystem
         if (PlayerPrefs.HasKey(SAVE_KEY))
         {
             string json = PlayerPrefs.GetString(SAVE_KEY);
-            return JsonUtility.FromJson <PlayerData>(json);
-        } 
+            return JsonUtility.FromJson<PlayerData>(json);
+        }
         else
         {
             Debug.LogWarning("No Saved Data Found. Returning Default Values!");
