@@ -1,34 +1,23 @@
 using UnityEngine;
-using System.Collections;
 
-public class ClimbTrigger : MonoBehaviour
+public class LadderClimb : MonoBehaviour
 {
     [Header("Destination")]
     [SerializeField] private Transform targetDestination;
 
-    private static bool isTeleporting = false;
-
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && !isTeleporting)
+        if (other.CompareTag("Player"))
         {
-            StartCoroutine(TeleportRoutine(other));
+            GameObject player = other.gameObject;
+
+            CharacterController cc = player.GetComponent<CharacterController>();
+            if (cc != null) cc.enabled = false;
+
+            player.transform.position = targetDestination.position;
+            player.transform.rotation = targetDestination.rotation;
+
+            if (cc != null) cc.enabled = true;
         }
-    }
-
-    private IEnumerator TeleportRoutine(Collider player)
-    {
-        isTeleporting = true;
-
-        CharacterController controller = player.GetComponent<CharacterController>();
-        if (controller != null) controller.enabled = false;
-
-        player.transform.position = targetDestination.position;
-
-        if (controller != null) controller.enabled = true;
-
-        yield return new WaitForSeconds(4f);
-
-        isTeleporting = false;
     }
 }
