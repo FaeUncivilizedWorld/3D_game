@@ -1144,7 +1144,6 @@ MonoBehaviour:
     waiting for me in this old house all along.
   dialogueText: {fileID: 66449988}
   audioSource: {fileID: 1583020678}
-  sfxAudioSource: {fileID: 1583020678}
   introBGM: {fileID: 8300000, guid: b004f700abb8af545875f71e8e8641dc, type: 3}
   closetSound: {fileID: 8300000, guid: 4a65289a8aef60f4eab014f88274b6d1, type: 3}
   typingSpeed: 0.04

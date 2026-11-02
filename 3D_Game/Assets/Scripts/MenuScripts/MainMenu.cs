@@ -1,4 +1,3 @@
-
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,7 +7,6 @@ public class MainMenu : MonoBehaviour
 {
     [Header("Audio")]
     public AudioSource audioSource;
-    public AudioSource sfxAudioSource;
     public AudioClip menuMusic;
     public AudioClip buttonSFX;
 
@@ -18,12 +16,12 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
-        // Load saved music volume
+        // Start menu music
         if (audioSource != null && menuMusic != null)
         {
             audioSource.clip = menuMusic;
             audioSource.loop = true;
-            audioSource.volume = PlayerPrefs.GetFloat("MusicVolume", 1f);
+            audioSource.volume = 1f;
             audioSource.Play();
         }
 
@@ -41,10 +39,11 @@ public class MainMenu : MonoBehaviour
 
     private IEnumerator NewGameWithSound()
     {
-        PlayButtonSound();
-
-        if (buttonSFX != null)
+        if (audioSource != null && buttonSFX != null)
+        {
+            audioSource.PlayOneShot(buttonSFX);
             yield return new WaitForSeconds(buttonSFX.length);
+        }
 
         PlayerPrefs.SetInt("LoadOnStart", 0);
         PlayerPrefs.Save();
@@ -74,26 +73,18 @@ public class MainMenu : MonoBehaviour
 
     private IEnumerator ContinueWithSound()
     {
-        PlayButtonSound();
-
-        if (buttonSFX != null)
+        if (audioSource != null && buttonSFX != null)
+        {
+            audioSource.PlayOneShot(buttonSFX);
             yield return new WaitForSeconds(buttonSFX.length);
+        }
 
+        // Tell PlayerController to load the saved data
         PlayerPrefs.SetInt("LoadOnStart", 1);
         PlayerPrefs.Save();
 
         // Continue goes directly to WholeHouse
         SceneManager.LoadScene(gameSceneName);
     }
-
-    private void PlayButtonSound()
-    {
-        AudioSource soundSource =
-            sfxAudioSource != null ? sfxAudioSource : audioSource;
-
-        if (soundSource != null && buttonSFX != null)
-        {
-            soundSource.PlayOneShot(buttonSFX);
-        }
-    }
 }
+

@@ -1,14 +1,7 @@
-
 using UnityEngine;
 using UnityEngine.AI;
 
 // NPC (the object with the NavMeshAgent). The NPC walks between the waypoints
-
-
-
-using UnityEngine;
-using UnityEngine.AI;
-
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class NpcWaypointWalker : MonoBehaviour
@@ -22,7 +15,6 @@ public class NpcWaypointWalker : MonoBehaviour
     public float walkSpeed = 1.4f;
 
     [Header("Talking")]
-
     [Tooltip("Drag the Player here. The NPC stops and faces them while they are talking (dialogue open).")]
     public Interactor player;
     public float stopDistance = 4f;         // Only counts as "talking to me" if the player is this close.
@@ -32,15 +24,6 @@ public class NpcWaypointWalker : MonoBehaviour
     public Animator animator;               // The NPC model's Animator (found in children if empty).
     [Tooltip("Leave EMPTY if you use NpcAnimation (it picks the animations by state name instead).")]
     public string speedParameter = "";      // Float in the Animator Controller.
-
-    public Interactor player;
-    public float stopDistance = 4f;
-    public float turnSpeed = 5f;
-
-    [Header("Animation")]
-    public Animator animator;
-    public string speedParameter = "";
-
     public float speedDamping = 0.1f;
 
     private NavMeshAgent agent;
@@ -56,13 +39,9 @@ public class NpcWaypointWalker : MonoBehaviour
         agent.speed = walkSpeed;
 
         if (animator == null)
-
         {
             animator = GetComponentInChildren<Animator>();
         }
-
-            animator = GetComponentInChildren<Animator>();
-
     }
 
     private void Start()
@@ -72,7 +51,6 @@ public class NpcWaypointWalker : MonoBehaviour
 
     private void Update()
     {
-
         UpdateAnimator();
 
         if (waypoints == null || waypoints.Length == 0 || finished) return;
@@ -88,35 +66,6 @@ public class NpcWaypointWalker : MonoBehaviour
             {
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(look), turnSpeed * Time.deltaTime);
             }
-
-        if (waypoints == null || waypoints.Length == 0 || finished)
-        {
-            UpdateAnimator();
-            return;
-        }
-
-        bool talking = player != null
-            && player.InputLocked
-            && Vector3.Distance(transform.position, player.transform.position) < stopDistance;
-
-        if (talking)
-        {
-            agent.isStopped = true;
-
-            Vector3 look = player.transform.position - transform.position;
-            look.y = 0f;
-
-            if (look.sqrMagnitude > 0.01f)
-            {
-                transform.rotation = Quaternion.Slerp(
-                    transform.rotation,
-                    Quaternion.LookRotation(look),
-                    turnSpeed * Time.deltaTime
-                );
-            }
-
-            UpdateAnimator();
-
             return;
         }
 
@@ -125,38 +74,19 @@ public class NpcWaypointWalker : MonoBehaviour
         if (waiting)
         {
             waitTimer -= Time.deltaTime;
-
-
-
-
             if (waitTimer <= 0f)
             {
                 waiting = false;
                 Advance();
             }
-
             return;
         }
 
         if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance + 0.1f)
-
-
-            UpdateAnimator();
-            return;
-        }
-
-        if (!agent.pathPending &&
-            agent.remainingDistance <= agent.stoppingDistance + 0.1f)
-
         {
             waiting = true;
             waitTimer = waitAtWaypoint;
         }
-
-
-
-        UpdateAnimator();
-
     }
 
     private void Advance()
@@ -168,31 +98,12 @@ public class NpcWaypointWalker : MonoBehaviour
             case PathMode.Loop:
                 index = (index + 1) % waypoints.Length;
                 break;
-
             case PathMode.PingPong:
                 if (index + direction >= waypoints.Length || index + direction < 0) direction = -direction;
                 index += direction;
                 break;
             case PathMode.Once:
                 if (index >= waypoints.Length - 1) { finished = true; return; }
-
-
-            case PathMode.PingPong:
-                if (index + direction >= waypoints.Length ||
-                    index + direction < 0)
-                    direction = -direction;
-
-                index += direction;
-                break;
-
-            case PathMode.Once:
-                if (index >= waypoints.Length - 1)
-                {
-                    finished = true;
-                    return;
-                }
-
-
                 index++;
                 break;
         }
@@ -202,34 +113,13 @@ public class NpcWaypointWalker : MonoBehaviour
 
     private void GoToCurrent()
     {
-
         if (waypoints == null || waypoints.Length == 0 || waypoints[index] == null) return;
-
-        if (waypoints == null || waypoints.Length == 0 ||
-            waypoints[index] == null)
-            return;
-
-
         agent.SetDestination(waypoints[index].position);
     }
 
     private void UpdateAnimator()
     {
-
         if (animator == null || string.IsNullOrEmpty(speedParameter)) return;
         animator.SetFloat(speedParameter, agent.velocity.magnitude, speedDamping, Time.deltaTime);
     }
 }
-
-        if (animator == null || string.IsNullOrEmpty(speedParameter))
-            return;
-
-        animator.SetFloat(
-            speedParameter,
-            agent.velocity.magnitude,
-            speedDamping,
-            Time.deltaTime
-        );
-    }
-}
-

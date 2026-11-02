@@ -1,22 +1,22 @@
 
 using UnityEngine;
 
-public class CabinetAnimation : MonoBehaviour
+public class DrawerAnimation : MonoBehaviour
 {
-    [Header("Cabinet Animation")]
-    [SerializeField] private Animator cabinetAnimator;
+    [Header("Drawer Animation")]
+    [SerializeField] private Animator drawerAnimator;
 
-    [SerializeField] private string animationTrigger = "OpenCabinet";
+    [SerializeField] private string animationTrigger = "OpenDrawer";
 
-    public void OpenCabinet()
+    public void OpenDrawer()
     {
-        if (cabinetAnimator == null)
+        if (drawerAnimator == null)
         {
-            Debug.LogWarning("Cabinet Animator is not assigned!", this);
+            Debug.LogWarning("Drawer Animator is not assigned!", this);
             return;
         }
 
-        cabinetAnimator.ResetTrigger(animationTrigger);
-        cabinetAnimator.SetTrigger(animationTrigger);
+        drawerAnimator.ResetTrigger(animationTrigger);
+        drawerAnimator.SetTrigger(animationTrigger);
     }
 }

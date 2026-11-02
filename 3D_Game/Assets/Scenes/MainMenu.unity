@@ -952,8 +952,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebcc12fdb27e1fa409067c834a32b7e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
-  audioSource: {fileID: 1465226251}
-  sfxAudioSource: {fileID: 556017221}
+  audioSource: {fileID: 358894188}
   menuMusic: {fileID: 8300000, guid: 0655493c04f4eaa48a86844a51de3b5f, type: 3}
   buttonSFX: {fileID: 8300000, guid: d67e2253480e64a42930ca5325f6b86d, type: 3}
   continueButton: {fileID: 1828776670}
