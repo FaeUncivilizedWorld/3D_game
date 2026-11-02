@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -30,9 +31,18 @@ public class FPController : MonoBehaviour
 
         if (PlayerPrefs.GetInt("LoadOnStart", 0) == 1)
         {
-            LoadPlayerData();
-            PlayerPrefs.SetInt("LoadOnStart", 0);
+            StartCoroutine(DelayedLoadRoutine());
         }
+    }
+
+    private IEnumerator DelayedLoadRoutine()
+    {
+        yield return null;
+
+        PlayerPrefs.SetInt("LoadOnStart", 0);
+        PlayerPrefs.Save();
+
+        LoadPlayerData();
     }
 
     void Update()
@@ -143,6 +153,12 @@ public class FPController : MonoBehaviour
         data.positionZ = transform.position.z;
         data.rotationY = transform.eulerAngles.y;
 
+        AtticKeypad keypad = FindFirstObjectByType<AtticKeypad>(FindObjectsInactive.Include);
+        if (keypad != null)
+        {
+            data.isAtticUnlocked = keypad.IsUnlocked;
+        }
+
         data.savedObjects.Clear();
         SaveableObject[] allSaveableObjects = FindObjectsByType<SaveableObject>(FindObjectsSortMode.None);
 
@@ -212,6 +228,12 @@ public class FPController : MonoBehaviour
                         }
                     }
                 }
+            }
+
+            AtticKeypad keypad = FindFirstObjectByType<AtticKeypad>(FindObjectsInactive.Include);
+            if (keypad != null && data.isAtticUnlocked)
+            {
+                keypad.SetUnlockedStateFromSave();
             }
 
             Debug.Log("Player and World Objects Loaded Successfully!");
