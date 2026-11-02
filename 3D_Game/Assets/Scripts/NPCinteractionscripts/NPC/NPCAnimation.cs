@@ -1,22 +1,39 @@
 
 using UnityEngine;
 using UnityEngine.AI;
+
 // Goes on each NPC (the object that has the Animator, or its parent).
 // It picks which animation plays by STATE NAME, so the Animator Controller needs no transitions
 public class NpcAnimation : MonoBehaviour
 {
     [Header("Who to react to")]
     [Tooltip("Drag the Player here (the object with PlayerInteractor).")]
+
+
+public class NpcAnimation : MonoBehaviour
+{
+    [Header("Who to react to")]
+
     public Interactor player;
     public float talkDistance = 4f;
 
     [Header("Animator")]
+
     public Animator animator;               // Found in this object or its children if empty.
 
     [Header("Animation State Names (exactly as they appear in the Animator window)")]
     public string idleState = "Idle";
     public string walkState = "";
     public string talkState = "";
+
+    public Animator animator;
+
+    [Header("Animation State Names")]
+    public string idleState = "Idle";
+    public string walkState = "";
+    public string talkState = "";
+
+
     public float crossFadeSeconds = 0.2f;
     public float walkSpeedThreshold = 0.1f;
 
@@ -26,11 +43,17 @@ public class NpcAnimation : MonoBehaviour
     private void Awake()
     {
         if (animator == null)
+
         {
             animator = GetComponentInChildren<Animator>();
         }
 
         agent = GetComponent<NavMeshAgent>();
+
+            animator = GetComponentInChildren<Animator>();
+
+        agent = GetComponentInParent<NavMeshAgent>();
+
     }
 
     private void Start()
@@ -42,17 +65,32 @@ public class NpcAnimation : MonoBehaviour
     {
         if (animator == null) return;
 
+
         string wanted = idleState;
+
+
 
         bool talking = player != null
             && player.InputLocked
             && Vector3.Distance(transform.position, player.transform.position) < talkDistance;
 
+
+
+        string wanted = idleState;
+
+
         if (talking && !string.IsNullOrEmpty(talkState))
         {
             wanted = talkState;
         }
+
         else if (!string.IsNullOrEmpty(walkState) && agent != null && agent.velocity.magnitude > walkSpeedThreshold)
+
+        else if (!string.IsNullOrEmpty(walkState)
+            && agent != null
+            && !agent.isStopped
+            && agent.velocity.magnitude > walkSpeedThreshold)
+
         {
             wanted = walkState;
         }
@@ -62,11 +100,17 @@ public class NpcAnimation : MonoBehaviour
 
     private void Switch(string state, bool instant)
     {
+
         if (string.IsNullOrEmpty(state) || state == currentState) return;
+
+        if (string.IsNullOrEmpty(state) || state == currentState)
+            return;
+
 
         currentState = state;
 
         if (instant)
+
         {
             animator.Play(state);
         }
@@ -76,3 +120,10 @@ public class NpcAnimation : MonoBehaviour
         }
     }
 }
+
+            animator.Play(state);
+        else
+            animator.CrossFadeInFixedTime(state, crossFadeSeconds);
+    }
+}
+
