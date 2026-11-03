@@ -34,18 +34,6 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    // Main Menu Music Slider
-    public void SetMusicVolume(float volume)
-    {
-        if (audioSource != null)
-        {
-            audioSource.volume = volume;
-        }
-
-        PlayerPrefs.SetFloat("MusicVolume", volume);
-        PlayerPrefs.Save();
-    }
-
     public void NewGame()
     {
         StartCoroutine(NewGameWithSound());
@@ -108,5 +96,21 @@ public class MainMenu : MonoBehaviour
             soundSource.PlayOneShot(buttonSFX);
         }
     }
+    private void OnEnable()
+    {
+        AreaAudioController.OnMusicVolumeChanged += UpdateMusicVolume;
+    }
+
+    private void OnDisable()
+    {
+        AreaAudioController.OnMusicVolumeChanged -= UpdateMusicVolume;
+    }
+
+    private void UpdateMusicVolume(float volume)
+    {
+        if (audioSource != null)
+            audioSource.volume = volume;
+    }
+
 }
 
