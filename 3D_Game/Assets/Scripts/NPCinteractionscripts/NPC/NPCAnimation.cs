@@ -39,9 +39,13 @@ public class NpcAnimation : MonoBehaviour
     {
         if (animator == null) return;
 
-        bool talking = player != null
-            && player.InputLocked
-            && Vector3.Distance(transform.position, player.transform.position) < talkDistance;
+        bool dialogueActive = player != null &&
+         (player.InputLocked ||
+          (DialogueUI.Instance != null &&
+           DialogueUI.Instance.IsDialogueActive()));
+
+        bool talking = dialogueActive &&
+            Vector3.Distance(transform.position, player.transform.position) < talkDistance;
 
         string wanted = idleState;
 

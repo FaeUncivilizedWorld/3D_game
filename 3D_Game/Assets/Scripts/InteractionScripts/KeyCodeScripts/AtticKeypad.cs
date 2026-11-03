@@ -115,6 +115,8 @@ public class AtticKeypad : MonoBehaviour
     {
         if (currentInput == correctCode)
         {
+            SoundEffectManager.Play("KeypadCorrect");
+
             Debug.Log("Attic Keycode Correct!");
             IsUnlocked = true;
 
@@ -128,7 +130,10 @@ public class AtticKeypad : MonoBehaviour
                 codeTriggerZone.SetActive(false);
             }
 
+
             //  SoundEffectManager.Play(""); ANGIEE, ADD THE SOUND HERE
+
+
             CloseKeypad();
 
             if (codePromptText != null) codePromptText.SetActive(false);
@@ -136,6 +141,7 @@ public class AtticKeypad : MonoBehaviour
         else
         {
             Debug.Log("Incorrect Attic Keycode!");
+            SoundEffectManager.Play("KeypadIncorrect");
             ClearInput();
         }
     }

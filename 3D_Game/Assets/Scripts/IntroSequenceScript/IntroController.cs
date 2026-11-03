@@ -1,3 +1,4 @@
+
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -23,6 +24,7 @@ public class IntroController : MonoBehaviour
 
     [Header("Audio")]
     public AudioSource audioSource;
+    public AudioSource sfxAudioSource;
     public AudioClip introBGM;
     public AudioClip closetSound;
 
@@ -44,11 +46,10 @@ public class IntroController : MonoBehaviour
     private RectTransform dialogueRect;
     private Vector2 dialogueStartPosition;
 
-    void Start()
+    private void Start()
     {
         currentPage = 0;
 
-        // Get the dialogue text's position
         dialogueRect = dialogueText.GetComponent<RectTransform>();
         dialogueStartPosition = dialogueRect.anchoredPosition;
 
@@ -56,17 +57,17 @@ public class IntroController : MonoBehaviour
 
         clickHint.SetActive(true);
 
-        // Start intro music
+        // Load saved music volume
         if (audioSource != null && introBGM != null)
         {
             audioSource.clip = introBGM;
             audioSource.loop = true;
-            audioSource.volume = 1f;
+            audioSource.volume = PlayerPrefs.GetFloat("MusicVolume", 1f);
             audioSource.Play();
         }
     }
 
-    void Update()
+    private void Update()
     {
         TextJiggle();
 
@@ -78,7 +79,7 @@ public class IntroController : MonoBehaviour
         }
     }
 
-    void TextJiggle()
+    private void TextJiggle()
     {
         if (dialogueRect == null)
             return;
@@ -90,7 +91,7 @@ public class IntroController : MonoBehaviour
             dialogueStartPosition + new Vector2(x, y);
     }
 
-    void HandleClick()
+    private void HandleClick()
     {
         // Finish typing if the text hasn't finished
         if (typingCoroutine != null)
@@ -121,7 +122,7 @@ public class IntroController : MonoBehaviour
         StartCoroutine(EndSequence());
     }
 
-    void ShowPage()
+    private void ShowPage()
     {
         storyPage.sprite = pages[currentPage];
 
@@ -143,7 +144,7 @@ public class IntroController : MonoBehaviour
         }
     }
 
-    IEnumerator TypeDialogue(string text)
+    private IEnumerator TypeDialogue(string text)
     {
         dialogueText.text = text;
         dialogueText.maxVisibleCharacters = 0;
@@ -158,7 +159,7 @@ public class IntroController : MonoBehaviour
         typingCoroutine = null;
     }
 
-    IEnumerator EndSequence()
+    private IEnumerator EndSequence()
     {
         isTransitioning = true;
 
@@ -169,18 +170,24 @@ public class IntroController : MonoBehaviour
             dialogueText.text = "";
         }
 
-        if (audioSource != null && closetSound != null)
+        // Play closet sound
+        AudioSource soundSource =
+            sfxAudioSource != null ? sfxAudioSource : audioSource;
+
+        if (soundSource != null && closetSound != null)
         {
-            audioSource.PlayOneShot(closetSound);
+            soundSource.PlayOneShot(closetSound);
         }
 
         yield return new WaitForSeconds(1f);
 
+        // Fade out intro music
         yield return StartCoroutine(FadeMusicOut());
 
         levelLoader.LoadNextLevel();
     }
-    IEnumerator FadeMusicOut()
+
+    private IEnumerator FadeMusicOut()
     {
         if (audioSource == null)
             yield break;
@@ -202,5 +209,20 @@ public class IntroController : MonoBehaviour
 
         audioSource.volume = 0f;
         audioSource.Stop();
+    }
+    private void OnEnable()
+    {
+        AreaAudioController.OnMusicVolumeChanged += UpdateMusicVolume;
+    }
+
+    private void OnDisable()
+    {
+        AreaAudioController.OnMusicVolumeChanged -= UpdateMusicVolume;
+    }
+
+    private void UpdateMusicVolume(float volume)
+    {
+        if (audioSource != null)
+            audioSource.volume = volume;
     }
 }

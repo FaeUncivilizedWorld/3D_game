@@ -602592,6 +602592,12 @@ MonoBehaviour:
   - name: CabinetStruggle
     audioClips:
     - {fileID: 8300000, guid: 1ac49cc4df0dd41448865fcd95276cf2, type: 3}
+  - name: KeypadCorrect
+    audioClips:
+    - {fileID: 8300000, guid: 96c497a780196a14eb38d00e501ad9cf, type: 3}
+  - name: KeypadIncorrect
+    audioClips:
+    - {fileID: 8300000, guid: fbfbfa55f940e544aaadcca11c9b52c2, type: 3}
 --- !u!82 &1710876862
 AudioSource:
   m_ObjectHideFlags: 0

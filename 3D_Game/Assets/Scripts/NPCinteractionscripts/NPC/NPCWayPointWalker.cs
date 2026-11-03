@@ -52,9 +52,12 @@ public class NpcWaypointWalker : MonoBehaviour
             return;
         }
 
-        bool talking = player != null
-            && player.InputLocked
-            && Vector3.Distance(transform.position, player.transform.position) < stopDistance;
+        bool dialogueActive =
+          DialogueUI.Instance != null &&
+          DialogueUI.Instance.IsDialogueActive();
+
+        bool talking = player != null &&
+            (player.InputLocked || dialogueActive);
 
         if (talking)
         {
