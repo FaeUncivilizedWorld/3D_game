@@ -96,4 +96,20 @@ public class MainMenu : MonoBehaviour
             soundSource.PlayOneShot(buttonSFX);
         }
     }
+    private void OnEnable()
+    {
+        AreaAudioController.OnMusicVolumeChanged += UpdateMusicVolume;
+    }
+
+    private void OnDisable()
+    {
+        AreaAudioController.OnMusicVolumeChanged -= UpdateMusicVolume;
+    }
+
+    private void UpdateMusicVolume(float volume)
+    {
+        if (audioSource != null)
+            audioSource.volume = volume;
+    }
+
 }

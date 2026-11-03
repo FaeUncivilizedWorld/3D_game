@@ -210,4 +210,19 @@ public class IntroController : MonoBehaviour
         audioSource.volume = 0f;
         audioSource.Stop();
     }
+    private void OnEnable()
+    {
+        AreaAudioController.OnMusicVolumeChanged += UpdateMusicVolume;
+    }
+
+    private void OnDisable()
+    {
+        AreaAudioController.OnMusicVolumeChanged -= UpdateMusicVolume;
+    }
+
+    private void UpdateMusicVolume(float volume)
+    {
+        if (audioSource != null)
+            audioSource.volume = volume;
+    }
 }

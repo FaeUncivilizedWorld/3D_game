@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class AreaAudioController : MonoBehaviour
 {
@@ -27,6 +28,8 @@ public class AreaAudioController : MonoBehaviour
     private Coroutine musicFadeCoroutine;
     private Coroutine ambienceFadeCoroutine;
 
+    public static event System.Action<float> OnMusicVolumeChanged;
+
     private void Awake()
     {
         if (Instance == null)
@@ -47,30 +50,26 @@ public class AreaAudioController : MonoBehaviour
 
     private void SetupSliders()
     {
-        // Load saved volume settings.
         musicVolume = PlayerPrefs.GetFloat("MusicVolume", 1f);
         ambienceVolume = PlayerPrefs.GetFloat("AmbienceVolume", 1f);
 
-        // Apply saved volumes to this scene's AudioSources.
         if (musicSource != null)
             musicSource.volume = musicVolume;
 
         if (ambienceSource != null)
             ambienceSource.volume = ambienceVolume;
 
-        // Set up the music slider.
         if (musicSlider != null)
         {
+            musicSlider.onValueChanged.RemoveAllListeners();
             musicSlider.SetValueWithoutNotify(musicVolume);
-            musicSlider.onValueChanged.RemoveListener(SetMusicVolume);
             musicSlider.onValueChanged.AddListener(SetMusicVolume);
         }
 
-        // Set up the ambience slider.
         if (ambienceSlider != null)
         {
+            ambienceSlider.onValueChanged.RemoveAllListeners();
             ambienceSlider.SetValueWithoutNotify(ambienceVolume);
-            ambienceSlider.onValueChanged.RemoveListener(SetAmbienceVolume);
             ambienceSlider.onValueChanged.AddListener(SetAmbienceVolume);
         }
     }
@@ -84,6 +83,8 @@ public class AreaAudioController : MonoBehaviour
 
         if (musicSource != null && musicFadeCoroutine == null)
             musicSource.volume = musicVolume;
+
+        OnMusicVolumeChanged?.Invoke(musicVolume);
     }
 
     public void SetAmbienceVolume(float volume)
