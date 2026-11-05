@@ -80480,6 +80480,7 @@ Transform:
   - {fileID: 1264615770}
   - {fileID: 423639494}
   - {fileID: 1228478988}
+  - {fileID: 1086310359}
   - {fileID: 3745622627727880933}
   - {fileID: 4083501150840199110}
   - {fileID: 5680519943737101906}
@@ -482761,6 +482762,56 @@ Mesh:
       - serializedVersion: 1
         m_IndexStart: 0
         m_IndexCount: 0
+--- !u!1 &1086310358
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1086310359}
+  - component: {fileID: 1086310360}
+  m_Layer: 0
+  m_Name: CabinetDoorInteraction
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1086310359
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1086310358}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -22.762547, y: -2.92904, z: 90.623604}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 556907167}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1086310360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1086310358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b64962b95e2262044a98b052391d8bc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CabinetDoorInteraction
+  soundEffectName: CabinetStruggle
+  interactionUI: {fileID: 0}
+  dialogueTexts: []
+  playerController: {fileID: 0}
+  dialogueDelay: 1.5
+  textDuration: 2
 --- !u!43 &1088728707
 Mesh:
   m_ObjectHideFlags: 0
@@ -485254,7 +485305,7 @@ Transform:
   m_GameObject: {fileID: 1103239560}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -924.59, y: -533.57, z: -7.5}
+  m_LocalPosition: {x: -925.31, y: -533.57, z: -7.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -488920,13 +488971,13 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: -2928707585973528521, guid: 9a1f1cb54c4fb524ea4b86d5b0e76985, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 1228478992}
+    - targetCorrespondingSourceObject: {fileID: -2928707585973528521, guid: 9a1f1cb54c4fb524ea4b86d5b0e76985, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 1228478991}
     - targetCorrespondingSourceObject: {fileID: -2928707585973528521, guid: 9a1f1cb54c4fb524ea4b86d5b0e76985, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1228478990}
-    - targetCorrespondingSourceObject: {fileID: -2928707585973528521, guid: 9a1f1cb54c4fb524ea4b86d5b0e76985, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1228478992}
     - targetCorrespondingSourceObject: {fileID: -2928707585973528521, guid: 9a1f1cb54c4fb524ea4b86d5b0e76985, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1228478996}
@@ -488989,13 +489040,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0572ed37558b0694090c701882efce51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractableObject
-  prompt: PRESS       TO INTERACT
+  prompt: PRESS        TO INTERACT
   onInteract:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1228478991}
-        m_TargetAssemblyTypeName: DrawerAnimation, Assembly-CSharp
-        m_MethodName: OpenDrawer
+        m_TargetAssemblyTypeName: CabinetAnimation, Assembly-CSharp
+        m_MethodName: OpenCabinet
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -586697,8 +586748,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e9d86f104d3eb42b673944cb8e815b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioAreaTrigger
-  areaMusic: {fileID: 8300000, guid: c9082c18e9c0617489b54dbba5207f21, type: 3}
-  areaAmbience: {fileID: 8300000, guid: b0d04549775bd7b46b75a83c726a1351, type: 3}
+  areaMusic: {fileID: 8300000, guid: b0d04549775bd7b46b75a83c726a1351, type: 3}
+  areaAmbience: {fileID: 8300000, guid: c9082c18e9c0617489b54dbba5207f21, type: 3}
 --- !u!65 &1529820701
 BoxCollider:
   m_ObjectHideFlags: 0
