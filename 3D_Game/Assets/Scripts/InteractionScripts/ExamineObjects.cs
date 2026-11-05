@@ -218,6 +218,8 @@ public class ExamineObjects : MonoBehaviour
 
     public void StartInspection()
     {
+        SoundEffectManager.Play("ItemPickup");
+
         isBeingInspected = true;
         currentlyInspectedObject = this;
         currentInspectDistance = inspectDistance;
@@ -269,6 +271,7 @@ public class ExamineObjects : MonoBehaviour
         if (manager != null && itemData != null)
         {
             manager.AddItem(itemData);
+            SoundEffectManager.Play("ItemInventory");
         }
     }
 

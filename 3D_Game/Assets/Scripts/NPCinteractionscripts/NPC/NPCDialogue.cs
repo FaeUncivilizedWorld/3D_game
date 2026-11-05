@@ -119,6 +119,9 @@ public class NPCDialogue : MonoBehaviour
         if (stairsToReveal != null)
         {
             stairsToReveal.SetActive(true);
+
+            SoundEffectManager.Play("AtticStairsReveal");
+
             Debug.Log("Stairs revealed successfully!");
         }
         else

@@ -84,6 +84,7 @@ public class AtticKeypad : MonoBehaviour
     {
         if (currentInput.Length < 8)
         {
+            SoundEffectManager.Play("KeypadButtonPress");
             currentInput += digit;
             UpdateDisplay();
         }
