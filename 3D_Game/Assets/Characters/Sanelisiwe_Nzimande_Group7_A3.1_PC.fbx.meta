@@ -43,15 +43,7 @@ ModelImporter:
     removeConstantScaleCurves: 0
     motionNodeName: 
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'DEF_Bones|Idle Animation' has import animation
-      warnings that might lower retargeting quality:\nNote: Activate translation
-      DOF on avatar to improve retargeting quality.\n\t'DEF_Shoulder.L' has translation
-      animation that will be discarded.\n\t'DEF_Shoulder.R' has translation animation
-      that will be discarded.\n\nClip 'DEF_Bones|Walk cycle' has import animation
-      warnings that might lower retargeting quality:\nNote: Activate translation
-      DOF on avatar to improve retargeting quality.\n\t'DEF_Thigh.L' has translation
-      animation that will be discarded.\n\t'DEF_Thigh.R' has translation animation
-      that will be discarded.\n"
+    animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
