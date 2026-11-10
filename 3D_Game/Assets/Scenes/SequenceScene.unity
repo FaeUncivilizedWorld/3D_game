@@ -153,7 +153,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -418, y: -52}
+  m_AnchoredPosition: {x: -413, y: -125}
   m_SizeDelta: {x: 998.7161, y: 373.5948}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &66449988
@@ -242,7 +242,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -136.27234, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1211,11 +1211,11 @@ MonoBehaviour:
   storyPage: {fileID: 1325184328}
   levelLoader: {fileID: 1137140678}
   pages:
-  - {fileID: 21300000, guid: d1987fff6ff0b8443898ba3146a55eb7, type: 3}
-  - {fileID: 21300000, guid: d1987fff6ff0b8443898ba3146a55eb7, type: 3}
-  - {fileID: 21300000, guid: d1987fff6ff0b8443898ba3146a55eb7, type: 3}
-  - {fileID: 21300000, guid: d1987fff6ff0b8443898ba3146a55eb7, type: 3}
-  - {fileID: 21300000, guid: d1987fff6ff0b8443898ba3146a55eb7, type: 3}
+  - {fileID: 21300000, guid: 5db662a35ae321e489c3163832f16611, type: 3}
+  - {fileID: 21300000, guid: 5db662a35ae321e489c3163832f16611, type: 3}
+  - {fileID: 21300000, guid: 5db662a35ae321e489c3163832f16611, type: 3}
+  - {fileID: 21300000, guid: 5db662a35ae321e489c3163832f16611, type: 3}
+  - {fileID: 21300000, guid: 5db662a35ae321e489c3163832f16611, type: 3}
   pageDialogues:
   - "I hadn\u2019t been back to the house that started everything in years "
   - "All the isolation, confusion on my identity, humiliation\u2026"
