@@ -3750,7 +3750,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ObjectInteractionHint
   hintText: {fileID: 1930887119}
   player: {fileID: 1714198110}
-  showDistance: 3
+  showDistance: 6
 --- !u!114 &29353424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -455588,7 +455588,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ObjectInteractionHint
   hintText: {fileID: 1930887119}
   player: {fileID: 1714198110}
-  showDistance: 3
+  showDistance: 6
 --- !u!114 &809525802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -463955,15 +463955,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8316342446694453566, guid: ceba8e2ad2b1c24458f404e4a4284b2b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.824
+      value: 0.212
       objectReference: {fileID: 0}
     - target: {fileID: -8316342446694453566, guid: ceba8e2ad2b1c24458f404e4a4284b2b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.041
+      value: -0.049
       objectReference: {fileID: 0}
     - target: {fileID: -8316342446694453566, guid: ceba8e2ad2b1c24458f404e4a4284b2b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.112
+      value: 2.246
       objectReference: {fileID: 0}
     - target: {fileID: -8316342446694453566, guid: ceba8e2ad2b1c24458f404e4a4284b2b, type: 3}
       propertyPath: m_LocalRotation.w
