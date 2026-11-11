@@ -1,3 +1,4 @@
+using System.Collections; 
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -22,8 +23,8 @@ public class PotionGameManager : MonoBehaviour
     public GameObject potionGamePanel;
     public PotionManager potionUI;
 
-    [Header("Player Interaction")]
-    [SerializeField] private Interactor playerInteractor;
+    [Header("Instructions Popup")]
+    public GameObject instructionsPopup; 
 
     public void StartMiniGame()
     {
@@ -37,12 +38,23 @@ public class PotionGameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
-        if (playerInteractor != null)
-        {
-            playerInteractor.LockInput();
-        }
-
         SetupRound();
+
+        if (instructionsPopup != null)
+        {
+            instructionsPopup.SetActive(true);
+            StartCoroutine(HideInstructionsAfterDelay(15f));
+        }
+    }
+
+    private IEnumerator HideInstructionsAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if (instructionsPopup != null)
+        {
+            instructionsPopup.SetActive(false);
+        }
     }
 
     private void SetupRound()

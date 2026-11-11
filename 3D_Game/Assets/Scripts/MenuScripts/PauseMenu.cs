@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -24,6 +25,7 @@ public class PauseMenu : MonoBehaviour
             }
         }
     }
+
     public void Pause()
     {
         pauseMenu.SetActive(true);
