@@ -57,7 +57,15 @@ public class AtticKeypad : MonoBehaviour
         if (keypadPanel != null) keypadPanel.SetActive(true);
 
         FPController fp = FindFirstObjectByType<FPController>();
-        if (fp != null) fp.DisableControlsForExamine();
+        if (fp != null)
+        {
+            fp.DisableControlsForExamine();
+            Debug.Log("DisableControlsForExamine was successfully called on: " + fp.gameObject.name); 
+        }
+        else
+        {
+            Debug.LogWarning("FPController could not be found!");
+        }
 
         if (codePromptText != null)
             codePromptText.SetActive(false);
@@ -131,10 +139,6 @@ public class AtticKeypad : MonoBehaviour
                 codeTriggerZone.SetActive(false);
             }
 
-
-            //  SoundEffectManager.Play(""); ANGIEE, ADD THE SOUND HERE
-
-
             CloseKeypad();
 
             if (codePromptText != null) codePromptText.SetActive(false);
@@ -192,25 +196,21 @@ public class AtticKeypad : MonoBehaviour
     {
         IsUnlocked = true;
 
-        // 1. Ensure visual stairs are visible
         if (atticStairsObject != null)
         {
             atticStairsObject.SetActive(true);
         }
 
-        // 2. Turn on the climb/teleport trigger permanently
         if (climbTriggerObject != null)
         {
             climbTriggerObject.SetActive(true);
         }
 
-        // 3. Turn off keypad trigger zone so prompt text never pops up
         if (codeTriggerZone != null)
         {
             codeTriggerZone.SetActive(false);
         }
 
-        // 4. Ensure keypad UI panel is hidden
         if (keypadPanel != null)
         {
             keypadPanel.SetActive(false);

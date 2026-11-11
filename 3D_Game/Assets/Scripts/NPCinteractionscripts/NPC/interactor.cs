@@ -1,4 +1,3 @@
-
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -14,13 +13,14 @@ public class Interactor : MonoBehaviour
 
     private PlayerInput _playerInput;
     private IInteractable currentTarget;
+    private FPController playerController; 
 
-    // Other scripts can check whether the player is occupied.
     public bool InputLocked { get; private set; }
 
     private void Awake()
     {
         _playerInput = GetComponentInParent<PlayerInput>();
+        playerController = GetComponentInParent<FPController>(); 
     }
 
     private void OnEnable()
@@ -41,27 +41,47 @@ public class Interactor : MonoBehaviour
         }
     }
 
+    private bool wasDialogueActiveLastFrame = false; 
+
     private void Update()
     {
-        if (InputLocked ||
-            (DialogueUI.Instance != null &&
-             DialogueUI.Instance.IsDialogueActive()))
+        bool isDialogueActive = (DialogueUI.Instance != null && DialogueUI.Instance.IsDialogueActive());
+
+        if (InputLocked || isDialogueActive)
         {
+            if (isDialogueActive)
+            {
+                if (playerController != null && !playerController.isExamining)
+                {
+                    playerController.DisableControlsForExamine();
+                }
+                wasDialogueActiveLastFrame = true;
+            }
+
             ClearCurrentTarget();
             return;
+        }
+        else
+        {
+            if (wasDialogueActiveLastFrame)
+            {
+                if (playerController != null && playerController.isExamining)
+                {
+                    playerController.EnableControlsAfterExamine();
+                }
+                wasDialogueActiveLastFrame = false;
+            }
         }
 
         FindInteractable();
     }
 
-    // Called by other scripts to lock player interaction.
     public void LockInput()
     {
         InputLocked = true;
         ClearCurrentTarget();
     }
 
-    // Called when the interaction is finished.
     public void UnlockInput()
     {
         InputLocked = false;

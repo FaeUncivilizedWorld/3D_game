@@ -3,10 +3,9 @@ using UnityEngine;
 public class MabelNPC : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private GameObject stairsToReveal; // Drag your stairs GameObject here
-    [SerializeField] private GameObject climbTriggerToReveal; // Drag your ClimbTrigger GameObject here
+    [SerializeField] private GameObject stairsToReveal; 
+    [SerializeField] private GameObject climbTriggerToReveal; 
 
-    // Call this method when the player finishes talking to Mabel
     public void FinishConversation()
     {
         if (stairsToReveal != null) stairsToReveal.SetActive(true);

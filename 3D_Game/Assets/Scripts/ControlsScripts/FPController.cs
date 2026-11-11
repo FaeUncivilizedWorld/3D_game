@@ -16,6 +16,7 @@ public class FPController : MonoBehaviour
     public bool isExamining = false;
 
     private CharacterController characterController;
+    private Animator animator;
     private Vector3 velocity;
     private float XRotation = 0f;
 
@@ -25,6 +26,7 @@ public class FPController : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+        animator = GetComponentInChildren<Animator>();
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -37,7 +39,7 @@ public class FPController : MonoBehaviour
 
     private IEnumerator DelayedLoadRoutine()
     {
-        yield return null;
+        yield return new WaitForEndOfFrame();
 
         PlayerPrefs.SetInt("LoadOnStart", 0);
         PlayerPrefs.Save();
@@ -88,6 +90,9 @@ public class FPController : MonoBehaviour
 
     void Move()
     {
+        if (characterController == null || !characterController.enabled)
+            return;
+
         Vector2 input = Vector2.zero;
 
         if (Keyboard.current != null)
@@ -105,6 +110,11 @@ public class FPController : MonoBehaviour
         characterController.Move(move * moveSpeed * Time.deltaTime);
 
         bool isMoving = input.magnitude > 0.1f && characterController.isGrounded;
+
+        if (animator != null)
+        {
+            animator.SetBool("IsMoving", isMoving);
+        }
 
         if (isMoving && !playingFootsteps)
         {
@@ -148,9 +158,11 @@ public class FPController : MonoBehaviour
     {
         PlayerData data = SaveSystem.LoadPlayer() ?? new PlayerData();
 
-        data.positionX = transform.position.x;
-        data.positionY = transform.position.y;
-        data.positionZ = transform.position.z;
+        Vector3 playerPos = characterController != null ? characterController.transform.position : transform.position;
+
+        data.positionX = playerPos.x;
+        data.positionY = playerPos.y;
+        data.positionZ = playerPos.z;
         data.rotationY = transform.eulerAngles.y;
 
         AtticKeypad keypad = FindFirstObjectByType<AtticKeypad>(FindObjectsInactive.Include);
@@ -200,56 +212,74 @@ public class FPController : MonoBehaviour
 
         if (data != null)
         {
-            CharacterController controller = GetComponent<CharacterController>();
-            if (controller != null) controller.enabled = false;
+            StartCoroutine(ApplyPlayerPositionRoutine(data));
+        }
+    }
 
-            transform.position = new Vector3(data.positionX, data.positionY, data.positionZ);
-            transform.rotation = Quaternion.Euler(0f, data.rotationY, 0f);
+    private IEnumerator ApplyPlayerPositionRoutine(PlayerData data)
+    {
 
-            if (controller != null) controller.enabled = true;
+        Vector3 targetPosition = new Vector3(data.positionX, data.positionY, data.positionZ);
 
-            SaveableObject[] allSaveableObjects = FindObjectsByType<SaveableObject>(FindObjectsSortMode.None);
+        if (characterController != null)
+        {
+            characterController.enabled = false;
+        }
 
-            foreach (SaveableObject obj in allSaveableObjects)
+        transform.position = targetPosition;
+        transform.rotation = Quaternion.Euler(0f, data.rotationY, 0f);
+        velocity = Vector3.zero;
+
+        yield return null;
+
+        transform.position = targetPosition;
+
+        if (characterController != null)
+        {
+            characterController.enabled = true;
+        }
+
+        SaveableObject[] allSaveableObjects = FindObjectsByType<SaveableObject>(FindObjectsSortMode.None);
+
+        foreach (SaveableObject obj in allSaveableObjects)
+        {
+            ObjectSaveData match = data.savedObjects.Find(x => x.objectId == obj.objectId);
+
+            if (!string.IsNullOrEmpty(match.objectId))
             {
-                ObjectSaveData match = data.savedObjects.Find(x => x.objectId == obj.objectId);
+                Rigidbody rb = obj.GetComponent<Rigidbody>();
+                if (rb != null) rb.isKinematic = true;
 
-                if (!string.IsNullOrEmpty(match.objectId))
+                obj.transform.position = new Vector3(match.posX, match.posY, match.posZ);
+                obj.transform.rotation = Quaternion.Euler(match.rotX, match.rotY, match.rotZ);
+
+                if (rb != null) rb.isKinematic = false;
+
+                Door doorScript = obj.GetComponent<Door>();
+                if (doorScript != null)
                 {
-                    Rigidbody rb = obj.GetComponent<Rigidbody>();
-                    if (rb != null) rb.isKinematic = true;
-
-                    obj.transform.position = new Vector3(match.posX, match.posY, match.posZ);
-                    obj.transform.rotation = Quaternion.Euler(match.rotX, match.rotY, match.rotZ);
-
-                    if (rb != null) rb.isKinematic = false;
-
-                    Door doorScript = obj.GetComponent<Door>();
-                    if (doorScript != null)
+                    doorScript.isOpen = match.isOpen;
+                    if (doorScript.isOpen && doorScript.doorAnimator != null)
                     {
-                        doorScript.isOpen = match.isOpen;
-                        if (doorScript.isOpen && doorScript.doorAnimator != null)
-                        {
-                            doorScript.doorAnimator.SetTrigger("OpenDoor");
-                        }
+                        doorScript.doorAnimator.SetTrigger("OpenDoor");
                     }
                 }
             }
-
-            AtticKeypad keypad = FindFirstObjectByType<AtticKeypad>(FindObjectsInactive.Include);
-            if (keypad != null && data.isAtticUnlocked)
-            {
-                keypad.SetUnlockedStateFromSave();
-            }
-
-            InventoryManager invManager = InventoryManager.Instance;
-            if (invManager != null)
-            {
-                invManager.RestoreCollectedItems(data.collectedItemNames);
-            }
-
-            Debug.Log("Player and World Objects Loaded Successfully!");
         }
+
+        AtticKeypad keypad = FindFirstObjectByType<AtticKeypad>(FindObjectsInactive.Include);
+        if (keypad != null && data.isAtticUnlocked)
+        {
+            keypad.SetUnlockedStateFromSave();
+        }
+
+        InventoryManager invManager = InventoryManager.Instance;
+        if (invManager != null)
+        {
+            invManager.RestoreCollectedItems(data.collectedItemNames);
+        }
+
+        Debug.Log("Player and World Objects Loaded Successfully!");
     }
 
     void StartFootsteps()

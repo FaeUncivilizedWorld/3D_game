@@ -23,9 +23,9 @@ public class PlayerData
     // Saveable Objects Data
     public List<ObjectSaveData> savedObjects = new List<ObjectSaveData>();
 
-    // Puzzle Progress 
+    // Keypad stats
     public bool isAtticUnlocked;
 
-    // Inventory Progress
+    // Inventory stats
     public List<string> collectedItemNames = new List<string>();
 }

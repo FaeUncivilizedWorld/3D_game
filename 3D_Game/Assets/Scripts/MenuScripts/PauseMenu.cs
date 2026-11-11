@@ -58,6 +58,20 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    public void SaveGame()
+    {
+        FPController player = FindFirstObjectByType<FPController>();
+        if (player != null)
+        {
+            player.SavePlayerData();
+            Debug.Log("Game saved from Pause Menu!");
+        }
+        else
+        {
+            Debug.LogWarning("Could not find FPController to save game.");
+        }
+    }
+
     public void Menu(int sceneID)
     {
         Time.timeScale = 1f;

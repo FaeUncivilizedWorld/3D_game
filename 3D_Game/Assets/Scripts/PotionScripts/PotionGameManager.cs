@@ -24,7 +24,7 @@ public class PotionGameManager : MonoBehaviour
     public PotionManager potionUI;
 
     [Header("Instructions Popup")]
-    public GameObject instructionsPopup; 
+    public GameObject instructionsPopup;
 
     public void StartMiniGame()
     {
@@ -35,8 +35,11 @@ public class PotionGameManager : MonoBehaviour
             potionGamePanel.SetActive(true);
         }
 
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        FPController fp = FindFirstObjectByType<FPController>();
+        if (fp != null)
+        {
+            fp.DisableControlsForExamine();
+        }
 
         SetupRound();
 
@@ -104,7 +107,6 @@ public class PotionGameManager : MonoBehaviour
                            (recipe.ingredient1 == secondSelectedIngredient && recipe.ingredient2 == firstSelectedIngredient);
                             
 
-
             if (isMatch)
             {
                 matchedRecipe = recipe;
@@ -160,6 +162,11 @@ public class PotionGameManager : MonoBehaviour
 
     private void CompleteMiniGame()
     {
+        if (potionGamePanel != null)
+        {
+            potionGamePanel.SetActive(false);
+        }
+
         OnMiniGameCompleted?.Invoke();
     }
 }

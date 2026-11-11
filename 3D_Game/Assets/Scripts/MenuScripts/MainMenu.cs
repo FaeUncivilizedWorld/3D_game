@@ -1,4 +1,3 @@
-
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -18,7 +17,6 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
-        // Load saved music volume
         if (audioSource != null && menuMusic != null)
         {
             audioSource.clip = menuMusic;
@@ -27,7 +25,6 @@ public class MainMenu : MonoBehaviour
             audioSource.Play();
         }
 
-        // Disable Continue if no save data exists
         if (continueButton != null)
         {
             continueButton.interactable = SaveSystem.HasSavedData();
@@ -49,7 +46,6 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.SetInt("LoadOnStart", 0);
         PlayerPrefs.Save();
 
-        // New Game goes to the sequence scene first
         SceneManager.LoadScene("SequenceScene");
     }
 
@@ -82,7 +78,6 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.SetInt("LoadOnStart", 1);
         PlayerPrefs.Save();
 
-        // Continue goes directly to WholeHouse
         SceneManager.LoadScene(gameSceneName);
     }
 
@@ -113,4 +108,3 @@ public class MainMenu : MonoBehaviour
     }
 
 }
-
