@@ -1005,7 +1005,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EndingCutsceneController
   videoPlayer: {fileID: 294108459}
   fadePanel: {fileID: 1673311298}
-  fadeDuration: 1.5
+  fadeDuration: 2
   musicSource: {fileID: 317063633}
   endingMusic: {fileID: 8300000, guid: b7484e77980e99c4c9d37ca924bba991, type: 3}
   musicFadeDuration: 2
