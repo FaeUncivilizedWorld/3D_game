@@ -8,12 +8,12 @@ public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance;
 
-    [Header("UI Panels & Prompts")]
+    [Header("Inventory")]
     [SerializeField] private GameObject inventoryPanel;
     [SerializeField] private GameObject inventoryText;
     [SerializeField] private Button exitButton;
 
-    [Header("Inventory Item Slots")]
+    [Header("Item Slots")]
     [SerializeField] private Button[] slotButtons;
 
     [Header("Description Display")]
@@ -22,6 +22,17 @@ public class InventoryManager : MonoBehaviour
 
     private List<InventoryObjects> collectedItems = new List<InventoryObjects>();
 
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
 
     void Start()
@@ -136,5 +147,48 @@ public class InventoryManager : MonoBehaviour
         {
             slot.gameObject.SetActive(false);
         }
+    }
+
+    public List<string> GetCollectedItemNames()
+    {
+        List<string> names = new List<string>();
+        foreach (var item in collectedItems)
+        {
+            if (item != null)
+            {
+                names.Add(item.ObjectName);
+            }
+        }
+        return names;
+    }
+
+    public void RestoreCollectedItems(List<string> savedNames)
+    {
+        collectedItems.Clear();
+
+        if (savedNames == null || savedNames.Count == 0)
+        {
+            UpdateInventoryUI();
+            return;
+        }
+
+        InventoryObjects[] allItemsInWorld = FindObjectsByType<InventoryObjects>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+
+        foreach (string savedName in savedNames)
+        {
+            foreach (var worldItem in allItemsInWorld)
+            {
+                if (worldItem != null && worldItem.ObjectName == savedName)
+                {
+                    if (!collectedItems.Contains(worldItem))
+                    {
+                        collectedItems.Add(worldItem);
+                    }
+                    break;
+                }
+            }
+        }
+
+        UpdateInventoryUI();
     }
 }

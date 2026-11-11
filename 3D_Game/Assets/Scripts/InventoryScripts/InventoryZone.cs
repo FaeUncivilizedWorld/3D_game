@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class InventoryZone : MonoBehaviour
 {
-    [Tooltip("Drag your 'Press I to Open Inventory' text object here.")]
     [SerializeField] private GameObject inventoryText;
 
     void Start()

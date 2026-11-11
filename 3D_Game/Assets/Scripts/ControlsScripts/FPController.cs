@@ -159,6 +159,12 @@ public class FPController : MonoBehaviour
             data.isAtticUnlocked = keypad.IsUnlocked;
         }
 
+        InventoryManager invManager = InventoryManager.Instance;
+        if (invManager != null)
+        {
+            data.collectedItemNames = invManager.GetCollectedItemNames();
+        }
+
         data.savedObjects.Clear();
         SaveableObject[] allSaveableObjects = FindObjectsByType<SaveableObject>(FindObjectsSortMode.None);
 
@@ -234,6 +240,12 @@ public class FPController : MonoBehaviour
             if (keypad != null && data.isAtticUnlocked)
             {
                 keypad.SetUnlockedStateFromSave();
+            }
+
+            InventoryManager invManager = InventoryManager.Instance;
+            if (invManager != null)
+            {
+                invManager.RestoreCollectedItems(data.collectedItemNames);
             }
 
             Debug.Log("Player and World Objects Loaded Successfully!");
