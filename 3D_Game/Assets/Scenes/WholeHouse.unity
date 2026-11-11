@@ -487822,6 +487822,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PauseMenu
   pauseMenu: {fileID: 235730488}
   hud: {fileID: 1828601776}
+  playerInteractor: {fileID: 1714198113}
 --- !u!4 &1046430500
 Transform:
   m_ObjectHideFlags: 0
@@ -612334,6 +612335,12 @@ MonoBehaviour:
   - name: ItemPickup
     audioClips:
     - {fileID: 8300000, guid: f58a3b4b73510234da31965df8eb762f, type: 3}
+  - name: PotionCorrect
+    audioClips:
+    - {fileID: 8300000, guid: e66df444ffbed6542b79d744be48db6a, type: 3}
+  - name: PotionWrong
+    audioClips:
+    - {fileID: 8300000, guid: e435e8c86b28ef9488f04e4b40855987, type: 3}
 --- !u!82 &1710876862
 AudioSource:
   m_ObjectHideFlags: 0
@@ -944434,6 +944441,7 @@ MonoBehaviour:
       m_Calls: []
   potionGamePanel: {fileID: 1040776100}
   potionUI: {fileID: 2001248395}
+  playerInteractor: {fileID: 1714198113}
 --- !u!114 &2001248395
 MonoBehaviour:
   m_ObjectHideFlags: 0

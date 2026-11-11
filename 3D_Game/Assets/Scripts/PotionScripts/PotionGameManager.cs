@@ -22,6 +22,9 @@ public class PotionGameManager : MonoBehaviour
     public GameObject potionGamePanel;
     public PotionManager potionUI;
 
+    [Header("Player Interaction")]
+    [SerializeField] private Interactor playerInteractor;
+
     public void StartMiniGame()
     {
         gameObject.SetActive(true);
@@ -33,6 +36,11 @@ public class PotionGameManager : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+
+        if (playerInteractor != null)
+        {
+            playerInteractor.LockInput();
+        }
 
         SetupRound();
     }
@@ -94,6 +102,8 @@ public class PotionGameManager : MonoBehaviour
 
         if (matchedRecipe != null)
         {
+            SoundEffectManager.Play("PotionCorrect");
+
             Debug.Log("Correct combination!");
             completedRecipes.Add(matchedRecipe);
 
@@ -116,6 +126,8 @@ public class PotionGameManager : MonoBehaviour
         }
         else
         {
+            SoundEffectManager.Play("PotionWrong");
+
             string ing1Name = firstSelectedIngredient != null ? firstSelectedIngredient.name : "NULL";
             string ing2Name = secondSelectedIngredient != null ? secondSelectedIngredient.name : "NULL";
             Debug.Log($"Wrong combination entered. Try again!");
