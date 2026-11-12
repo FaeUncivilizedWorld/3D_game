@@ -398,7 +398,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'PRESS           TO REVEAL ALL
+  m_text: 'PRESS       TO REVEAL ALL
 
 '
   m_isRightToLeft: 0
@@ -669,7 +669,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -125, y: 33}
+  m_AnchoredPosition: {x: -141.6, y: 33}
   m_SizeDelta: {x: 72.2179, y: 70.6298}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1164798032
