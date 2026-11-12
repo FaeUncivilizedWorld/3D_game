@@ -23,6 +23,8 @@ public class PotionGameManager : MonoBehaviour
     public GameObject potionGamePanel;
     public PotionManager potionUI;
 
+    [SerializeField] private Interactor playerInteractor;
+
     [Header("Instructions Popup")]
     public GameObject instructionsPopup;
 
@@ -41,6 +43,10 @@ public class PotionGameManager : MonoBehaviour
             fp.DisableControlsForExamine();
         }
 
+        if (playerInteractor != null)
+        {
+            playerInteractor.LockInput();
+        }
         SetupRound();
 
         if (instructionsPopup != null)
@@ -162,11 +168,6 @@ public class PotionGameManager : MonoBehaviour
 
     private void CompleteMiniGame()
     {
-        if (potionGamePanel != null)
-        {
-            potionGamePanel.SetActive(false);
-        }
-
         OnMiniGameCompleted?.Invoke();
     }
 }

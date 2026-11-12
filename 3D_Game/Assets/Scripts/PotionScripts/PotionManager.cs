@@ -2,10 +2,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class PotionManager : MonoBehaviour
 {
     public PotionGameManager miniGameManager;
+
+    [Header("Ending Transition")]
+    [SerializeField] private CanvasGroup fadePanel;
+    [SerializeField] private float fadeDuration = 1.5f;
 
     [Header("Recipe Board")]
     public GameObject recipeBoardPanel;
@@ -81,6 +86,30 @@ public class PotionManager : MonoBehaviour
 
     public void TriggerEndCutscene()
     {
+        StartCoroutine(FadeToEnding());
+    }
+
+    private IEnumerator FadeToEnding()
+    {
+        fadePanel.alpha = 0f;
+        fadePanel.gameObject.SetActive(true);
+        fadePanel.blocksRaycasts = true;
+
+        float timer = 0f;
+
+        while (timer < fadeDuration)
+        {
+            timer += Time.unscaledDeltaTime;
+
+            fadePanel.alpha = Mathf.Clamp01(timer / fadeDuration);
+
+            yield return null;
+        }
+
+        fadePanel.alpha = 1f;
+
+        yield return new WaitForSecondsRealtime(0.3f);
+
         SceneManager.LoadScene("EndCutscene");
     }
 }
